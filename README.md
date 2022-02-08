@@ -14,3 +14,7 @@ docker-compose up
 ```
 mongodb://acme:acme@localhost:27017/ACME_Explorer
 ```
+
+## Conceptual Model
+
+![plot](./assets/acme-explorer.png)
