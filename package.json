@@ -1,21 +1,21 @@
 {
   "name": "l01-s01",
   "version": "1.0.0",
-  "description": "ACMEMarket REST API",
+  "description": "ACMEExplorer REST API",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alejandrofdez-us/ACME-Market.git"
+    "url": "git+https://github.com/MIS-DO/DO2122-davromorg.git"
   },
-  "author": "afdez@us.es, cmuller@us.es",
+  "author": "davromorg@alum.us.es",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alejandrofdez-us/ACME-Market/issues"
+    "url": "https://github.com/MIS-DO/DO2122-davromorg/issues"
   },
-  "homepage": "https://github.com/alejandrofdez-us/ACME-Market#readme",
+  "homepage": "https://github.com/MIS-DO/DO2122-davromorg#readme",
   "dependencies": {
     "express": "^4.16.4",
     "mongoose": "^6.1.9"

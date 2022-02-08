@@ -20,9 +20,9 @@ routesItems(app)
 routesOrders(app)
 
 // MongoDB URI building
-const mongoDBHostname = process.env.mongoDBHostname || 'localhost'
+const mongoDBHostname = process.env.mongoDBHostname || 'mongodb'
 const mongoDBPort = process.env.mongoDBPort || '27017'
-const mongoDBName = process.env.mongoDBName || 'ACME-Market'
+const mongoDBName = process.env.mongoDBName || 'ACME_Explorer'
 const mongoDBURI = 'mongodb://' + mongoDBHostname + ':' + mongoDBPort + '/' + mongoDBName
 
 mongoose.connect(mongoDBURI)
@@ -30,7 +30,7 @@ console.log('Connecting DB to: ' + mongoDBURI)
 
 mongoose.connection.on('open', function () {
   app.listen(port, function () {
-    console.log('ACME-Market RESTful API server started on: ' + port)
+    console.log('ACME-Explorer RESTful API server started on: ' + port)
   })
 })
 

@@ -1,0 +1,23 @@
+services:
+  web:
+    build: .
+    depends_on:
+      - mongodb
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/opt/app
+      - /opt/app/node_modules
+  
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: acme
+      MONGO_INITDB_ROOT_PASSWORD: acme
+      MONGO_INITDB_DATABASE: ACME_Explorer
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
