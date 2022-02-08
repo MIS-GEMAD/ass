@@ -1,20 +1,27 @@
 # Acme Explorer project
 
-# Build the image
+# Getting started
+
+## Build the image
 ```
 docker-compose build 
 ```
 
-# Run the container
+## Run the containers
 ```
-docker-compose up
+docker-compose up -d
 ```
 
-# Manage database from MongoDB Compass
+## Down the containers
+```
+docker-compose down
+```
+
+## Manage database from MongoDB Compass
 ```
 mongodb://acme:acme@localhost:27017/ACME_Explorer
 ```
 
-## Conceptual Model
+# Conceptual Model
 
 ![plot](./assets/acme-explorer.png)
