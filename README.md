@@ -7,7 +7,12 @@
 docker-compose build 
 ```
 
-## Run the containers
+## Option 1: Run the containers
+```
+docker-compose up
+```
+
+## Option 2: Run the containers (in the background)
 ```
 docker-compose up -d
 ```
@@ -21,6 +26,13 @@ docker-compose down
 ```
 mongodb://acme:acme@localhost:27017/ACME_Explorer
 ```
+
+## Re-populate Mongo Database
+```
+docker-compose down
+docker-compose up -d
+```
+
 
 # Conceptual Model
 
