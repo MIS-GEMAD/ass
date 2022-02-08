@@ -7,6 +7,7 @@ const Actor = require('./api/models/actorModel')
 const Item = require('./api/models/itemModel')
 const Order = require('./api/models/orderModel')
 const Trip = require('./api/models/tripModel')
+const Stage = require('./api/models/stageModel')
 const bodyParser = require('body-parser')
 
 app.use(bodyParser.urlencoded({ extended: true }))
