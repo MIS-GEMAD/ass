@@ -15,8 +15,6 @@ services:
     container_name: mongodb
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: acme
-      MONGO_INITDB_ROOT_PASSWORD: acme
       MONGO_INITDB_DATABASE: ACME_Explorer
     ports:
       - "27017:27017"

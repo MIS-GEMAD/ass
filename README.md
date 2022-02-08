@@ -24,7 +24,7 @@ docker-compose down
 
 ## Manage database from MongoDB Compass
 ```
-mongodb://acme:acme@localhost:27017/ACME_Explorer
+mongodb://localhost:27017/ACME_Explorer
 ```
 
 ## Re-populate Mongo Database
@@ -32,7 +32,6 @@ mongodb://acme:acme@localhost:27017/ACME_Explorer
 docker-compose down
 docker-compose up -d
 ```
-
 
 # Conceptual Model
 
