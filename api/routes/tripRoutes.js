@@ -13,7 +13,7 @@ module.exports = function (app) {
     .put(trip.update_a_trip)
     .delete(trip.delete_a_trip)
 
-    app.route('/trips/:tripId/stages')
+  app.route('/trips/:tripId/stages')
     .get(stage.list_all_stages)
     .post(stage.create_a_stage)
 
