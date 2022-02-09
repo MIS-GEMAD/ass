@@ -3,23 +3,33 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 8080
 const mongoose = require('mongoose')
-const Actor = require('./api/models/actorModel')
-const Application = require('./api/models/applicationModel')
-const Picture = require('./api/models/pictureModel')
-const Stage = require('./api/models/stageModel')
-const Trip = require('./api/models/tripModel')
-const bodyParser = require('body-parser')
 
+// creación de los esquemas en MongoDB
+// nota: aunque no se usen las variables, los "requires" son obligatorios
+const Actor = require('./api/models/actorModel')
+const Item = require('./api/models/itemModel')
+const Order = require('./api/models/orderModel')
+const Trip = require('./api/models/tripModel')
+const Stage = require('./api/models/stageModel')
+const Application = require('./api/models/applicationModel')
+
+// body parser
+const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+// Routes
 const routesActors = require('./api/routes/actorRoutes')
 const routesItems = require('./api/routes/itemRoutes')
 const routesOrders = require('./api/routes/orderRoutes')
+const routesTrips = require('./api/routes/tripRoutes')
+const routesApplications = require('./api/routes/applicationRoutes')
 
 routesActors(app)
 routesItems(app)
 routesOrders(app)
+routesTrips(app)
+routesApplications(app)
 
 // MongoDB URI building
 const mongoDBHostname = process.env.mongoDBHostname || 'mongodb'
