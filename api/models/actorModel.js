@@ -32,7 +32,7 @@ const ActorSchema = new Schema(
       ],
       required: [true, "Email is required"],
     },
-    phoneNumber: {
+    phone: {
       type: String,
     },
     address: {
@@ -50,4 +50,4 @@ const ActorSchema = new Schema(
   { strict: true }
 );
 
-module.exports = mongoose.model("Actors", ActorSchema);
+module.exports = mongoose.model("Actor", ActorSchema);

@@ -2,10 +2,21 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const createTicker = function () {
+  const date = new Date();
+  const ticker = `${date.getYear().toString()}${date
+    .getMonth()
+    .toString()}${date.getDay().toString()}-${String.fromCharCode(
+    65 + Math.floor(Math.random() * 26)
+  )}`;
+  return ticker;
+};
+
 const TripSchema = new Schema(
   {
     ticker: {
       type: String,
+      default: createTicker(),
       required: [true, 'Ticker is required'],
     },
     title: {
