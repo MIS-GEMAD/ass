@@ -3,7 +3,7 @@
 const mongoose = require('mongoose')
 
 /* ---------------APPLICATIONS---------------------- */
-const Application = mongoose.model('Applications')
+const Application = mongoose.model('Application')
 
 exports.list_all_applications = function (req, res) {
   Application.find({}, function (err, application) {

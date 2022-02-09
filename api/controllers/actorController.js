@@ -1,7 +1,7 @@
 'use strict'
 /* ---------------ACTOR---------------------- */
 const mongoose = require('mongoose')
-const Actor = mongoose.model('Actors')
+const Actor = mongoose.model('Actor')
 
 exports.list_all_actors = function (req, res) {
   Actor.find({}, function (err, actors) {
