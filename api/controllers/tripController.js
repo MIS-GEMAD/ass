@@ -3,7 +3,7 @@
 const mongoose = require('mongoose')
 
 /* ---------------TRIPS---------------------- */
-const Trip = mongoose.model('Trips')
+const Trip = mongoose.model('Trip')
 
 exports.list_all_trips = function (req, res) {
   Trip.find({}, function (err, trip) {

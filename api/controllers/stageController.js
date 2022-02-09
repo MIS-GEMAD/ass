@@ -3,7 +3,7 @@
 const mongoose = require('mongoose')
 
 /* ---------------sSTAGES---------------------- */
-const Stage = mongoose.model('Stages')
+const Stage = mongoose.model('Stage')
 
 exports.list_all_stages = function (req, res) {
   Stage.find({}, function (err, stage) {
