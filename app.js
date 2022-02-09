@@ -4,8 +4,10 @@ const app = express()
 const port = process.env.PORT || 8080
 const mongoose = require('mongoose')
 const Actor = require('./api/models/actorModel')
-const Item = require('./api/models/itemModel')
-const Order = require('./api/models/orderModel')
+const Application = require('./api/models/applicationModel')
+const Picture = require('./api/models/pictureModel')
+const Stage = require('./api/models/stageModel')
+const Trip = require('./api/models/tripModel')
 const bodyParser = require('body-parser')
 
 app.use(bodyParser.urlencoded({ extended: true }))

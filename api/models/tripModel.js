@@ -1,0 +1,60 @@
+"use strict";
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const TripSchema = new Schema(
+  {
+    ticker: {
+      type: String,
+      required: [true, 'Ticker is required'],
+    },
+    title: {
+      type: String,
+      required: [true, 'Title is required'],
+    },
+    description: {
+      type: String,
+      required: [true, 'Description is required'],
+    },
+    price: {
+      type: Number,
+      required: [true, 'Price is required'],
+    },
+    requirements: {
+      type: [String],
+      default: [],
+      required: [true, 'Requirements are required'],
+    },
+    startDate: {
+      type: Date,
+      min: Date.now,
+      default: Date.now,
+      required: [true, 'Start date is required'],
+    },
+    endDate: {
+      type: Date,
+      min: Date.now + 1,
+      default: Date.now + 1,
+      required: [true, 'End date is required'],
+    },
+    pictures: {
+      type: [Schema.Types.ObjectId],
+      ref: 'Picture',
+    },
+    isCancelled: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
+    cancelReason: {
+      type: String,
+    },
+    stages: {
+      type: Schema.Types.ObjectId,
+      ref: 'Trip',
+    },
+  },
+  { strict: true }
+);
+
+module.exports = mongoose.model("Trip", TripSchema);

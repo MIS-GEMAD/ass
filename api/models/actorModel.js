@@ -1,52 +1,53 @@
-'use strict'
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+"use strict";
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const ActorSchema = new Schema({
-  name: {
-    type: String,
-    required: 'Kindly enter the actor name'
-  },
-  surname: {
-    type: String,
-    required: 'Kindly enter the actor surname'
-  },
-  email: {
-    type: String,
-    required: 'Kindly enter the actor email'
-  },
-  password: {
-    type: String,
-    minlength: 5,
-    required: 'Kindly enter the actor password'
-  },
-  preferredLanguage: {
-    type: String,
-    default: 'en'
-  },
-  phone: {
-    type: String,
-    required: 'Kindly enter the phone number'
-  },
-  address: {
-    type: String
-  },
-  photo: {
-    data: Buffer, contentType: String
-  },
-  role: [{
-    type: String,
-    required: 'Kindly enter the user role(s)',
-    enum: ['CUSTOMER', 'CLERK', 'ADMINISTRATOR']
-  }],
-  validated: {
-    type: Boolean,
-    default: false
-  },
-  created: {
-    type: Date,
-    default: Date.now
-  }
-}, { strict: false })
+const validateEmail = function (email) {
+  const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return re.test(email);
+};
 
-module.exports = mongoose.model('Actors', ActorSchema)
+const ActorSchema = new Schema(
+  {
+    role: {
+      type: String,
+      enum : ['ADMINISTRATOR','MANAGER', 'EXPLORER'],
+      default: 'EXPLORER',
+      required: [true, "Role is required"],
+    },
+    name: {
+      type: String,
+      required: [true, "Name is required"],
+    },
+    surname: {
+      type: String,
+      required: [true, "Surname is required"],
+    },
+    email: {
+      type: String,
+      validate: [validateEmail, "Please provide a valid email"],
+      match: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        "Please provide a valid email",
+      ],
+      required: [true, "Email is required"],
+    },
+    phoneNumber: {
+      type: String,
+    },
+    address: {
+      type: String,
+    },
+    trips: {
+      type: [Schema.Types.ObjectId],
+      ref: 'Trip',
+    },
+    applications: {
+      type: [Schema.Types.ObjectId],
+      ref: 'Application',
+    }
+  },
+  { strict: true }
+);
+
+module.exports = mongoose.model("Actors", ActorSchema);
