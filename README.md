@@ -2,6 +2,9 @@
 
 # Getting started
 
+## MIS-GEMAD API in SwaggerHub
+https://app.swaggerhub.com/apis/MIS-GEMAD/MIS-GEMAD_API/1.0.0#/
+
 ## Build the image
 ```
 docker-compose build 
