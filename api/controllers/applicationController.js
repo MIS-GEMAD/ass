@@ -53,6 +53,10 @@ exports.update_an_application = function (req, res) {
   })
 }
 
+exports.cancel_an_application = function (req, res) {
+  res.status(200)
+}
+
 exports.delete_an_application = function (req, res) {
   Application.deleteOne({
     _id: req.params.applicationId

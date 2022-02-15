@@ -11,6 +11,7 @@ module.exports = function (app) {
   app.route('/trips/:tripId')
     .get(trip.read_a_trip)
     .put(trip.update_a_trip)
+    .put(trip.pay_a_trip)
     .delete(trip.delete_a_trip)
 
   app.route('/trips/:tripId/stages')

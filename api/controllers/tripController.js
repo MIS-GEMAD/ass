@@ -63,6 +63,10 @@ exports.update_a_trip = function (req, res) {
   })
 }
 
+exports.pay_a_trip = function (req, res) {
+  res.status(200)
+}
+
 exports.delete_a_trip = function (req, res) {
   Trip.deleteOne({
     _id: req.params.tripId
