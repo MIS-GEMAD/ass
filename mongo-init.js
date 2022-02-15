@@ -1,6 +1,9 @@
 db = db.getSiblingDB("ACME_Explorer");
 db.actors.drop();
 db.applications.drop();
+db.trips.drop();
+db.stages.drop();
+db.pictures.drop();
 
 db.actors.save({
   role: ["ADMINISTRATOR"],

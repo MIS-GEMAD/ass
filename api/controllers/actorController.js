@@ -44,6 +44,16 @@ exports.update_an_actor = function (req, res) {
   })
 }
 
+exports.ban_an_actor = function (req, res) {
+  Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
+    if (err) {
+      res.send(err)
+    } else {
+      res.json(actor)
+    }
+  })
+}
+
 exports.delete_an_actor = function (req, res) {
   Actor.deleteOne({ _id: req.params.actorId }, function (err, actor) {
     if (err) {

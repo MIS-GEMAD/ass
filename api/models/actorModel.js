@@ -38,14 +38,14 @@ const ActorSchema = new Schema(
     address: {
       type: String,
     },
-    trips: {
+    trips: [{
       type: [Schema.Types.ObjectId],
       ref: 'Trip',
-    },
-    applications: {
+    }],
+    applications: [{
       type: [Schema.Types.ObjectId],
       ref: 'Application',
-    },
+    }],
     ban: {
       type: Boolean
     }
