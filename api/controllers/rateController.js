@@ -3,18 +3,18 @@
 const mongoose = require('mongoose')
 
 /* ---------------RATES---------------------- */
-const Trip = mongoose.model('Trip')
+const Rate = mongoose.model('Rate')
 
 exports.updates_a_rate = function (req, res) {
-  Trip.findById(req.params.tripId, function (err, trip) {
+  Rate.findById(req.params.rateId, function (err, rate) {
     if (err) {
       res.send(err)
     } else {
-      Trip.findOneAndUpdate({ _id: req.params.tripId }, req.body, { new: true }, function (err, trip) {
+      Rate.findOneAndUpdate({ _id: req.params.rateId }, req.body, { new: true }, function (err, rate) {
         if (err) {
           res.send(err)
         } else {
-          res.json(trip)
+          res.json(rate)
         }
       })
     }
