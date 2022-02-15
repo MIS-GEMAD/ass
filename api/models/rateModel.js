@@ -4,7 +4,9 @@ const Schema = mongoose.Schema;
 
 const RateSchema = new Schema(
   {
-    flat_rate: { type: Number }
+    flat_rate: { 
+      type: Number
+    }
   },
   { strict: true }
 );
