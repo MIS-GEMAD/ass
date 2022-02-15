@@ -11,7 +11,7 @@ const ActorSchema = new Schema(
   {
     role: {
       type: String,
-      enum : ['ADMINISTRATOR','MANAGER', 'EXPLORER'],
+      enum : ['ADMINISTRATOR','MANAGER', 'EXPLORER', 'SPONSOR'],
       default: 'EXPLORER',
       required: [true, "Role is required"],
     },
@@ -46,11 +46,19 @@ const ActorSchema = new Schema(
       type: [Schema.Types.ObjectId],
       ref: 'Application',
     }],
+    search_criteria : [{
+      type: [Schema.Types.ObjectId],
+      ref: 'SearchCriteria',
+    }],
     ban: {
       type: Boolean
-    }
+    },
+    sponshorships: [{
+      type: [Schema.Types.ObjectId],
+      ref: 'Sponsorship',
+    }],
   },
-  { strict: true }
+  { strict: false }
 );
 
 module.exports = mongoose.model("Actor", ActorSchema);

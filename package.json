@@ -18,7 +18,8 @@
   "homepage": "https://github.com/MIS-DO/DO2122-davromorg#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "mongoose": "^6.1.9"
+    "mongoose": "^6.1.9",
+    "mongoose-type-url": "^2.1.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

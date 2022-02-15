@@ -2,12 +2,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ResultFinderSchema = new Schema(
+const SearchCriteriaSchema = new Schema(
   {
     explorer: {
       type: Schema.Types.ObjectId,
-      ref: "Finder",
-      required: [true, "Finder is required"],
+      ref: "Actor",
+      required: [true, "Explorer is required"],
     },
     keyword: {
       type: String
@@ -24,7 +24,7 @@ const ResultFinderSchema = new Schema(
     date_to : {
       type: Date
     },
-    trips: [{
+    trips : [{
       type: [Schema.Types.ObjectId],
       ref: 'Trip',
     }],
@@ -32,4 +32,4 @@ const ResultFinderSchema = new Schema(
   { strict: true }
 );
 
-module.exports = mongoose.model("ResultFinder", ResultFinderSchema);
+module.exports = mongoose.model("SearchCriteria", SearchCriteriaSchema);
