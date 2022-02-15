@@ -27,29 +27,3 @@ exports.create_a_search_criteria = function (req, res) {
     }
   })
 }
-
-exports.read_a_search_criteria = function (req, res) {
-  SearchCriteria.findById(req.params.searchCriteriaId, function (err, searchCriteria) {
-    if (err) {
-      res.send(err)
-    } else {
-      res.json(searchCriteria)
-    }
-  })
-}
-
-exports.update_a_search_criteria = function (req, res) {
-  SearchCriteria.findById(req.params.searchCriteriaId, function (err, result) {
-    if (err) {
-      res.send(err)
-    } else {
-      SearchCriteria.findOneAndUpdate({ _id: req.params.searchCriteriaId }, req.body, { new: true }, function (err, result) {
-        if (err) {
-          res.send(err)
-        } else {
-          res.json(result)
-        }
-      })
-    }
-  })
-}
