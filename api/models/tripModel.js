@@ -64,6 +64,11 @@ const TripSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Trip',
     },
+    manager: {
+      type: Schema.Types.ObjectId,
+      ref: "Actor",
+      required: [true, "Manager is required"],
+    },
   },
   { strict: true }
 );

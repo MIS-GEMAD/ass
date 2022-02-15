@@ -45,6 +45,9 @@ const ActorSchema = new Schema(
     applications: {
       type: [Schema.Types.ObjectId],
       ref: 'Application',
+    },
+    ban: {
+      type: Boolean
     }
   },
   { strict: true }
