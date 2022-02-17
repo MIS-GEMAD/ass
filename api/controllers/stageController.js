@@ -2,7 +2,6 @@
 
 const mongoose = require('mongoose')
 
-/* ---------------sSTAGES---------------------- */
 const Stage = mongoose.model('Stage')
 
 exports.list_all_stages = function (req, res) {

@@ -2,8 +2,6 @@
 
 const mongoose = require('mongoose')
 
-/* ---------------DASHBOARD---------------------- */
-
 exports.get_trip_average = function (req, res) {
     res.status(200)
 }

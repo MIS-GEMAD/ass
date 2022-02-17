@@ -2,7 +2,6 @@
 
 const mongoose = require('mongoose')
 
-/* ---------------Finder---------------------- */
 const SearchCriteria = mongoose.model('SearchCriteria')
 
 // TODO: Tiene que devolver los resultados del finder del Explorer logeado

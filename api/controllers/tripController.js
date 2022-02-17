@@ -2,7 +2,6 @@
 
 const mongoose = require('mongoose')
 
-/* ---------------TRIPS---------------------- */
 const Trip = mongoose.model('Trip')
 
 exports.list_all_trips = function (req, res) {

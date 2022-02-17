@@ -2,8 +2,6 @@
 
 const mongoose = require('mongoose')
 
-/* ---------------CUBE---------------------- */
-
 exports.get_explorers = function (req, res) {
     res.status(200)
 }

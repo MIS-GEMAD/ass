@@ -2,7 +2,6 @@
 
 const mongoose = require('mongoose')
 
-/* ---------------SPONSORSHIPS---------------------- */
 const Sponsorship = mongoose.model('Sponsorship')
 
 exports.list_all_sponsorships = function (req, res) {

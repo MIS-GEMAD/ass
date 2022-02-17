@@ -2,7 +2,6 @@
 
 const mongoose = require('mongoose')
 
-/* ---------------APPLICATIONS---------------------- */
 const Application = mongoose.model('Application')
 
 exports.list_all_applications = function (req, res) {
