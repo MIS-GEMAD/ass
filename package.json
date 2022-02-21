@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MIS-DO/DO2122-davromorg.git"
+    "url": "git+https://github.com/MIS-GEMAD/ass.git"
   },
   "author": "davromorg@alum.us.es",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MIS-DO/DO2122-davromorg/issues"
+    "url": "https://github.com/MIS-GEMAD/ass/issues"
   },
-  "homepage": "https://github.com/MIS-DO/DO2122-davromorg#readme",
+  "homepage": "https://github.com/MIS-GEMAD/ass#readme",
   "dependencies": {
     "babel-eslint": "^10.1.0",
     "bcrypt": "^5.0.1",
