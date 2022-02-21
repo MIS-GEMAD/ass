@@ -10,7 +10,9 @@ module.exports = function (app) {
   app.route('/applications/:applicationId')
     .get(application.read_an_application)
     .put(application.update_an_application)
-    //TODO: .put(application.cancel_an_application)
     .delete(application.delete_an_application)
+
+  app.route('/applications/:applicationId/cancel')
+    .put(application.cancel_an_application)
 
 }
