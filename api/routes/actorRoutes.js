@@ -1,5 +1,6 @@
 'use strict'
 module.exports = function (app) {
+
   const actors = require('../controllers/actorController')
 
   app.route('/actors')
@@ -9,9 +10,18 @@ module.exports = function (app) {
   app.route('/actors/:actorId')
     .get(actors.read_an_actor)
     .put(actors.update_an_actor)
-    .delete(actors.delete_an_actor)
+    // .delete(actors.delete_an_actor)
 
   app.route('/actors/:actorId/ban')
+    .put(actors.ban_an_actor)
+
+  app.route('/actors/trips/:actorId')
+    .put(actors.ban_an_actor)
+
+  app.route('/actors/applications/:actorId')
+    .put(actors.ban_an_actor)
+
+  app.route('/actors/sponsorships/:actorId')
     .put(actors.ban_an_actor)
 
 }

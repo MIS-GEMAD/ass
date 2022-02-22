@@ -1,5 +1,6 @@
 'use strict'
 module.exports = function (app) {
+
   const sponsorship = require('../controllers/sponshorshipController')
 
   app.route('/sponsorships')
