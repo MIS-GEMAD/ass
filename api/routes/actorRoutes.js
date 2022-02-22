@@ -15,13 +15,4 @@ module.exports = function (app) {
   app.route('/actors/:actorId/ban')
     .put(actors.ban_an_actor)
 
-  app.route('/actors/trips/:actorId')
-    .put(actors.ban_an_actor)
-
-  app.route('/actors/applications/:actorId')
-    .put(actors.ban_an_actor)
-
-  app.route('/actors/sponsorships/:actorId')
-    .put(actors.ban_an_actor)
-
 }

@@ -55,12 +55,12 @@ exports.ban_an_actor = function (req, res) {
   })
 }
 
-exports.delete_an_actor = function (req, res) {
-  Actor.deleteOne({ _id: req.params.actorId }, function (err, actor) {
-    if (err) {
-      res.send(err)
-    } else {
-      res.json({ message: 'Actor successfully deleted' })
-    }
-  })
-}
+// exports.delete_an_actor = function (req, res) {
+//   Actor.deleteOne({ _id: req.params.actorId }, function (err, actor) {
+//     if (err) {
+//       res.send(err)
+//     } else {
+//       res.json({ message: 'Actor successfully deleted' })
+//     }
+//   })
+// }
