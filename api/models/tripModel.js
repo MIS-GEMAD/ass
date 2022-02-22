@@ -60,10 +60,10 @@ const TripSchema = new Schema(
     cancelReason: {
       type: String,
     },
-    stages: {
+    stages: [{
       type: Schema.Types.ObjectId,
-      ref: 'Trip',
-    },
+      ref: 'Stage',
+    }],
     manager: {
       type: Schema.Types.ObjectId,
       ref: "Actor",

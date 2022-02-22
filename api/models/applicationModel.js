@@ -8,18 +8,18 @@ const ApplicationSchema = new Schema(
       type: Date,
       max: Date.now,
       default: Date.now,
-      required: [true, "Moment is required"],
+      required: 'Kindly enter the moment'
     },
     status: {
       type: String,
       enum: ["PENDING", "REJECTED", "DUE", "ACCEPTED", "CANCELLED"],
       default: "PENDING",
-      required: [true, "Status is required"],
+      required: 'Kindly enter the status'
     },
     trip: {
       type: Schema.Types.ObjectId,
       ref: "Trip",
-      required: [true, "Trip is required"],
+      required: 'Kindly enter the trip'
     },
   },
   { strict: true }

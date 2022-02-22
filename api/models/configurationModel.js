@@ -9,6 +9,12 @@ const RateSchema = new Schema(
     },
     flush_period: {
       type: Number
+    },
+    max_finder_result: {
+      type: Number,
+      min: 1,
+      max: 100,
+      default: 10 
     }
   },
   { strict: true }

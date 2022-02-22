@@ -62,7 +62,12 @@ const ActorSchema = new Schema(
     created: {
       type: Date,
       default: Date.now
-    }
+    },
+    preferred_language:{
+      type: String,
+      enum : ['English','Spanish'],
+      default: 'English',
+    },
   },
   { strict: false }
 );
