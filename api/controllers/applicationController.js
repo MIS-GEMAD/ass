@@ -77,3 +77,13 @@ exports.list_actor_applications = function (req, res) {
     }
   })
 }
+
+exports.list_trip_applications = function (req, res) {
+  Application.find({trip_id: req.params.tripId}, function (err, applications) {
+    if (err) {
+      res.send(err)
+    } else {
+      res.json(applications)
+    }
+  })
+}

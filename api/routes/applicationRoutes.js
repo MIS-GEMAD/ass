@@ -18,4 +18,7 @@ module.exports = function (app) {
   app.route('/applications/:actorId')
     .get(actors.list_actor_applications)
 
+  app.route('/applications/:tripId')
+    .get(actors.list_trip_applications)
+
 }
