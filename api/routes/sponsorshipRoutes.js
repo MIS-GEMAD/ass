@@ -16,6 +16,6 @@ module.exports = function (app) {
     .put(sponsorship.pay_a_sponsorship)
 
   app.route('/sponsorships/:actorId')
-    .get(actors.list_actor_sponsorships)
+    .get(sponsorship.list_actor_sponsorships)
 
 }
