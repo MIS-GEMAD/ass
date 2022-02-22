@@ -6,8 +6,8 @@ const ApplicationSchema = new Schema(
   {
     moment: {
       type: Date,
-      max: Date.now,
-      default: Date.now,
+      max: Date.now(),
+      default: Date.now(),
       required: 'Kindly enter the moment'
     },
     status: {

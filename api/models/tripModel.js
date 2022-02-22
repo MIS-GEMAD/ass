@@ -38,14 +38,14 @@ const TripSchema = new Schema(
     },
     startDate: {
       type: Date,
-      min: Date.now,
-      default: Date.now,
+      min: Date.now(),
+      default: Date.now(),
       required: [true, 'Start date is required'],
     },
     endDate: {
       type: Date,
-      min: Date.now + 1,
-      default: Date.now + 1,
+      min: Date.now() + 1,
+      default: Date.now() + 1,
       required: [true, 'End date is required'],
     },
     pictures: {

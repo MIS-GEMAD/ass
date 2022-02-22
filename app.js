@@ -45,3 +45,63 @@ mongoose.connection.on("open", function () {
 mongoose.connection.on("error", function (err) {
   console.error("DB init error " + err);
 });
+
+var axios = require("axios");
+const config = {
+  headers: { Authorization: "Bearer t96m1j7j72b9k902fh6nbq1mge634l4hwhu3s4mr" },
+};
+const TripModel = mongoose.model("Trip");
+const ApplicationModel = mongoose.model("Application");
+
+var endpoints = [
+  "https://api.json-generator.com/templates/6tuHvyOtMLfh/data",
+  "https://api.json-generator.com/templates/TFQ2qYCKJkPV/data",
+  "https://api.json-generator.com/templates/_HFONodi_Cpz/data",
+  "https://api.json-generator.com/templates/TFPXWI4zbtT7/data",
+];
+
+axios
+  .all(endpoints.map((endpoint) => axios.get(endpoint, config)))
+  .then((data) => {
+    const trips = data[0].data;
+    const actors = data[1].data;
+    const applications = data[2].data;
+    const stages = data[3].data;
+    Actor.create(actors, function (err, actors) {
+      if (err) {
+        console.log("Error while populating actors: " + err);
+      } else {
+        console.log("Actors populated!");
+        for (let i = 0; i < trips.length; i++) {
+          trips[i].manager = actors[0]._id.valueOf();
+          const newTrip = new TripModel(trips[i]);
+          newTrip.save(function (err, trip) {
+            if (err) {
+              console.log("Error while populating trips: " + err);
+            } else if (i === trips.length - 1) {
+              for (let j = 0; j < applications.length; j++) {
+                applications[j].trip = trip._id.valueOf();
+                const newApplication = new ApplicationModel(applications[j]);
+                newApplication.save(function (err, application) {
+                  if (err) {
+                    console.log("Error while populating applications: " + err);
+                  } else if (j === applications.length - 1){
+                    console.log("Applications populated!");
+                  }
+                });
+              }
+              console.log("Trips populated!");
+            }
+          });
+        }
+      }
+    });
+    
+    Stage.create(stages, function (err, stages) {
+      if (err) {
+        console.log("Error while populating stages: " + err);
+      } else {
+        console.log("Stages populated!");
+      }
+    });
+  });
