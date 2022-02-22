@@ -52,10 +52,6 @@ exports.update_an_application = function (req, res) {
   })
 }
 
-exports.cancel_an_application = function (req, res) {
-  res.status(200)
-}
-
 exports.delete_an_application = function (req, res) {
   Application.deleteOne({
     _id: req.params.applicationId
@@ -64,6 +60,20 @@ exports.delete_an_application = function (req, res) {
       res.send(err)
     } else {
       res.json({ message: 'Application successfully deleted' })
+    }
+  })
+}
+
+exports.cancel_an_application = function (req, res) {
+  res.status(200)
+}
+
+exports.list_actor_applications = function (req, res) {
+  Application.find({actor_id: req.params.actorId}, function (err, applications) {
+    if (err) {
+      res.send(err)
+    } else {
+      res.json(applications)
     }
   })
 }

@@ -26,4 +26,7 @@ module.exports = function (app) {
     .put(stage.update_a_stage)
     .delete(stage.delete_a_stage)
 
+  app.route('/trips/:actorId')
+    .get(actors.list_actor_trips)
+
 }

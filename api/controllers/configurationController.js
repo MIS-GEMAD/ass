@@ -35,3 +35,19 @@ exports.updates_period = function (req, res) {
     }
   })
 }
+
+exports.updates_finder_result = function (req, res) {
+  Configuration.findById(req.params.configurationId, function (err, configuration) {
+    if (err) {
+      res.send(err)
+    } else {
+      Configuration.findOneAndUpdate({ _id: req.params.configurationId }, req.body, { new: true }, function (err, configuration) {
+        if (err) {
+          res.send(err)
+        } else {
+          res.json(configuration)
+        }
+      })
+    }
+  })
+}

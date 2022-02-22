@@ -15,4 +15,7 @@ module.exports = function (app) {
   app.route('/applications/:applicationId/cancel')
     .put(application.cancel_an_application)
 
+  app.route('/applications/:actorId')
+    .get(actors.list_actor_applications)
+
 }

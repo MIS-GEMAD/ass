@@ -14,16 +14,6 @@ exports.list_all_trips = function (req, res) {
   })
 }
 
-exports.list_my_trips = function (req, res) {
-  Trip.find({}, function (err, orders) {
-    if (err) {
-      res.send(err)
-    } else {
-      res.json(orders)
-    }
-  })
-}
-
 exports.create_a_trip = function (req, res) {
   const newTrip = new Trip(req.body)
 
@@ -62,10 +52,6 @@ exports.update_a_trip = function (req, res) {
   })
 }
 
-exports.pay_a_trip = function (req, res) {
-  res.status(200)
-}
-
 exports.delete_a_trip = function (req, res) {
   Trip.deleteOne({
     _id: req.params.tripId
@@ -74,6 +60,20 @@ exports.delete_a_trip = function (req, res) {
       res.send(err)
     } else {
       res.json({ message: 'Trip successfully deleted' })
+    }
+  })
+}
+
+exports.pay_a_trip = function (req, res) {
+  res.status(200)
+}
+
+exports.list_actor_trips = function (req, res) {
+  Trip.find({actor_id: req.params.actorId}, function (err, trips) {
+    if (err) {
+      res.send(err)
+    } else {
+      res.json(trips)
     }
   })
 }

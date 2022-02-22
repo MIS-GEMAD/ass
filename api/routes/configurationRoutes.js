@@ -9,4 +9,7 @@ module.exports = function (app) {
   app.route('/period')
     .put(configuration.updates_period)
 
+  app.route('/finder/result')
+    .put(configuration.updates_finder_result)
+
 }
