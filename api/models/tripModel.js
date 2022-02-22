@@ -77,4 +77,6 @@ const TripSchema = new Schema(
   { strict: true }
 );
 
+TripSchema.index({ ticker: 'text', title: 'text', description: 'text' })
+
 module.exports = mongoose.model("Trip", TripSchema);

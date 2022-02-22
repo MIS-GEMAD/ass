@@ -32,4 +32,6 @@ const SearchCriteriaSchema = new Schema(
   { strict: true }
 );
 
+SearchCriteriaSchema.index({ keyword: 'text' })
+
 module.exports = mongoose.model("SearchCriteria", SearchCriteriaSchema);
