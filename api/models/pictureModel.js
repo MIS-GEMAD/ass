@@ -4,7 +4,11 @@ const Schema = mongoose.Schema;
 
 const PictureSchema = new Schema(
   {
-    picture: { data: Buffer, contentType: String }
+    picture: {
+      // data: Buffer, contentType: String
+      type: String,
+      required: [true, 'Picture is required'],
+    },
   },
   { strict: true }
 );
