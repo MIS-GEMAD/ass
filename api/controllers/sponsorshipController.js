@@ -7,9 +7,9 @@ const Sponsorship = mongoose.model('Sponsorship')
 exports.list_all_sponsorships = function (req, res) {
   Sponsorship.find({}, function (err, sponsorship) {
     if (err) {
-      res.send(err)
+      res.status(400).send(err)
     } else {
-      res.json(sponsorship)
+      res.status(200).json(sponsorship)
     }
   })
 }
@@ -19,9 +19,9 @@ exports.create_a_sponsorship = function (req, res) {
 
   newSponsorship.save(function (error, sponsorship) {
     if (error) {
-      res.send(error)
+      res.status(400).send(error)
     } else {
-      res.json(sponsorship)
+      res.status(201).json(sponsorship)
     }
   })
 }
@@ -29,9 +29,9 @@ exports.create_a_sponsorship = function (req, res) {
 exports.read_a_sponsorship = function (req, res) {
   Sponsorship.findById(req.params.sponsorshipId, function (err, sponsorship) {
     if (err) {
-      res.send(err)
+      res.status(400).send(err)
     } else {
-      res.json(sponsorship)
+      res.status(200).json(sponsorship)
     }
   })
 }
@@ -39,13 +39,13 @@ exports.read_a_sponsorship = function (req, res) {
 exports.update_a_sponsorship = function (req, res) {
   Sponsorship.findById(req.params.sponsorshipId, function (err, sponsorship) {
     if (err) {
-      res.send(err)
+      res.status(404).send(err)
     } else {
       Sponsorship.findOneAndUpdate({ _id: req.params.sponsorshipId }, req.body, { new: true }, function (err, sponsorship) {
         if (err) {
-          res.send(err)
+          res.status(400).send(err)
         } else {
-          res.json(sponsorship)
+          res.status(201).json(sponsorship)
         }
       })
     }
@@ -57,9 +57,9 @@ exports.delete_a_sponsorship = function (req, res) {
     _id: req.params.sponsorshipId
   }, function (err, sponsorship) {
     if (err) {
-      res.send(err)
+      res.status(404).send(err)
     } else {
-      res.json({ message: 'Sponsorship successfully deleted' })
+      res.status(204).json({ message: 'Sponsorship successfully deleted' })
     }
   })
 }
@@ -71,9 +71,9 @@ exports.pay_a_sponsorship = function (req, res) {
 exports.list_actor_sponsorships = function (req, res) {
   Sponsorship.find({actor_id: req.params.actorId}, function (err, sponsorships) {
     if (err) {
-      res.send(err)
+      res.status(400).send(err)
     } else {
-      res.json(sponsorships)
+      res.status(200).json(sponsorships)
     }
   })
 }
