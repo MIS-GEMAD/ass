@@ -27,6 +27,6 @@ module.exports = function (app) {
     .delete(stage.delete_a_stage)
 
   app.route('/trips/:actorId')
-    .get(actors.list_actor_trips)
+    .get(trip.list_actor_trips)
 
 }

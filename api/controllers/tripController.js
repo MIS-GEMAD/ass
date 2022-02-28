@@ -7,9 +7,9 @@ const Trip = mongoose.model('Trip')
 exports.list_all_trips = function (req, res) {
   Trip.find({}, function (err, trip) {
     if (err) {
-      res.send(err)
+      res.status(400).send(err)
     } else {
-      res.json(trip)
+      res.status(200).json(trip)
     }
   })
 }
@@ -19,9 +19,9 @@ exports.create_a_trip = function (req, res) {
 
   newTrip.save(function (error, trip) {
     if (error) {
-      res.send(error)
+      res.status(400).send(error)
     } else {
-      res.json(trip)
+      res.status(201).json(trip)
     }
   })
 }
@@ -29,9 +29,9 @@ exports.create_a_trip = function (req, res) {
 exports.read_a_trip = function (req, res) {
   Trip.findById(req.params.tripId, function (err, trip) {
     if (err) {
-      res.send(err)
+      res.status(400).send(err)
     } else {
-      res.json(trip)
+      res.status(200).json(trip)
     }
   })
 }
@@ -39,13 +39,13 @@ exports.read_a_trip = function (req, res) {
 exports.update_a_trip = function (req, res) {
   Trip.findById(req.params.tripId, function (err, trip) {
     if (err) {
-      res.send(err)
+      res.status(404).send(err)
     } else {
       Trip.findOneAndUpdate({ _id: req.params.tripId }, req.body, { new: true }, function (err, trip) {
         if (err) {
-          res.send(err)
+          res.status(400).send(err)
         } else {
-          res.json(trip)
+          res.status(201).json(trip)
         }
       })
     }
@@ -57,9 +57,9 @@ exports.delete_a_trip = function (req, res) {
     _id: req.params.tripId
   }, function (err, trip) {
     if (err) {
-      res.send(err)
+      res.status(400).send(err)
     } else {
-      res.json({ message: 'Trip successfully deleted' })
+      res.status(204).json({ message: 'Trip successfully deleted' })
     }
   })
 }
@@ -71,9 +71,9 @@ exports.pay_a_trip = function (req, res) {
 exports.list_actor_trips = function (req, res) {
   Trip.find({actor_id: req.params.actorId}, function (err, trips) {
     if (err) {
-      res.send(err)
+      res.status(400).send(err)
     } else {
-      res.json(trips)
+      res.status(200).json(trips)
     }
   })
 }

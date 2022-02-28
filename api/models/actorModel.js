@@ -33,6 +33,7 @@ const ActorSchema = new Schema(
     phone: {
       type: String,
     },
+    
     address: {
       type: String,
     },
@@ -61,7 +62,7 @@ const ActorSchema = new Schema(
     },
     created: {
       type: Date,
-      default: Date.now
+      default: Date.now()
     },
     preferred_language:{
       type: String,

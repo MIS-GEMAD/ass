@@ -1,0 +1,2101 @@
+{
+	"info": {
+		"_postman_id": "1fd321bf-a14d-4795-8096-87b29ff74984",
+		"name": "ACME EXPLORER",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ACTOR",
+			"item": [
+				{
+					"name": "list_all_actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TEST GET ALL ACTORS\",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/actors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_an_actor 1 (EXPLORER SPANISH)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_actor Explorer Spanish\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"123456ABCDEFGH\",\r\n    \"role\": [\r\n        \"EXPLORER\"\r\n    ],\r\n    \"name\": \"Antonio\",\r\n    \"surname\": \"García\",\r\n    \"email\": \"antoniogarcia1231@gmail.com\",\r\n    \"phone\": \"623154879\",\r\n    \"address\": \"Calle Resolana\",\r\n    \"trips\": [\"6219fe03d6e229826747ebc7\",\"6219fe03d6e229826747ebc8\"],\r\n    \"applications\": [],\r\n    \"search_criteria\": [],\r\n    \"sponshorships\": [],\r\n    \"validated\": false,\r\n    \"preferred_language\": \"Spanish\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_an_actor (EXPLORER ENGLISH)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_actor Explorer English\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"kdfnaosnfdspa\",\r\n    \"role\": [\r\n        \"EXPLORER\"\r\n    ],\r\n    \"name\": \"ANthony\",\r\n    \"surname\": \"Martial\",\r\n    \"email\": \"antonioMartial12311@gmail.com\",\r\n    \"phone\": \"623154881\",\r\n    \"address\": \"Calle Torreblanca\",\r\n    \"trips\": [\"6219fe03d6e229826747ebc7\",\"6219fe03d6e229826747ebc9\"],\r\n    \"applications\": [],\r\n    \"search_criteria\": [],\r\n    \"sponshorships\": [],\r\n    \"validated\": false,\r\n    \"preferred_language\": \"English\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_an_actor (SPONSOR)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_actor Sponsor English\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"fsdnfsnadlfsadnl\",\r\n    \"role\": [\r\n        \"SPONSOR\"\r\n    ],\r\n    \"name\": \"Bartolome\",\r\n    \"surname\": \"Alarcon\",\r\n    \"email\": \"Bartolomealargocno111@gmail.com\",\r\n    \"phone\": \"623154881\",\r\n    \"address\": \"Calle Sevilla\",\r\n    \"trips\": [\"6219fe03d6e229826747ebc7\",\"6219fe03d6e229826747ebcd\"],\r\n    \"applications\": [\"6219fe03d6e229826747ebe3\",\"6219fe03d6e229826747ebe4\",\"6219fe03d6e229826747ebeb\"],\r\n    \"search_criteria\": [],\r\n    \"sponshorships\": [],\r\n    \"validated\": false,\r\n    \"preferred_language\": \"Spanish\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_an_actor (MANAGER)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_actor Manager English\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"kdfnaosnfdspa\",\r\n    \"role\": [\r\n        \"MANAGER\"\r\n    ],\r\n    \"name\": \"Lolo\",\r\n    \"surname\": \"Herrero\",\r\n    \"email\": \"Lolohererr11o@gmail.com\",\r\n    \"phone\": \"62315656\",\r\n    \"address\": \"Calle Barcelona\",\r\n    \"trips\": [\"6219fe03d6e229826747ebc7\",\"6219fe03d6e229826747ebc9\"],\r\n    \"applications\": [],\r\n    \"search_criteria\": [],\r\n    \"sponshorships\": [],\r\n    \"validated\": false,\r\n    \"preferred_language\": \"English\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_an_actor (ADMINISTRATOR)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_actor Administrator Spanish\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"fkasfnasffsdadnfdasf\",\r\n    \"role\": [\r\n        \"ADMINISTRATOR\"\r\n    ],\r\n    \"name\": \"alvaro\",\r\n    \"surname\": \"trujillo\",\r\n    \"email\": \"alvarotrujillo11@gmail.com\",\r\n    \"phone\": \"623154881\",\r\n    \"address\": \"Calle Alcosa\",\r\n    \"trips\": [\"6219fe03d6e229826747ebc7\",\"6219fe03d6e229826747ebc9\"],\r\n    \"applications\": [],\r\n    \"search_criteria\": [],\r\n    \"sponshorships\": [],\r\n    \"validated\": false,\r\n    \"preferred_language\": \"Spanish\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_an_actor (EMAIL NOT VALID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_actor which email is not valid\",()=>{\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"kdfnaosnfdspa\",\r\n    \"role\": [\r\n        \"EXPLORER\"\r\n    ],\r\n    \"name\": \"Manue\",\r\n    \"surname\": \"Garciaa\",\r\n    \"email\": \"elmanugmail.com\",\r\n    \"phone\": \"623154881\",\r\n    \"address\": \"Calle Torreblanca\",\r\n    \"trips\": [\"6219fe03d6e229826747ebc7\",\"6219fe03d6e229826747ebc9\"],\r\n    \"applications\": [],\r\n    \"search_criteria\": [],\r\n    \"sponshorships\": [],\r\n    \"validated\": false,\r\n    \"preferred_language\": \"Spanish\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_an_actor 1 (EXPLORER SPANISH)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_actor Explorer Spanish\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"123456ABCDEFGH\",\r\n    \"role\": [\r\n        \"EXPLORER\"\r\n    ],\r\n    \"name\": \"Manuel\",\r\n    \"surname\": \"García\",\r\n    \"email\": \"antoniogarcia123@gmail.com\",\r\n    \"phone\": \"623154879\",\r\n    \"address\": \"Calle Resolana\",\r\n    \"trips\": [\"621cbe9ecf1e47108c29a316\"],\r\n    \"applications\": [],\r\n    \"search_criteria\": [],\r\n    \"sponshorships\": [],\r\n    \"validated\": false,\r\n    \"preferred_language\": \"Spanish\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actors/621cd1a57984f97f14e9b140",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors",
+								"621cd1a57984f97f14e9b140"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read_an_actor 1 (EXPLORER SPANISH)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TEST GET ALL ACTORS\",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/actors/621cd1a57984f97f14e9b140",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors",
+								"621cd1a57984f97f14e9b140"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TRIPS",
+			"item": [
+				{
+					"name": "list_all_trips",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TEST GET ALL TRIPS\",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/trips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_a_trip 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_a_trip 1\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ticker\": \"20220228-D\",\r\n    \"title\": \"viaje a chipiona\",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"price\": 107.38,\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"startDate\": \"2023-01-03T22:47:50.569Z\",\r\n    \"endDate\": \"2023-11-02T19:16:03.854Z\",\r\n    \"isCancelled\": false,\r\n    \"manager\": \"621cb9dc08e258a4d12b830e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/trips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_a_trip 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_a_trip 2\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ticker\": \"20210228-D\",\r\n    \"title\": \"viaje a matalascañas\",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"price\": 107.38,\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"startDate\": \"2023-01-03T22:47:50.569Z\",\r\n    \"endDate\": \"2023-11-02T19:16:03.854Z\",\r\n    \"isCancelled\": false,\r\n    \"manager\": \"621cb9dc08e258a4d12b830e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/trips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read_a_trip 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TEST GET TRIP 1\",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/trips/621cbe9ecf1e47108c29a316",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cbe9ecf1e47108c29a316"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_a_trip 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"PUT A TRIP 1\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ticker\": \"20220228-D\",\r\n    \"title\": \"viaje a CONIL de la frontera \",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"price\": 107.38,\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"startDate\": \"2023-01-03T22:47:50.569Z\",\r\n    \"endDate\": \"2023-11-02T19:16:03.854Z\",\r\n    \"isCancelled\": false,\r\n    \"manager\": \"621cb9dc08e258a4d12b830e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/trips/621cbe9ecf1e47108c29a316",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cbe9ecf1e47108c29a316"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_a_trip 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"DELETE A TRIP 2\",()=>{\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd1f77984f97f14e9b151",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd1f77984f97f14e9b151"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list_actor_trips",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TEST GET ALL TRIPS OF AN ACTOR\",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd1f47984f97f14e9b14f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd1f47984f97f14e9b14f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "APPLICATIONS",
+			"item": [
+				{
+					"name": "list_all_applications",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TEST GET ALL APPLICATIONS\",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_an_application 1 (PENDING)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_application status PENDING\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"PENDING\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_an_application 2 (REJECTED)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_application status REJECTEDS\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"REJECTED\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_an_application 3 (DUE)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_application status DUE\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"DUE\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_an_application 4 (ACCEPTED)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_application status ACCEPTED\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"ACCEPTED\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_an_application 5 (CANCELLED)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_application status CANCELLED\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"CANCELLED\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_an_application (BAD REQUEST)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_application BAD REQUEST STATUS\",()=>{\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"CANCEL\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read_an_application 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TEST GET ALL ACTORS\",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/applications/621cc63ecf1e47108c29a34e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications",
+								"621cc63ecf1e47108c29a34e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_an_application 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"update_an_application 1\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"ACCEPTED\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/applications/621cc63ecf1e47108c29a34e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications",
+								"621cc63ecf1e47108c29a34e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_an_application 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"delete_an_application 2\",()=>{\r",
+									"    pm.response.to.have.status(204);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/applications/621cc6f0cf1e47108c29a351",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications",
+								"621cc6f0cf1e47108c29a351"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list_trip_applications",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"list_trip_applications\",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/applications/621cbe9ecf1e47108c29a316",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications",
+								"621cbe9ecf1e47108c29a316"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list_actor_applications",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"list_actor_applications\",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/applications/621cbab5cf1e47108c29a308",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications",
+								"621cbab5cf1e47108c29a308"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "STAGES",
+			"item": [
+				{
+					"name": "list_all_stages",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"list_all_stages \",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd18c7984f97f14e9b0f9",
+								"stages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_a_stage 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_stage 1\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"CHIPIONA 2014\",\r\n    \"description\": \"CHIPIONA Con los chavales 2014\",\r\n    \"price\": 28.55\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd18c7984f97f14e9b0f9",
+								"stages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_a_stage 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_stage 2\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"MATALASCAÑAS 2014\",\r\n    \"description\": \"MATALASCAÑAS Con los chavales 2014\",\r\n    \"price\": 28.55\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd18c7984f97f14e9b0f9",
+								"stages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read_a_stage 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"read_a_stage 1 \",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages/621ce2127984f97f14e9b159",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd18c7984f97f14e9b0f9",
+								"stages",
+								"621ce2127984f97f14e9b159"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read_a_stage 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"read_a_stage 2 \",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages/621ce2727984f97f14e9b15c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd18c7984f97f14e9b0f9",
+								"stages",
+								"621ce2727984f97f14e9b15c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_a_stage 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"update_a_stage 2\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"CONIL 2014\",\r\n    \"description\": \"CONIL Con los chavales 2014\",\r\n    \"price\": 38.55\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages/621ce2727984f97f14e9b15c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd18c7984f97f14e9b0f9",
+								"stages",
+								"621ce2727984f97f14e9b15c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_a_stage 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"delete_a_stage 1\",()=>{\r",
+									"    pm.response.to.have.status(204);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages/621ce2127984f97f14e9b159",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd18c7984f97f14e9b0f9",
+								"stages",
+								"621ce2127984f97f14e9b159"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SPONSORSHIP",
+			"item": [
+				{
+					"name": "list_all_sponsorships",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"list_all_sponsorships \",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/sponsorships",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsorships"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_a_sponsorship 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_sponsorship 1\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"banner\": \"http://google.es\",\r\n    \"link\": \"http://aliqua.com/81e03759-bb85-409e-bdf9-1ed3f5f63b17\",\r\n    \"trip\": [\"621cd18c7984f97f14e9b101\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/sponsorships",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsorships"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_a_sponsorship 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_sponsorship 2\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"banner\": \"http://facebook.com\",\r\n    \"link\": \"http://aliqua.com/81e03759-bb85-409e-bdf9-1ed3f5f63b17\",\r\n    \"trip\": [\"621cd18c7984f97f14e9b101\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/sponsorships",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsorships"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read_a_sponsorship 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"read_a_spònsorship \",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/sponsorships/621ce55d7984f97f14e9b16a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsorships",
+								"621ce55d7984f97f14e9b16a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_a_sponsorship 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"update_an_sponsorship 1\",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"banner\": \"http://sony.com\",\r\n    \"link\": \"http://aliqua.com/81e03759-bb85-409e-bdf9-1ed3f5f63b17\",\r\n    \"trip\": [\"621cd18c7984f97f14e9b101\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/sponsorships/621ce55d7984f97f14e9b16a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsorships",
+								"621ce55d7984f97f14e9b16a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_a_sponsorship 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"delete_an_sponsorship 2\",()=>{\r",
+									"    pm.response.to.have.status(204);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/sponsorships/621ce5857984f97f14e9b16d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsorships",
+								"621ce5857984f97f14e9b16d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list_actor_sponsorships",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"list_actor_sponsorships\",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/sponsorships/621cd18b7984f97f14e9b0db",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsorships",
+								"621cd18b7984f97f14e9b0db"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SEARCHROUTES",
+			"item": [
+				{
+					"name": "list_all_search_criteria",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"list_all_search_criteria \",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/trips/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_a_search_criteria",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"list_all_sponsorships \",()=>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"explorer\":\"621cd18b7984f97f14e9b0dc\",\r\n    \"keyword\":\"acvbd\",\r\n    \"price_from\": 10,\r\n    \"price_to\": 100,\r\n    \"date_from\":\"2023-01-03T22:47:50.569Z\",\r\n    \"date_to\": \"2023-11-02T19:16:03.854Z\",\r\n    \"trips\":[\"621cd18c7984f97f14e9b0f9\"]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/trips/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CONFIGURATION",
+			"item": []
+		},
+		{
+			"name": "CUBE",
+			"item": []
+		}
+	]
+}

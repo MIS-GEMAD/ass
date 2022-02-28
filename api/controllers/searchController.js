@@ -8,9 +8,9 @@ const SearchCriteria = mongoose.model('SearchCriteria')
 exports.list_all_search_criteria = function (req, res) {
   SearchCriteria.find({}, function (err, searchCriteria) {
     if (err) {
-      res.send(err)
+      res.status(400).send(err)
     } else {
-      res.json(searchCriteria)
+      res.status(200).json(searchCriteria)
     }
   })
 }
@@ -20,9 +20,9 @@ exports.create_a_search_criteria = function (req, res) {
 
   newSearchCriteria.save(function (error, searchCriteria) {
     if (error) {
-      res.send(error)
+      res.status(400).send(error)
     } else {
-      res.json(searchCriteria)
+      res.status(201).json(searchCriteria)
     }
   })
 }
