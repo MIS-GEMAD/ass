@@ -31,7 +31,7 @@ exports.read_an_application = function (req, res) {
     if (err) {
       res.status(400).send(err)
     } else {
-      res.status(201).json(application)
+      res.status(200).json(application)
     }
   })
 }

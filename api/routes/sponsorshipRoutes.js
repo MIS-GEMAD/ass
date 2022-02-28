@@ -1,7 +1,7 @@
 'use strict'
 module.exports = function (app) {
 
-  const sponsorship = require('../controllers/sponshorshipController')
+  const sponsorship = require('../controllers/sponsorshipController')
 
   app.route('/sponsorships')
     .get(sponsorship.list_all_sponsorships)

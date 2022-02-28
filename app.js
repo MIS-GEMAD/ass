@@ -24,10 +24,16 @@ app.use(bodyParser.json());
 const routesActors = require("./api/routes/actorRoutes");
 const routesTrips = require("./api/routes/tripRoutes");
 const routesApplications = require("./api/routes/applicationRoutes");
+const routesSponsorships= require("./api/routes/sponsorshipRoutes");
+const routesSearch= require("./api/routes/searchRoutes");
+
 
 routesActors(app);
 routesTrips(app);
 routesApplications(app);
+routesSponsorships(app);
+routesSearch(app);
+
 
 // MongoDB URI building
 const mongoDBHostname = process.env.mongoDBHostname || "mongodb";
