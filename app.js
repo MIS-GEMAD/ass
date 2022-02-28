@@ -55,6 +55,8 @@ mongoose.connection.on("error", function (err) {
   console.error("DB init error " + err);
 });
 
+mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
+
 var axios = require("axios");
 const fs = require("fs");
 const config = {
@@ -104,25 +106,6 @@ axios
             const explorers = actors.filter((actor) =>
               actor.role.includes("EXPLORER")
             );
-            for (let i = 0; i < searchCriterias.length; i++) {
-              searchCriterias[i].explorer =
-                explorers[
-                  Math.floor(Math.random() * (explorers.length - 1))
-                ]._id.valueOf();
-              const newSearchCriteria = new SearchCriteriaModel(
-                searchCriterias[i]
-              );
-              newSearchCriteria.save(function (err, searchCriteria) {
-                if (err) {
-                  console.log("Error while populating searchCriterias: " + err);
-                } else {
-                  searchCriterias[i] = searchCriteria;
-                }
-                if (!err && i === searchCriterias.length - 1) {
-                  console.log("Search criterias populated!");
-                }
-              });
-            }
             for (let i = 0; i < trips.length; i++) {
               trips[i].manager =
                 managers[
@@ -179,6 +162,30 @@ axios
                       }
                       if (!err && j === sponsorships.length - 1) {
                         console.log("Sponsorships populated!");
+                      }
+                    });
+                  }
+                  for (let j = 0; j < searchCriterias.length; j++) {
+                    searchCriterias[j].trips =
+                      trips[
+                        Math.floor(Math.random() * (trips.length - 1))
+                      ]._id.valueOf();
+                    searchCriterias[j].explorer =
+                      explorers[
+                        Math.floor(Math.random() * (explorers.length - 1))
+                      ]._id.valueOf();
+                    const newSearchCriteria = new SearchCriteriaModel(
+                      searchCriterias[j]
+                    );
+                    newSearchCriteria.save(function (err, searchCriteria) {
+                      if (err) {
+                        console.log("Error while populating searchCriterias: " + err);
+                      } else {
+                        console.log(searchCriteria)
+                        searchCriterias[i] = searchCriteria;
+                      }
+                      if (!err && j === searchCriterias.length - 1) {
+                        console.log("Search criterias populated!");
                       }
                     });
                   }
