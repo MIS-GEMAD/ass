@@ -10,31 +10,11 @@
 			"item": [
 				{
 					"name": "list_all_actors",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"TEST GET ALL ACTORS\",()=>{\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/actors",
-							"protocol": "http",
+							"raw": "localhost:8080/actors",
 							"host": [
 								"localhost"
 							],
@@ -2025,14 +2005,13 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/trips/search",
+							"raw": "http://localhost:8080/search",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"trips",
 								"search"
 							]
 						}
@@ -2065,7 +2044,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"explorer\":\"621cd18b7984f97f14e9b0dc\",\r\n    \"keyword\":\"acvbd\",\r\n    \"price_from\": 10,\r\n    \"price_to\": 100,\r\n    \"date_from\":\"2023-01-03T22:47:50.569Z\",\r\n    \"date_to\": \"2023-11-02T19:16:03.854Z\",\r\n    \"trips\":[\"621cd18c7984f97f14e9b0f9\"]\r\n\r\n}",
+							"raw": "{\r\n    \"explorer\":\"621cd18b7984f97f14e9b0dc\",\r\n    \"keyword\":\"acvbfsdfd\",\r\n    \"price_from\": 10,\r\n    \"price_to\": 100,\r\n    \"date_from\":\"2023-01-03T22:47:50.569Z\",\r\n    \"date_to\": \"2023-11-02T19:16:03.854Z\",\r\n    \"trips\":[\"621cd18c7984f97f14e9b0f9\"]\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2073,14 +2052,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/trips/search",
+							"raw": "http://localhost:8080/search",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"trips",
 								"search"
 							]
 						}
