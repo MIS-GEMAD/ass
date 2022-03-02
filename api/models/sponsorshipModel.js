@@ -12,11 +12,7 @@ const SponsorshipSchema = new Schema(
     },
     link: {
         type: mongoose.SchemaTypes.Url,
-    },
-    trip: {
-        type: [Schema.Types.ObjectId],
-        ref: 'Trip',
-    },
+    }
   },
   { strict: true }
 );

@@ -33,7 +33,6 @@ const ActorSchema = new Schema(
     phone: {
       type: String,
     },
-    
     address: {
       type: String,
     },
@@ -45,9 +44,9 @@ const ActorSchema = new Schema(
       type: [Schema.Types.ObjectId],
       ref: 'Application',
     }],
-    search_criteria : [{
+    finders : [{
       type: [Schema.Types.ObjectId],
-      ref: 'SearchCriteria',
+      ref: 'Finder',
     }],
     ban: {
       type: Boolean

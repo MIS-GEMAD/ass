@@ -64,15 +64,14 @@ const TripSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Stage',
     }],
-    manager: {
-      type: Schema.Types.ObjectId,
-      ref: "Actor",
-      required: [true, "Manager is required"],
-    },
     sponsorships: [{
       type: [Schema.Types.ObjectId],
       ref: 'Sponsorship',
     }],
+    applications: [{
+      type: [Schema.Types.ObjectId],
+      ref: 'Application',
+    }]
   },
   { strict: true }
 );

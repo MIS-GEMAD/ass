@@ -15,12 +15,7 @@ const ApplicationSchema = new Schema(
       enum: ["PENDING", "REJECTED", "DUE", "ACCEPTED", "CANCELLED"],
       default: "PENDING",
       required: 'Kindly enter the status'
-    },
-    trip: {
-      type: Schema.Types.ObjectId,
-      ref: "Trip",
-      required: 'Kindly enter the trip'
-    },
+    }
   },
   { strict: true }
 );

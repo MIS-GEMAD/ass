@@ -24,10 +24,10 @@ const FinderSchema = new Schema(
     date_to : {
       type: Date
     },
-    trips : {
+    trips : [{
       type: [Schema.Types.ObjectId],
       ref: 'Trip',
-    },
+    }],
   },
   { strict: true }
 );
