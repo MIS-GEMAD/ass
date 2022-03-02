@@ -16,12 +16,8 @@ const ApplicationSchema = new Schema(
       default: "PENDING",
       required: 'Kindly enter the status'
     },
-    reject_reason: {
-      type: String,
-      default: ''
-    },
-    reject_reason: {
-      comment: [String],
+    comments: {
+      type: [String],
       default: []
     }
   },

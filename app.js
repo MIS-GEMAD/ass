@@ -58,7 +58,6 @@ mongoose.connection.on("error", function (err) {
 mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
 
 var axios = require("axios");
-const fs = require("fs");
 const config = {
   headers: { Authorization: "Bearer t96m1j7j72b9k902fh6nbq1mge634l4hwhu3s4mr" },
 };
@@ -68,27 +67,25 @@ const FinderModel = mongoose.model("Finder");
 const SponsorshipModel = mongoose.model("Sponsorship");
 
 var endpoints = [
-  "https://api.json-generator.com/templates/6tuHvyOtMLfh/data",
-  "https://api.json-generator.com/templates/TFQ2qYCKJkPV/data",
-  "https://api.json-generator.com/templates/_HFONodi_Cpz/data",
-  "https://api.json-generator.com/templates/TFPXWI4zbtT7/data",
-  "https://api.json-generator.com/templates/Jn1G-nuNWLSO/data",
-  "https://api.json-generator.com/templates/nqA1326hTa7q/data",
-  "https://api.json-generator.com/templates/NCs_HiAJENP1/data",
-  "https://api.json-generator.com/templates/OE-7oiCaxV0F/data",
+  'https://api.json-generator.com/templates/TFQ2qYCKJkPV/data',
+  'https://api.json-generator.com/templates/_HFONodi_Cpz/data',
+  'https://api.json-generator.com/templates/nqA1326hTa7q/data',
+  'https://api.json-generator.com/templates/NCs_HiAJENP1/data',
+  'https://api.json-generator.com/templates/OE-7oiCaxV0F/data',
+  'https://api.json-generator.com/templates/TFPXWI4zbtT7/data',
+  'https://api.json-generator.com/templates/6tuHvyOtMLfh/data'
 ];
 
 axios
   .all(endpoints.map((endpoint) => axios.get(endpoint, config)))
   .then((data) => {
-    const trips = data[0].data;
-    const actors = data[1].data;
-    const applications = data[2].data;
-    const stages = data[3].data;
-    const configurations = data[4].data;
-    const finders = data[5].data;
-    const pictures = data[6].data;
-    const sponsorships = data[7].data;
+    const actors = data[0].data;
+    const applications = data[1].data;
+    const finders = data[2].data;
+    const pictures = data[3].data;
+    const sponsorships = data[4].data;
+    const stages = data[5].data;
+    const trips = data[6].data;
 
     Picture.create(pictures, function (err, pictures) {
       if (err) {
@@ -203,13 +200,6 @@ axios
         console.log("Error while populating stages: " + err);
       } else {
         console.log("Stages populated!");
-      }
-    });
-    Configuration.create(configurations, function (err, configurations) {
-      if (err) {
-        console.log("Error while populating configurations: " + err);
-      } else {
-        console.log("Configurations populated!");
       }
     });
   });

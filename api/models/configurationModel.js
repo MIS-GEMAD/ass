@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const RateSchema = new Schema(
+const ConfigurationSchema = new Schema(
   {
     flat_rate: { 
       type: Number
@@ -20,4 +20,4 @@ const RateSchema = new Schema(
   { strict: true }
 );
 
-module.exports = mongoose.model("Rate", RateSchema);
+module.exports = mongoose.model("Configuration", ConfigurationSchema);
