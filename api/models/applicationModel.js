@@ -15,6 +15,14 @@ const ApplicationSchema = new Schema(
       enum: ["PENDING", "REJECTED", "DUE", "ACCEPTED", "CANCELLED"],
       default: "PENDING",
       required: 'Kindly enter the status'
+    },
+    reject_reason: {
+      type: String,
+      default: ''
+    },
+    reject_reason: {
+      comment: [String],
+      default: []
     }
   },
   { strict: true }

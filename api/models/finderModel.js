@@ -4,11 +4,6 @@ const Schema = mongoose.Schema;
 
 const FinderSchema = new Schema(
   {
-    explorer: {
-      type: Schema.Types.ObjectId,
-      ref: "Actor",
-      required: [true, "Explorer is required"],
-    },
     keyword: {
       type: String
     },

@@ -29,20 +29,20 @@ const TripSchema = new Schema(
     },
     price: {
       type: Number,
-      required: [true, 'Price is required'],
+      default: 0
     },
     requirements: {
       type: [String],
       default: [],
       required: [true, 'Requirements are required'],
     },
-    startDate: {
+    start_date: {
       type: Date,
       min: Date.now(),
       default: Date.now(),
       required: [true, 'Start date is required'],
     },
-    endDate: {
+    end_date: {
       type: Date,
       min: Date.now() + 1,
       default: Date.now() + 1,
@@ -52,13 +52,16 @@ const TripSchema = new Schema(
       type: [Schema.Types.ObjectId],
       ref: 'Picture',
     },
-    isCancelled: {
+    is_cancelled: {
       type: Boolean,
-      default: false,
-      required: true,
+      default: false
     },
-    cancelReason: {
+    cancel_reason: {
       type: String,
+    },
+    is_published: {
+      type: Boolean,
+      default: false
     },
     stages: [{
       type: Schema.Types.ObjectId,

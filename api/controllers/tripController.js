@@ -64,6 +64,7 @@ exports.delete_a_trip = function (req, res) {
   })
 }
 
+// TODO: Implementar via PayPal
 exports.pay_a_trip = function (req, res) {
   res.status(200)
 }
