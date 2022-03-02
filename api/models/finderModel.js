@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const SearchCriteriaSchema = new Schema(
+const FinderSchema = new Schema(
   {
     explorer: {
       type: Schema.Types.ObjectId,
@@ -32,6 +32,6 @@ const SearchCriteriaSchema = new Schema(
   { strict: true }
 );
 
-SearchCriteriaSchema.index({ keyword: 'text' })
+FinderSchema.index({ keyword: 'text' })
 
-module.exports = mongoose.model("SearchCriteria", SearchCriteriaSchema);
+module.exports = mongoose.model("Finder", FinderSchema);

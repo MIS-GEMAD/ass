@@ -12,7 +12,7 @@ const Stage = require("./api/models/stageModel");
 const Application = require("./api/models/applicationModel");
 const Picture = require("./api/models/pictureModel");
 const Configuration = require("./api/models/configurationModel");
-const SearchCriteria = require("./api/models/searchCriteriaModel");
+const Finder = require("./api/models/finderModel");
 const Sponsorship = require("./api/models/sponsorshipModel");
 
 // body parser
@@ -24,15 +24,15 @@ app.use(bodyParser.json());
 const routesActors = require("./api/routes/actorRoutes");
 const routesTrips = require("./api/routes/tripRoutes");
 const routesApplications = require("./api/routes/applicationRoutes");
-const routesSponsorships= require("./api/routes/sponsorshipRoutes");
-const routesSearch= require("./api/routes/searchRoutes");
+const routesSponsorships = require("./api/routes/sponsorshipRoutes");
+const routesFinder = require("./api/routes/finderRoutes");
 
 
 routesActors(app);
 routesTrips(app);
 routesApplications(app);
 routesSponsorships(app);
-routesSearch(app);
+routesFinder(app);
 
 
 // MongoDB URI building
@@ -64,7 +64,7 @@ const config = {
 };
 const TripModel = mongoose.model("Trip");
 const ApplicationModel = mongoose.model("Application");
-const SearchCriteriaModel = mongoose.model("SearchCriteria");
+const FinderModel = mongoose.model("Finder");
 const SponsorshipModel = mongoose.model("Sponsorship");
 
 var endpoints = [
@@ -86,7 +86,7 @@ axios
     const applications = data[2].data;
     const stages = data[3].data;
     const configurations = data[4].data;
-    const searchCriterias = data[5].data;
+    const finders = data[5].data;
     const pictures = data[6].data;
     const sponsorships = data[7].data;
 
@@ -165,27 +165,27 @@ axios
                       }
                     });
                   }
-                  for (let j = 0; j < searchCriterias.length; j++) {
-                    searchCriterias[j].trips =
+                  for (let j = 0; j < finders.length; j++) {
+                    finders[j].trips =
                       trips[
                         Math.floor(Math.random() * (trips.length - 1))
                       ]._id.valueOf();
-                    searchCriterias[j].explorer =
+                      finders[j].explorer =
                       explorers[
                         Math.floor(Math.random() * (explorers.length - 1))
                       ]._id.valueOf();
-                    const newSearchCriteria = new SearchCriteriaModel(
-                      searchCriterias[j]
+                    const newFinder = new FinderModel(
+                      finders[j]
                     );
-                    newSearchCriteria.save(function (err, searchCriteria) {
+                    newFinder.save(function (err, finder) {
                       if (err) {
-                        console.log("Error while populating searchCriterias: " + err);
+                        console.log("Error while populating finders: " + err);
                       } else {
-                        console.log(searchCriteria)
-                        searchCriterias[i] = searchCriteria;
+                        console.log(finder)
+                        finders[i] = finder;
                       }
-                      if (!err && j === searchCriterias.length - 1) {
-                        console.log("Search criterias populated!");
+                      if (!err && j === finders.length - 1) {
+                        console.log("Finder criterias populated!");
                       }
                     });
                   }

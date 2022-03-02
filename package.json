@@ -24,7 +24,9 @@
     "express": "^4.16.4",
     "mongoose": "^6.1.9",
     "mongoose-type-url": "^2.1.0",
-    "nanoid": "^3.3.1"
+    "nanoid": "^3.3.1",
+    "newman": "^5.3.1",
+    "newman-reporter-htmlextra": "^1.22.7"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
