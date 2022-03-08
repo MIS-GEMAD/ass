@@ -14,6 +14,7 @@ const Picture = require("./api/models/pictureModel");
 const Configuration = require("./api/models/configurationModel");
 const Finder = require("./api/models/finderModel");
 const Sponsorship = require("./api/models/sponsorshipModel");
+const Dashboard = require("./api/models/dashboardModel");
 
 // body parser
 const bodyParser = require("body-parser");
@@ -26,6 +27,7 @@ const routesTrips = require("./api/routes/tripRoutes");
 const routesApplications = require("./api/routes/applicationRoutes");
 const routesSponsorships = require("./api/routes/sponsorshipRoutes");
 const routesFinder = require("./api/routes/finderRoutes");
+const routesDashboard = require("./api/routes/dashboardRoutes");
 
 
 routesActors(app);
@@ -33,6 +35,7 @@ routesTrips(app);
 routesApplications(app);
 routesSponsorships(app);
 routesFinder(app);
+routesDashboard(app);
 
 
 // MongoDB URI building
@@ -55,6 +58,8 @@ mongoose.connection.on("error", function (err) {
   console.error("DB init error " + err);
 });
 
+/*
+
 mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
 
 var axios = require("axios");
@@ -65,6 +70,7 @@ const TripModel = mongoose.model("Trip");
 const ApplicationModel = mongoose.model("Application");
 const FinderModel = mongoose.model("Finder");
 const SponsorshipModel = mongoose.model("Sponsorship");
+
 
 var endpoints = [
   'https://api.json-generator.com/templates/TFQ2qYCKJkPV/data',
@@ -203,3 +209,5 @@ axios
       }
     });
   });
+
+  */
