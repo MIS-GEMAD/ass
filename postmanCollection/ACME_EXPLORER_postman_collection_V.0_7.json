@@ -300,7 +300,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/actors/621cd1a57984f97f14e9b140"
+						"url": "http://localhost:8080/actors/622780f92d516d895cceaad0"
 					},
 					"response": []
 				},
@@ -328,7 +328,100 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/actors/621cd1a57984f97f14e9b140"
+						"url": "http://localhost:8080/actors/622780f92d516d895cceaad0"
+					},
+					"response": []
+				},
+				{
+					"name": "ban_an_actor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_actor Explorer Spanish\",()=>{",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"123456ABCDEFGH\",\n    \"ban\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/actors/622780f92d516d895cceaad0/ban"
+					},
+					"response": []
+				},
+				{
+					"name": "unban_an_actor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_actor Explorer Spanish\",()=>{",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"123456ABCDEFGH\",\n    \"ban\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/actors/622780f92d516d895cceaad0/unban"
+					},
+					"response": []
+				},
+				{
+					"name": "update_preferred_languaje",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"create_an_actor Explorer Spanish\",()=>{",
+									"    pm.response.to.have.status(201);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"123456ABCDEFGH\",\n    \"preferred_language\": \"Spanish\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/actors/622780f92d516d895cceaad0/languaje"
 					},
 					"response": []
 				}
@@ -505,7 +598,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ticker\": \"20220228-D\",\r\n    \"title\": \"viaje a CONIL de la frontera \",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"price\": 107.38,\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"startDate\": \"2023-01-03T22:47:50.569Z\",\r\n    \"endDate\": \"2023-11-02T19:16:03.854Z\",\r\n    \"isCancelled\": false,\r\n    \"manager\": \"621cb9dc08e258a4d12b830e\"\r\n}",
+							"raw": "{\r\n    \"ticker\": \"20220228-D\",\r\n    \"title\": \"viaje a CONIL de la frontera \",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"startDate\": \"2023-01-03T22:47:50.569Z\",\r\n    \"endDate\": \"2023-11-02T19:16:03.854Z\",\r\n    \"isCancelled\": false,\r\n    \"manager\": \"621cb9dc08e258a4d12b830e\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
