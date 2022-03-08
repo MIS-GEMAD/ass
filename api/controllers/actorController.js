@@ -64,3 +64,13 @@ exports.unban_an_actor = function (req, res) {
     }
   })
 }
+
+exports.update_preferred_languaje = function (req, res) {
+  Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
+    if (err) {
+      res.status(400).send(err)
+    } else {
+      res.status(201).json(actor)
+    }
+  })
+}
