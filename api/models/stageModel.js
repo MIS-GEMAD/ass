@@ -6,15 +6,16 @@ const StageSchema = new Schema(
   {
     title: {
       type: String,
-      required: [true, "Title is required"],
+      required: 'Kindly enter the title',
     },
     description: {
       type: String,
-      required: [true, "Description is required"],
+      required: 'Kindly enter the description',
     },
     price: {
       type: Number,
-      required: [true, "Price is required"],
+      min: 0,
+      required: 'Kindly enter the price',
     },
   },
   { strict: true }

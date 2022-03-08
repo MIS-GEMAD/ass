@@ -5,10 +5,14 @@ const Schema = mongoose.Schema;
 const ConfigurationSchema = new Schema(
   {
     flat_rate: { 
-      type: Number
+      type: Number,
+      min: 0, 
+      max: 100
     },
     flush_period: {
-      type: Number
+      type: Number,
+      min: 0, 
+      max: 24
     },
     max_finder_result: {
       type: Number,
