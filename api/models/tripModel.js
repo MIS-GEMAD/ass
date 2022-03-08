@@ -17,15 +17,16 @@ const TripSchema = new Schema(
     ticker: {
       type: String,
       default: createTicker(),
-      required: [true, 'Ticker is required'],
+      required: 'Kindly enter the ticker',
+      unique: true
     },
     title: {
       type: String,
-      required: [true, 'Title is required'],
+      required: 'Kindly enter the title'
     },
     description: {
       type: String,
-      required: [true, 'Description is required'],
+      required: 'Kindly enter the description'
     },
     price: {
       type: Number,
@@ -34,19 +35,19 @@ const TripSchema = new Schema(
     requirements: {
       type: [String],
       default: [],
-      required: [true, 'Requirements are required'],
+      required: 'Kindly enter the requirements'
     },
     start_date: {
       type: Date,
       min: Date.now(),
       default: Date.now(),
-      required: [true, 'Start date is required'],
+      required: 'Kindly enter the start date'
     },
     end_date: {
       type: Date,
       min: Date.now() + 1,
       default: Date.now() + 1,
-      required: [true, 'End date is required'],
+      required: 'Kindly enter the end date',
     },
     pictures: {
       type: [Schema.Types.ObjectId],
