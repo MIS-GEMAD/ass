@@ -9,6 +9,8 @@ services:
     volumes:
       - .:/opt/app
       - /opt/app/node_modules
+    networks:
+      - ass
   
   mongodb:
     image: mongo:latest
@@ -18,3 +20,9 @@ services:
       MONGO_INITDB_DATABASE: ACME_Explorer
     ports:
       - "27017:27017"
+    networks:
+      - ass
+
+networks:
+  ass:
+    driver: bridge
