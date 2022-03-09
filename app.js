@@ -53,6 +53,11 @@ console.log("Connecting DB to: " + mongoDBURI);
 
 mongoose.connection.on("open", function () {
   app.listen(port, function () {
+    var axios = require("axios");
+
+    axios.post('http://node:8080/storage/fs?dbURL=' + mongoDBURI + '&collection=trip&sourceFile=./init_data/trip.json').then((res) => {
+      console.log(res)
+    })
     console.log("ACME-Explorer RESTful API server started on: " + port);
   });
 });
@@ -63,60 +68,65 @@ mongoose.connection.on("error", function (err) {
 
 mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
 
-var axios = require("axios");
-const config = {
-  headers: { Authorization: "Bearer t96m1j7j72b9k902fh6nbq1mge634l4hwhu3s4mr" },
-};
+// var axios = require("axios");
 
-var endpoints = [
-  'https://api.json-generator.com/templates/TFQ2qYCKJkPV/data',
-  'https://api.json-generator.com/templates/_HFONodi_Cpz/data',
-  'https://api.json-generator.com/templates/nqA1326hTa7q/data',
-  'https://api.json-generator.com/templates/NCs_HiAJENP1/data',
-  'https://api.json-generator.com/templates/OE-7oiCaxV0F/data',
-  'https://api.json-generator.com/templates/TFPXWI4zbtT7/data',
-  'https://api.json-generator.com/templates/6tuHvyOtMLfh/data'
-];
+// axios.post('http://localhost:8080/storage/fs?dbURL=' + mongoDBURI + '&collection=trip&sourceFile=./init_data/trip.json').then((res) => {
+//   console.log(res)
+// })
 
-axios
-  .all(endpoints.map((endpoint) => axios.get(endpoint, config)))
-  .then((data) => {
-    const actors = data[0].data;
-    const applications = data[1].data;
-    const finders = data[2].data;
-    const pictures = data[3].data;
-    const sponsorships = data[4].data;
-    const stages = data[5].data;
-    const trips = data[6].data;
+// const config = {
+//   headers: { Authorization: "Bearer t96m1j7j72b9k902fh6nbq1mge634l4hwhu3s4mr" },
+// };
 
-    axios.post('/storage/fs', actors).then((res) => {
-      console.log(res)
-    })
+// var endpoints = [
+//   'https://api.json-generator.com/templates/TFQ2qYCKJkPV/data',
+//   'https://api.json-generator.com/templates/_HFONodi_Cpz/data',
+//   'https://api.json-generator.com/templates/nqA1326hTa7q/data',
+//   'https://api.json-generator.com/templates/NCs_HiAJENP1/data',
+//   'https://api.json-generator.com/templates/OE-7oiCaxV0F/data',
+//   'https://api.json-generator.com/templates/TFPXWI4zbtT7/data',
+//   'https://api.json-generator.com/templates/6tuHvyOtMLfh/data'
+// ];
 
-    axios.post('/storage/fs', applications).then((res) => {
-      console.log(res)
-    })
+// axios
+//   .all(endpoints.map((endpoint) => axios.get(endpoint, config)))
+//   .then((data) => {
+//     const actors = data[0].data;
+//     const applications = data[1].data;
+//     const finders = data[2].data;
+//     const pictures = data[3].data;
+//     const sponsorships = data[4].data;
+//     const stages = data[5].data;
+//     const trips = data[6].data;
 
-    axios.post('/storage/fs', finders).then((res) => {
-      console.log(res)
-    })
+//     axios.post('http://localhost:8080/storage/fs?dbURL=' + mongoDBURI + '&collection=trip&sourceFile=./init_data/trip.json', actors).then((res) => {
+//       console.log(res)
+//     })
 
-    axios.post('/storage/fs', pictures).then((res) => {
-      console.log(res)
-    })
+  //   axios.post('/storage/fs', applications).then((res) => {
+  //     console.log(res)
+  //   })
 
-    axios.post('/storage/fs', sponsorships).then((res) => {
-      console.log(res)
-    })
+  //   axios.post('/storage/fs', finders).then((res) => {
+  //     console.log(res)
+  //   })
 
-    axios.post('/storage/fs', stages).then((res) => {
-      console.log(res)
-    })
+  //   axios.post('/storage/fs', pictures).then((res) => {
+  //     console.log(res)
+  //   })
 
-    axios.post('/storage/fs', trips).then((res) => {
-      console.log(res)
-    })
-  });
+  //   axios.post('/storage/fs', sponsorships).then((res) => {
+  //     console.log(res)
+  //   })
+
+  //   axios.post('/storage/fs', stages).then((res) => {
+  //     console.log(res)
+  //   })
+
+  //   axios.post('/storage/fs', trips).then((res) => {
+  //     console.log(res)
+  //   })
+  // });
 
 
 // var axios = require("axios");
