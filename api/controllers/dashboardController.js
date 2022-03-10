@@ -2,20 +2,18 @@
 
 const async = require('async')
 const mongoose = require('mongoose')
-// const DataWareHouse = mongoose.model('DataWareHouse')
-// const Orders = mongoose.model('Orders')
+const Dashboard = mongoose.model('Dashboard')
 
 exports.list_all_indicators = function (req, res) {
-  res.status(200)
-  // console.log('Requesting indicators')
+  console.log('Requesting indicators')
 
-  // DataWareHouse.find().sort('-computationMoment').exec(function (err, indicators) {
-  //   if (err) {
-  //     res.send(err)
-  //   } else {
-  //     res.json(indicators)
-  //   }
-  // })
+  Dashboard.find().sort('-computationMoment').exec(function (err, indicators) {
+  if (err) {
+    res.send(err)
+  } else {
+    res.json(indicators)
+  }
+  })
 }
 
 exports.last_indicator = function (req, res) {
@@ -29,28 +27,29 @@ exports.last_indicator = function (req, res) {
   // })
 }
 
-// const CronJob = require('cron').CronJob
-// const CronTime = require('cron').CronTime
+const CronJob = require('cron').CronJob
+const CronTime = require('cron').CronTime
 
-// // '0 0 * * * *' una hora
-// // '*/30 * * * * *' cada 30 segundos
-// // '*/10 * * * * *' cada 10 segundos
-// // '* * * * * *' cada segundo
-// let rebuildPeriod = '*/10 * * * * *' // El que se usará por defecto
-// let computeDataWareHouseJob
+// '0 0 * * * *' una hora
+// '*/30 * * * * *' cada 30 segundos
+// '*/10 * * * * *' cada 10 segundos
+// '* * * * * *' cada segundo
+let rebuildPeriod = '*/10 * * * * *' // El que se usará por defecto
+let computeDashboardJob
 
 exports.rebuildPeriod = function (req, res) {
   res.status(200)
-  // console.log('Updating rebuild period. Request: period:' + req.query.rebuildPeriod)
-  // rebuildPeriod = req.query.rebuildPeriod
-  // computeDataWareHouseJob.setTime(new CronTime(rebuildPeriod))
-  // computeDataWareHouseJob.start()
+  console.log('Updating rebuild period. Request: period:' + req.query.rebuildPeriod)
 
-  // res.json(req.query.rebuildPeriod)
+  rebuildPeriod = req.query.rebuildPeriod
+  computeDashboardJob.setTime(new CronTime(rebuildPeriod))
+  computeDashboardJob.start()
+
+  res.json(req.query.rebuildPeriod)
 }
 
 // function createDataWareHouseJob () {
-//   computeDataWareHouseJob = new CronJob(rebuildPeriod, function () {
+//   computeDashboardJob = new CronJob(rebuildPeriod, function () {
 //     const newDataWareHouse = new DataWareHouse()
 //     console.log('Cron job submitted. Rebuild period: ' + rebuildPeriod)
 //     async.parallel([
