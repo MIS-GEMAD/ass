@@ -17,7 +17,7 @@ exports.store_json_fs = function (req, res) {
     collection = req.query.collection
     sourceFile = req.query.sourceFile
     if (req.query.batchSize) batchSize = req.query.batchSize; else batchSize = 1000
-    if (req.query.parseString) parseString = req.query.parseString; else parseString = '*.*'
+    if (req.query.parseString) parseString = req.query.parseString; else parseString = '*'
   
     // where the data will end up
     const outputDBConfig = { dbURL: dbURL, collection: collection, batchSize: batchSize }

@@ -5,9 +5,7 @@ const Schema = mongoose.Schema;
 const PictureSchema = new Schema(
   {
     picture: {
-      // data: Buffer, contentType: String
-      type: String,
-      required: [true, 'Picture is required'],
+      data: Buffer, contentType: String,
     },
   },
   { strict: true }
