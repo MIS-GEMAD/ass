@@ -40,15 +40,22 @@ let computeDashboardJob
 exports.rebuildPeriod = function (req, res) {
   res.status(200)
   console.log('Updating rebuild period. Request: period:' + req.query.rebuildPeriod)
-
+  
+  // Get Rebuild Period
   rebuildPeriod = req.query.rebuildPeriod
+  if(rebuildPeriod == null){
+    res.status(400).send('Error: Missing query parameter \'?rebuildPeriod=\' in URI');
+  }
+    
+  // Compute
   computeDashboardJob.setTime(new CronTime(rebuildPeriod))
   computeDashboardJob.start()
 
   res.json(req.query.rebuildPeriod)
+  
 }
 
-// function createDataWareHouseJob () {
+// function createDashboardJob () {
 //   computeDashboardJob = new CronJob(rebuildPeriod, function () {
 //     const newDataWareHouse = new DataWareHouse()
 //     console.log('Cron job submitted. Rebuild period: ' + rebuildPeriod)
@@ -84,7 +91,7 @@ exports.rebuildPeriod = function (req, res) {
 //   }, null, true, 'Europe/Madrid')
 // }
 
-// module.exports.createDataWareHouseJob = createDataWareHouseJob
+// module.exports.createDashboardJob = createDashboardJob
 
 // function computeTopCancellers (callback) {
 //   Orders.aggregate([
