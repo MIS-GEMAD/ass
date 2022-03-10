@@ -1695,6 +1695,249 @@
 		{
 			"name": "CUBE",
 			"item": []
+		},
+		{
+			"name": "MASIVECHARGE",
+			"item": [
+				{
+					"name": "2 - trips",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/storage/fs?dbURL=mongodb://mongodb:27017/ACME_Explorer&collection=trips&sourceFile=./init_data/trips.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"storage",
+								"fs"
+							],
+							"query": [
+								{
+									"key": "dbURL",
+									"value": "mongodb://mongodb:27017/ACME_Explorer"
+								},
+								{
+									"key": "collection",
+									"value": "trips"
+								},
+								{
+									"key": "sourceFile",
+									"value": "./init_data/trips.json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1 - applications",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/storage/fs?dbURL=mongodb://mongodb:27017/ACME_Explorer&collection=applications&sourceFile=./init_data/applications.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"storage",
+								"fs"
+							],
+							"query": [
+								{
+									"key": "dbURL",
+									"value": "mongodb://mongodb:27017/ACME_Explorer"
+								},
+								{
+									"key": "collection",
+									"value": "applications"
+								},
+								{
+									"key": "sourceFile",
+									"value": "./init_data/applications.json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1 - stages",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/storage/fs?dbURL=mongodb://mongodb:27017/ACME_Explorer&collection=stages&sourceFile=./init_data/stages.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"storage",
+								"fs"
+							],
+							"query": [
+								{
+									"key": "dbURL",
+									"value": "mongodb://mongodb:27017/ACME_Explorer"
+								},
+								{
+									"key": "collection",
+									"value": "stages"
+								},
+								{
+									"key": "sourceFile",
+									"value": "./init_data/stages.json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1 - sponsorships",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/storage/fs?dbURL=mongodb://mongodb:27017/ACME_Explorer&collection=sponsorships&sourceFile=./init_data/sponsorships.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"storage",
+								"fs"
+							],
+							"query": [
+								{
+									"key": "dbURL",
+									"value": "mongodb://mongodb:27017/ACME_Explorer"
+								},
+								{
+									"key": "collection",
+									"value": "sponsorships"
+								},
+								{
+									"key": "sourceFile",
+									"value": "./init_data/sponsorships.json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3 - actors",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/storage/fs?dbURL=mongodb://mongodb:27017/ACME_Explorer&collection=actors&sourceFile=./init_data/actors.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"storage",
+								"fs"
+							],
+							"query": [
+								{
+									"key": "dbURL",
+									"value": "mongodb://mongodb:27017/ACME_Explorer"
+								},
+								{
+									"key": "collection",
+									"value": "actors"
+								},
+								{
+									"key": "sourceFile",
+									"value": "./init_data/actors.json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1 - pictures",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/storage/fs?dbURL=mongodb://mongodb:27017/ACME_Explorer&collection=pictures&sourceFile=./init_data/pictures.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"storage",
+								"fs"
+							],
+							"query": [
+								{
+									"key": "dbURL",
+									"value": "mongodb://mongodb:27017/ACME_Explorer"
+								},
+								{
+									"key": "collection",
+									"value": "pictures"
+								},
+								{
+									"key": "sourceFile",
+									"value": "./init_data/pictures.json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1 - finders",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/storage/fs?dbURL=mongodb://mongodb:27017/ACME_Explorer&collection=finders&sourceFile=./init_data/finders.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"storage",
+								"fs"
+							],
+							"query": [
+								{
+									"key": "dbURL",
+									"value": "mongodb://mongodb:27017/ACME_Explorer"
+								},
+								{
+									"key": "collection",
+									"value": "finders"
+								},
+								{
+									"key": "sourceFile",
+									"value": "./init_data/finders.json"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
