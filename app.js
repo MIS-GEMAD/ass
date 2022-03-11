@@ -15,6 +15,7 @@ const Configuration = require("./api/models/configurationModel");
 const Finder = require("./api/models/finderModel");
 const Sponsorship = require("./api/models/sponsorshipModel");
 const Dashboard = require("./api/models/dashboardModel");
+const DashboardTools = require('./api/controllers/dashboardController')
 
 // body parser
 const bodyParser = require("body-parser");
@@ -62,3 +63,5 @@ mongoose.connection.on("open", function () {
 mongoose.connection.on("error", function (err) {
   console.error("DB init error " + err);
 });
+
+DashboardTools.createDashboardJob()

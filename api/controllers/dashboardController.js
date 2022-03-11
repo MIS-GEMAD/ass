@@ -18,7 +18,7 @@ exports.list_all_indicators = function (req, res) {
 
 exports.last_indicator = function (req, res) {
   res.status(200)
-  // DataWareHouse.find().sort('-computationMoment').limit(1).exec(function (err, indicators) {
+  // Dashboard.find().sort('-computationMoment').limit(1).exec(function (err, indicators) {
   //   if (err) {
   //     res.send(err)
   //   } else {
@@ -44,7 +44,7 @@ exports.rebuildPeriod = function (req, res) {
   // Get Rebuild Period
   rebuildPeriod = req.query.rebuildPeriod
   if(rebuildPeriod == null){
-    res.status(400).send('Error: Missing query parameter \'?rebuildPeriod=\' in URI');
+    res.status(400).send('Error: Missing query parameter \'?rebuildPeriod=*/10 * * * * *\' in URI');
   }
     
   // Compute
@@ -55,43 +55,47 @@ exports.rebuildPeriod = function (req, res) {
   
 }
 
-// function createDashboardJob () {
-//   computeDashboardJob = new CronJob(rebuildPeriod, function () {
-//     const newDataWareHouse = new DataWareHouse()
-//     console.log('Cron job submitted. Rebuild period: ' + rebuildPeriod)
-//     async.parallel([
-//       computeTopCancellers,
-//       computeTopNotCancellers,
-//       computeBottomNotCancellers,
-//       computeTopClerks,
-//       computeBottomClerks,
-//       computeRatioCancelledOrders
-//     ], function (err, results) {
-//       if (err) {
-//         console.log('Error computing datawarehouse: ' + err)
-//       } else {
-//         // console.log("Resultados obtenidos por las agregaciones: "+JSON.stringify(results));
-//         newDataWareHouse.topCancellers = results[0]
-//         newDataWareHouse.topNotCancellers = results[1]
-//         newDataWareHouse.bottomNotCancellers = results[2]
-//         newDataWareHouse.topClerks = results[3]
-//         newDataWareHouse.bottomClerks = results[4]
-//         newDataWareHouse.ratioCancelledOrders = results[5]
-//         newDataWareHouse.rebuildPeriod = rebuildPeriod
+function createDashboardJob () {
+  computeDashboardJob = new CronJob(rebuildPeriod, function () {
+    const newDashboard = new Dashboard()
+    console.log('Cron job submitted. Rebuild period: ' + rebuildPeriod)
+    async.parallel([
+      /*
+      computeTopCancellers,
+      computeTopNotCancellers,
+      computeBottomNotCancellers,
+      computeTopClerks,
+      computeBottomClerks,
+      computeRatioCancelledOrders
+      */
+    ], function (err, results) {
+      if (err) {
+        console.log('Error computing datawarehouse: ' + err)
+      } else {
+        // console.log("Resultados obtenidos por las agregaciones: "+JSON.stringify(results));
+        /*
+        newDashboard.topCancellers = results[0]
+        newDashboard.topNotCancellers = results[1]
+        newDashboard.bottomNotCancellers = results[2]
+        newDashboard.topClerks = results[3]
+        newDashboard.bottomClerks = results[4]
+        newDashboard.ratioCancelledOrders = results[5]
+        newDashboard.rebuildPeriod = rebuildPeriod
 
-//         newDataWareHouse.save(function (err, datawarehouse) {
-//           if (err) {
-//             console.log('Error saving datawarehouse: ' + err)
-//           } else {
-//             console.log('new DataWareHouse succesfully saved. Date: ' + new Date())
-//           }
-//         })
-//       }
-//     })
-//   }, null, true, 'Europe/Madrid')
-// }
+        newDashboard.save(function (err, datawarehouse) {
+          if (err) {
+            console.log('Error saving datawarehouse: ' + err)
+          } else {
+            console.log('new Dashboard succesfully saved. Date: ' + new Date())
+          }
+        })
+        */
+      }
+    })
+  }, null, true, 'Europe/Madrid')
+}
 
-// module.exports.createDashboardJob = createDashboardJob
+module.exports.createDashboardJob = createDashboardJob
 
 // function computeTopCancellers (callback) {
 //   Orders.aggregate([
