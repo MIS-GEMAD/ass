@@ -9,7 +9,10 @@ const SponsorshipSchema = new Schema(
       data: Buffer, contentType: String
     },
     link: {
-        type: mongoose.SchemaTypes.Url,
+      type: mongoose.SchemaTypes.Url,
+    },
+    is_paid: {
+      type: Boolean
     }
   },
   { strict: true }
