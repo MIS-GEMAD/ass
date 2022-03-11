@@ -4,6 +4,7 @@ const async = require('async')
 const mongoose = require('mongoose')
 const Dashboard = mongoose.model('Dashboard')
 const Trip = mongoose.model('Trip')
+const Actor = mongoose.model('Actor')
 
 exports.list_all_indicators = function (req, res) {
   console.log('Requesting indicators')
@@ -25,6 +26,16 @@ exports.last_indicator = function (req, res) {
       res.json(indicators)
     }
   })
+}
+
+exports.stats = function (req, res) {
+  Dashboard.findOne({}, {}, { sort: { 'computationMoment' : -1 } }, function(err, dashboard) {
+    if (err) {
+      res.send(err)
+    } else {
+      res.json(dashboard)
+    }
+  });
 }
 
 const CronJob = require('cron').CronJob
@@ -61,14 +72,14 @@ function createDashboardJob () {
     console.log('Cron job submitted. Rebuild period: ' + rebuildPeriod)
     async.parallel([
 
-      computeTrips
+      computeTripsPrice
       
     ], function (err, results) {
       if (err) {
         console.log('Error computing datawarehouse: ' + err)
       } else {
 
-        newDashboard.trip_stats = results[0]
+        newDashboard.trip_price_stats = results[0]
         newDashboard.rebuildPeriod = rebuildPeriod
 
         newDashboard.save(function (err, dashboard) {
@@ -86,9 +97,29 @@ function createDashboardJob () {
 
 module.exports.createDashboardJob = createDashboardJob
 
-function computeTrips (callback) {
+function computeTripsPrice (callback) {
 
   Trip.aggregate([
+    { '$group': {
+        '_id': null,
+        'avg': { '$avg': "$price" },
+        'min': { '$min': "$price" },
+        'max': { '$max': "$price" },
+        'stdPrice': { $stdDevSamp: '$price' }
+    } }
+  ], function (err, res) {
+      console.log(res)
+      callback(err, res)
+    }
+ )
+
+};
+
+/*
+function computeTripsPrice (callback) {
+
+  Trip.aggregate(
+    [
     { 
       $match: { 
         cancelationMoment: { 
@@ -96,21 +127,78 @@ function computeTrips (callback) {
         } 
       } 
     },
+    {
+      $facet: {
+        preComputation: [
+          { 
+            $group: { 
+              _id: '$consumer', 
+              ordersNotCanceled: { 
+                $sum: 1 
+              } 
+            } 
+          },
+          { 
+            $group: { 
+              _id: null, 
+              nNoCanceladores: { 
+                $sum: 1 
+              } 
+            } 
+          },
+          { 
+            $project: { 
+              _id: 0, 
+              limitTopPercentage: { 
+                $ceil: { 
+                  $multiply: ['$nNoCanceladores', 0.1] 
+                } 
+              } 
+            } 
+          }
+        ],
+        noCanceladores: [
+          { 
+            $project: { 
+              _id: 0, 
+              consumer: 1 
+            } 
+          }, { 
+            $group: { 
+              _id: '$consumer', 
+              ordersNotCanceled: { 
+                $sum: 1 
+              } 
+            } 
+          }, { 
+            $sort: { 
+              ordersNotCanceled: -1 
+            } 
+          }
+        ]
+      }
+    },
     { 
-      $project: {
-        _id: 0,
-        avgPrice: 1,
-        minPrice: 1,
-        maxPrice: 1,
-        stdPrice: 1
+      $project: { 
+        topNoCanceladores: { 
+          $slice: ['$noCanceladores', 
+          { 
+            $arrayElemAt: [
+              '$preComputation.limitTopPercentage', 0
+            ] 
+          }] 
+        } 
       } 
     }
   ], function (err, res) {
-    callback(err, res)
+    console.log(res[0].topNoCanceladores)
+    callback(err, res[0].topNoCanceladores)
   })
+
+
 };
 
-
+*/
 
 // function computeTopCancellers (callback) {
 //   Orders.aggregate([

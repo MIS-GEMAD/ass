@@ -10,4 +10,7 @@ module.exports = function (app) {
   app.route('/dashboard/latest')
     .get(dashboard.last_indicator)
 
+  app.route('/dashboard/stats')
+    .get(dashboard.stats)
+
 }
