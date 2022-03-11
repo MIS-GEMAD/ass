@@ -4,17 +4,8 @@ const Schema = mongoose.Schema;
 
 const DashboardSchema = new Schema(
   {
-    trip_average: {
-      type: Number
-    },
-    trip_minimum: {
-      type: Number
-    },
-    trip_maximum : {
-      type: Number
-    },
-    trip_deviation: {
-      type: Number
+    trip_stats_by_manager: {
+      
     },
     application_average: {
       type: Number
@@ -28,17 +19,8 @@ const DashboardSchema = new Schema(
     application_deviation: {
       type: Number
     },
-    trip_price_average: {
-      type: Number
-    },
-    trip_price_minimum: {
-      type: Number
-    },
-    trip_price_maximum: {
-      type: Number
-    },
-    trip_price_deviation: {
-      type: Number
+    trip_price_stats: {
+      
     },
     ratio_by_status: {
       type: Number

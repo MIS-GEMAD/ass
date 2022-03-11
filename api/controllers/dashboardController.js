@@ -3,6 +3,8 @@
 const async = require('async')
 const mongoose = require('mongoose')
 const Dashboard = mongoose.model('Dashboard')
+const Trip = mongoose.model('Trip')
+const Actor = mongoose.model('Actor')
 
 exports.list_all_indicators = function (req, res) {
   console.log('Requesting indicators')
@@ -17,14 +19,23 @@ exports.list_all_indicators = function (req, res) {
 }
 
 exports.last_indicator = function (req, res) {
-  res.status(200)
-  // DataWareHouse.find().sort('-computationMoment').limit(1).exec(function (err, indicators) {
-  //   if (err) {
-  //     res.send(err)
-  //   } else {
-  //     res.json(indicators)
-  //   }
-  // })
+  Dashboard.find().sort('-computationMoment').limit(1).exec(function (err, indicators) {
+    if (err) {
+      res.send(err)
+    } else {
+      res.json(indicators)
+    }
+  })
+}
+
+exports.stats = function (req, res) {
+  Dashboard.findOne({}, {}, { sort: { 'computationMoment' : -1 } }, function(err, dashboard) {
+    if (err) {
+      res.send(err)
+    } else {
+      res.json(dashboard)
+    }
+  });
 }
 
 const CronJob = require('cron').CronJob
@@ -44,7 +55,7 @@ exports.rebuildPeriod = function (req, res) {
   // Get Rebuild Period
   rebuildPeriod = req.query.rebuildPeriod
   if(rebuildPeriod == null){
-    res.status(400).send('Error: Missing query parameter \'?rebuildPeriod=\' in URI');
+    res.status(400).send('Error: Missing query parameter \'?rebuildPeriod=*/10 * * * * *\' in URI');
   }
     
   // Compute
@@ -55,43 +66,139 @@ exports.rebuildPeriod = function (req, res) {
   
 }
 
-// function createDashboardJob () {
-//   computeDashboardJob = new CronJob(rebuildPeriod, function () {
-//     const newDataWareHouse = new DataWareHouse()
-//     console.log('Cron job submitted. Rebuild period: ' + rebuildPeriod)
-//     async.parallel([
-//       computeTopCancellers,
-//       computeTopNotCancellers,
-//       computeBottomNotCancellers,
-//       computeTopClerks,
-//       computeBottomClerks,
-//       computeRatioCancelledOrders
-//     ], function (err, results) {
-//       if (err) {
-//         console.log('Error computing datawarehouse: ' + err)
-//       } else {
-//         // console.log("Resultados obtenidos por las agregaciones: "+JSON.stringify(results));
-//         newDataWareHouse.topCancellers = results[0]
-//         newDataWareHouse.topNotCancellers = results[1]
-//         newDataWareHouse.bottomNotCancellers = results[2]
-//         newDataWareHouse.topClerks = results[3]
-//         newDataWareHouse.bottomClerks = results[4]
-//         newDataWareHouse.ratioCancelledOrders = results[5]
-//         newDataWareHouse.rebuildPeriod = rebuildPeriod
+function createDashboardJob () {
+  computeDashboardJob = new CronJob(rebuildPeriod, function () {
+    const newDashboard = new Dashboard()
+    console.log('Cron job submitted. Rebuild period: ' + rebuildPeriod)
+    async.parallel([
 
-//         newDataWareHouse.save(function (err, datawarehouse) {
-//           if (err) {
-//             console.log('Error saving datawarehouse: ' + err)
-//           } else {
-//             console.log('new DataWareHouse succesfully saved. Date: ' + new Date())
-//           }
-//         })
-//       }
-//     })
-//   }, null, true, 'Europe/Madrid')
-// }
+      computeTripsPrice
+      
+    ], function (err, results) {
+      if (err) {
+        console.log('Error computing datawarehouse: ' + err)
+      } else {
 
-// module.exports.createDashboardJob = createDashboardJob
+        newDashboard.trip_price_stats = results[0]
+        newDashboard.rebuildPeriod = rebuildPeriod
+
+        newDashboard.save(function (err, dashboard) {
+          if (err) {
+            console.log('Error saving dashboard: ' + err)
+          } else {
+            console.log('new Dashboard succesfully saved. Date: ' + new Date())
+          }
+        })
+
+      }
+    })
+  }, null, true, 'Europe/Madrid')
+}
+
+module.exports.createDashboardJob = createDashboardJob
+
+function computeTripsPrice (callback) {
+
+  Trip.aggregate([
+    { '$group': {
+        '_id': null,
+        'avg': { '$avg': "$price" },
+        'min': { '$min': "$price" },
+        'max': { '$max': "$price" },
+        'stdPrice': { $stdDevSamp: '$price' }
+    } }
+  ], function (err, res) {
+      console.log(res)
+      callback(err, res)
+    }
+ )
+
+};
+
+/*
+function computeTripsPrice (callback) {
+
+  Trip.aggregate(
+    [
+    { 
+      $match: { 
+        cancelationMoment: { 
+          $exists: true 
+        } 
+      } 
+    },
+    {
+      $facet: {
+        preComputation: [
+          { 
+            $group: { 
+              _id: '$consumer', 
+              ordersNotCanceled: { 
+                $sum: 1 
+              } 
+            } 
+          },
+          { 
+            $group: { 
+              _id: null, 
+              nNoCanceladores: { 
+                $sum: 1 
+              } 
+            } 
+          },
+          { 
+            $project: { 
+              _id: 0, 
+              limitTopPercentage: { 
+                $ceil: { 
+                  $multiply: ['$nNoCanceladores', 0.1] 
+                } 
+              } 
+            } 
+          }
+        ],
+        noCanceladores: [
+          { 
+            $project: { 
+              _id: 0, 
+              consumer: 1 
+            } 
+          }, { 
+            $group: { 
+              _id: '$consumer', 
+              ordersNotCanceled: { 
+                $sum: 1 
+              } 
+            } 
+          }, { 
+            $sort: { 
+              ordersNotCanceled: -1 
+            } 
+          }
+        ]
+      }
+    },
+    { 
+      $project: { 
+        topNoCanceladores: { 
+          $slice: ['$noCanceladores', 
+          { 
+            $arrayElemAt: [
+              '$preComputation.limitTopPercentage', 0
+            ] 
+          }] 
+        } 
+      } 
+    }
+  ], function (err, res) {
+    console.log(res[0].topNoCanceladores)
+    callback(err, res[0].topNoCanceladores)
+  })
+
+
+};
+
+*/
 
 // function computeTopCancellers (callback) {
 //   Orders.aggregate([
