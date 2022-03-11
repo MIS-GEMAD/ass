@@ -3,9 +3,6 @@ module.exports = function (app) {
 
   const actors = require('../controllers/actorController')
 
-  // TODO: Crear endpoint para cambiar el preferred languaje
-  // TODO: Crear endpoint para cambiar el estado de baneado a desbaneado
-
   app.route('/actors')
     .get(actors.list_all_actors)
     .post(actors.create_an_actor)
@@ -17,7 +14,13 @@ module.exports = function (app) {
   app.route('/actors/:actorId/ban')
     .put(actors.ban_an_actor)
 
-    app.route('/actors/:actorId/applications')
+  app.route('/actors/:actorId/applications')
     .get(actors.list_explorer_applications)
+
+  app.route('/actors/:actorId/unban')
+    .put(actors.unban_an_actor)
+
+  app.route('/actors/:actorId/languaje')
+    .put(actors.update_preferred_languaje)
 
 }
