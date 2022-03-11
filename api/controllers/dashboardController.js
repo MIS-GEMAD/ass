@@ -3,6 +3,7 @@
 const async = require('async')
 const mongoose = require('mongoose')
 const Dashboard = mongoose.model('Dashboard')
+const Trip = mongoose.model('Trip')
 
 exports.list_all_indicators = function (req, res) {
   console.log('Requesting indicators')
@@ -17,14 +18,13 @@ exports.list_all_indicators = function (req, res) {
 }
 
 exports.last_indicator = function (req, res) {
-  res.status(200)
-  // Dashboard.find().sort('-computationMoment').limit(1).exec(function (err, indicators) {
-  //   if (err) {
-  //     res.send(err)
-  //   } else {
-  //     res.json(indicators)
-  //   }
-  // })
+  Dashboard.find().sort('-computationMoment').limit(1).exec(function (err, indicators) {
+    if (err) {
+      res.send(err)
+    } else {
+      res.json(indicators)
+    }
+  })
 }
 
 const CronJob = require('cron').CronJob
@@ -60,42 +60,57 @@ function createDashboardJob () {
     const newDashboard = new Dashboard()
     console.log('Cron job submitted. Rebuild period: ' + rebuildPeriod)
     async.parallel([
-      /*
-      computeTopCancellers,
-      computeTopNotCancellers,
-      computeBottomNotCancellers,
-      computeTopClerks,
-      computeBottomClerks,
-      computeRatioCancelledOrders
-      */
+
+      computeTrips
+      
     ], function (err, results) {
       if (err) {
         console.log('Error computing datawarehouse: ' + err)
       } else {
-        // console.log("Resultados obtenidos por las agregaciones: "+JSON.stringify(results));
-        /*
-        newDashboard.topCancellers = results[0]
-        newDashboard.topNotCancellers = results[1]
-        newDashboard.bottomNotCancellers = results[2]
-        newDashboard.topClerks = results[3]
-        newDashboard.bottomClerks = results[4]
-        newDashboard.ratioCancelledOrders = results[5]
+
+        newDashboard.trip_stats = results[0]
         newDashboard.rebuildPeriod = rebuildPeriod
 
-        newDashboard.save(function (err, datawarehouse) {
+        newDashboard.save(function (err, dashboard) {
           if (err) {
-            console.log('Error saving datawarehouse: ' + err)
+            console.log('Error saving dashboard: ' + err)
           } else {
             console.log('new Dashboard succesfully saved. Date: ' + new Date())
           }
         })
-        */
+
       }
     })
   }, null, true, 'Europe/Madrid')
 }
 
 module.exports.createDashboardJob = createDashboardJob
+
+function computeTrips (callback) {
+
+  Trip.aggregate([
+    { 
+      $match: { 
+        cancelationMoment: { 
+          $exists: true 
+        } 
+      } 
+    },
+    { 
+      $project: {
+        _id: 0,
+        avgPrice: 1,
+        minPrice: 1,
+        maxPrice: 1,
+        stdPrice: 1
+      } 
+    }
+  ], function (err, res) {
+    callback(err, res)
+  })
+};
+
+
 
 // function computeTopCancellers (callback) {
 //   Orders.aggregate([

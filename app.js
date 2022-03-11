@@ -64,4 +64,6 @@ mongoose.connection.on("error", function (err) {
   console.error("DB init error " + err);
 });
 
+mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
+
 DashboardTools.createDashboardJob()

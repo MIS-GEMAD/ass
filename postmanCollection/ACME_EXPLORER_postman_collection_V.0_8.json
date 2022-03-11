@@ -2451,7 +2451,16 @@
 			"name": "DASHBOARD",
 			"item": [
 				{
-					"name": "list dashboard",
+					"name": "list all computations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "get last computation",
 					"request": {
 						"method": "GET",
 						"header": [],
