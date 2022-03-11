@@ -7,28 +7,20 @@ const DashboardSchema = new Schema(
     trip_stats_by_manager: {
       
     },
-    application_average: {
-      type: Number
-    },
-    application_minimum: {
-      type: Number
-    },
-    application_maximum: {
-      type: Number
-    },
-    application_deviation: {
-      type: Number
+    application_by_trip : {
+
     },
     trip_price_stats: {
       
     },
-    ratio_by_status: {
-      type: Number
+    ratio_applications_by_status: {
+      
     },
-    ratioCancelledOrders: {
-      type: Number,
-      max: 1,
-      min: 0
+    average_in_finders: {
+
+    },
+    top_10_words_in_finders: {
+
     },
     computationMoment: {
       type: Date,

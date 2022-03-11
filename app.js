@@ -51,7 +51,7 @@ const mongoDBName = process.env.mongoDBName || "ACME_Explorer";
 const mongoDBURI =
   "mongodb://" + mongoDBHostname + ":" + mongoDBPort + "/" + mongoDBName;
 
-mongoose.connect(mongoDBURI);
+mongoose.connect(mongoDBURI, {autoIndex: false});
 console.log("Connecting DB to: " + mongoDBURI);
 
 mongoose.connection.on("open", function () {
