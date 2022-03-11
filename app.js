@@ -14,6 +14,7 @@ const Picture = require("./api/models/pictureModel");
 const Configuration = require("./api/models/configurationModel");
 const Finder = require("./api/models/finderModel");
 const Sponsorship = require("./api/models/sponsorshipModel");
+const Dashboard = require("./api/models/dashboardModel");
 
 // body parser
 const bodyParser = require("body-parser");
@@ -29,7 +30,7 @@ const routesFinder = require("./api/routes/finderRoutes");
 const routesSponsorships = require("./api/routes/sponsorshipRoutes");
 const routesStorage = require('./api/routes/storageRoutes');
 const routesTrips = require("./api/routes/tripRoutes");
-
+const routesDashboard = require("./api/routes/dashboardRoutes");
 
 routesActors(app);
 routesApplications(app);
@@ -39,6 +40,7 @@ routesFinder(app);
 routesSponsorships(app);
 routesStorage(app)
 routesTrips(app);
+routesDashboard(app);
 
 
 // MongoDB URI building
@@ -60,5 +62,3 @@ mongoose.connection.on("open", function () {
 mongoose.connection.on("error", function (err) {
   console.error("DB init error " + err);
 });
-
-mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
