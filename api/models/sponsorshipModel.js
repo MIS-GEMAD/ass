@@ -6,9 +6,7 @@ const Schema = mongoose.Schema;
 const SponsorshipSchema = new Schema(
   {
     banner: { 
-      // data: Buffer, contentType: String 
-      type: String,
-      required: [true, 'Banner is required'],
+      data: Buffer, contentType: String
     },
     link: {
         type: mongoose.SchemaTypes.Url,
