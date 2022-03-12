@@ -42,14 +42,17 @@ exports.create_an_application = function (req, res) {
               res.status(400).send("Trip must not been cancelled");
             } else {
               var unique = true;
-              for (let i = 0; i < trip.applications.length; i++) {
-                for (let j = 0; j < explorer.applications.length; j++) {
-                  if(trip.applications[i] === explorer.applications[j]) {
-                    unique = false;
-                    break;
+              if(trip.applications && explorer.applications) {
+                for (let i = 0; i < trip.applications.length; i++) {
+                  for (let j = 0; j < explorer.applications.length; j++) {
+                    if(trip.applications[i] === explorer.applications[j]) {
+                      unique = false;
+                      break;
+                    }
                   }
                 }
               }
+
               if(!unique) {
                 res.status(400).send('Cannot apply twice for a trip')
               } else {
@@ -60,7 +63,6 @@ exports.create_an_application = function (req, res) {
                     res.status(400).send(error);
                   } else {
                     explorer['applications']=application._id.toString()
-                    console.log(explorer.applications,application._id)
                     Actor.findOneAndUpdate(
                       { _id: reqPpal.explorer },
                       explorer,
@@ -69,7 +71,6 @@ exports.create_an_application = function (req, res) {
                         if (err) {
                           res.status(400).send(err);
                         } else {
-                          console.log(actor)
                           trip['applications']=application._id.toString()
                           Trip.findOneAndUpdate(
                             { _id: reqPpal.trip },

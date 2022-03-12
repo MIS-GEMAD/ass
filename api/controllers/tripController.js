@@ -77,8 +77,6 @@ exports.delete_a_trip = function (req, res) {
 // TODO: Implementar via PayPal
 exports.pay_a_trip = function (req, res) {
   Trip.findById(req.params.tripId, function (err, trip) {
-    console.log("trip err aqui" + err);
-    console.log("trip aqui" + trip);
 
     if (err) {
       res.status(404).send(err);
@@ -87,8 +85,6 @@ exports.pay_a_trip = function (req, res) {
         res.status(404).send("Trip not found");
       } else {
         Actor.findById(req.params.actorId, function (err, actor) {
-          console.log("actor err aqui" + err);
-          console.log("actor aqui" + actor);
           if (err) {
             res.status(400).send(err);
           } else {
@@ -101,50 +97,54 @@ exports.pay_a_trip = function (req, res) {
                 trip.applications.length > 0 &&
                 actor.applications.length > 0
               ) {
-                console.log(trip.applications, actor.applications);
                 var applicationId = "";
-                var exist = true;
-                for (let i = 0; i < trip.applications.length; i++) {
-                  for (let j = 0; j < actor.applications.length; j++) {
-                    if (trip.applications[i] === actor.applications[j]) {
-                      exist = false;
-                      applicationId = trip.applications[i];
-                      break;
+                var exist = false;
+                if (!trip) {
+                  res.status(400).send("Trip must be applied");
+                } else {
+                  for (let i = 0; i < trip.applications.length; i++) {
+                    for (let j = 0; j < actor.applications.length; j++) {
+                      if (trip.applications[i].toString() == actor.applications[j].toString()) {
+                        exist = true;
+                        applicationId = trip.applications[i].toString();
+                        break;
+                      }
                     }
                   }
-                }
-                if (!exist) {
-                  res.status(400).send("Application not found");
-                } else {
-                  Application.findById(
-                    applicationId,
-                    function (err, application) {
-                      if (err) {
-                        res.status(400).send(err);
-                      } else {
-                        if (!application) {
-                          res.status(400).send("Application not found");
+
+                  if (!exist) {
+                    res.status(400).send("Application not found");
+                  } else {
+                    Application.findById(
+                      applicationId,
+                      function (err, application) {
+                        if (err) {
+                          res.status(400).send(err);
                         } else {
-                          if (application.status !== "DUE") {
-                            res.status(400).send("Trip is not due");
+                          if (!application) {
+                            res.status(400).send("Application not found");
                           } else {
-                            Application.findOneAndUpdate(
-                              { _id: applicationId },
-                              { status: "ACCEPTED" },
-                              { new: true },
-                              function (err, application) {
-                                if (err) {
-                                  res.status(400).send(err);
-                                } else {
-                                  res.status(201).json(application);
+                            if (application.status !== "DUE") {
+                              res.status(400).send("Trip is not due");
+                            } else {
+                              Application.findOneAndUpdate(
+                                { _id: applicationId },
+                                { status: "ACCEPTED" },
+                                { new: true },
+                                function (err, application) {
+                                  if (err) {
+                                    res.status(400).send(err);
+                                  } else {
+                                    res.status(201).json(application);
+                                  }
                                 }
-                              }
-                            );
+                              );
+                            }
                           }
                         }
                       }
-                    }
-                  );
+                    );
+                  }
                 }
               } else {
                 res.status(400).send("Application not found");
