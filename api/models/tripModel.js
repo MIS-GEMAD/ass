@@ -69,11 +69,11 @@ const TripSchema = new Schema(
       ref: 'Stage',
     }],
     sponsorships: [{
-      type: [Schema.Types.ObjectId],
+      type: Schema.Types.ObjectId,
       ref: 'Sponsorship',
     }],
     applications: [{
-      type: [Schema.Types.ObjectId],
+      type: Schema.Types.ObjectId,
       ref: 'Application',
     }]
   },

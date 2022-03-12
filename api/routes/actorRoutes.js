@@ -14,6 +14,9 @@ module.exports = function (app) {
   app.route('/actors/:actorId/ban')
     .put(actors.ban_an_actor)
 
+  app.route('/actors/:actorId/applications')
+    .get(actors.list_explorer_applications)
+
   app.route('/actors/:actorId/unban')
     .put(actors.unban_an_actor)
 

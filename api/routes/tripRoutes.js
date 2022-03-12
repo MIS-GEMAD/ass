@@ -14,7 +14,7 @@ module.exports = function (app) {
     .put(trip.update_a_trip)
     .delete(trip.delete_a_trip)
 
-  app.route('/trips/:tripId/pay')
+  app.route('/trips/:tripId/actors/:actorId/pay')
     .put(trip.pay_a_trip)
 
   app.route('/trips/:tripId/stages')
