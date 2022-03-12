@@ -36,6 +36,9 @@ docker-compose down
 docker-compose up -d
 ```
 
+## Run test
+docker exec -it test npm run test
+
 # Conceptual Model
 
 ![plot](./assets/acme-explorer.png)
