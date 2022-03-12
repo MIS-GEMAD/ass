@@ -67,7 +67,7 @@ const ActorSchema = new Schema(
       type: String,
       enum : ['English','Spanish'],
       default: 'English',
-    },
+    }
   },
   { strict: false }
 );

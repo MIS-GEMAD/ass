@@ -31,7 +31,128 @@ exports.store_json_fs = function (req, res) {
     fs.createReadStream(sourceFile) // './myJsonData.json'
       .pipe(JSONStream.parse(parseString))
       .on('data', function handleRecord(data) {
-          data._id = new ObjectID(data._id)
+          data._id = ObjectID(data._id)
+
+          if (collection == 'actors') {
+            let sponsorship = ''
+            let application = ''
+            let trip = ''
+            let finder = ''
+
+            let new_sponsorships = []
+            let new_applications = []
+            let new_trips = []
+            let new_finders = []
+
+            if (data.sponsorships){
+              for (sponsorship of data.sponsorships){
+                sponsorship = ObjectID(sponsorship)
+                new_sponsorships.push(sponsorship)
+              }
+
+              data.sponsorships = new_sponsorships
+            }
+
+            if (data.applications){
+              for (application of data.applications){
+                application = ObjectID(application)
+                new_applications.push(application)
+              }
+
+              data.applications = new_applications
+            }
+
+            if (data.trips){
+              for (trip of data.trips){
+                trip = ObjectID(trip)
+                new_trips.push(trip)
+              }
+
+              data.trips = new_trips
+            }
+
+            if (data.finders){
+              for (finder of data.finders){
+                finder = ObjectID(finder)
+                new_finders.push(finder)
+              }
+
+              data.finders = new_finders
+            }
+          }
+
+          if (collection == 'trips') {
+            let stage = ''
+            let application = ''
+            let sponsorship = ''
+            let picture = ''
+
+            let new_sponsorships = []
+            let new_applications = []
+            let new_stages = []
+            let new_pictures = []
+
+            if (data.stages){
+              for (stage of data.stages){
+                stage = ObjectID(stage)
+                new_stages.push(stage)
+              }
+
+              data.stages = new_stages
+            }
+
+            if (data.applications){
+              for (application of data.applications){
+                application = ObjectID(application)
+                new_applications.push(application)
+              }
+
+              data.applications = new_applications
+            }
+
+            if (data.sponsorships){
+              for (sponsorship of data.sponsorships){
+                sponsorship = ObjectID(sponsorship)
+                new_sponsorships.push(sponsorship)
+              }
+
+              data.sponsorships = new_sponsorships
+            }
+
+            if (data.pictures){
+              for (picture of data.pictures){
+                picture = ObjectID(picture)
+                new_pictures.push(picture)
+              }
+
+              data.pictures = new_pictures
+            }
+
+            data.manager = ObjectID(data.manager)
+          }
+
+          if (collection == 'stages') {
+            data.trip = ObjectID(data.trip)
+          }
+
+          if (collection == 'applications') {
+            data.trip = ObjectID(data.trip)
+            data.actor = ObjectID(data.actor)
+          }
+
+          if (collection == 'sponsorships') {
+            data.trip = ObjectID(data.trip)
+            data.actor = ObjectID(data.actor)
+          }
+
+          if (collection == 'finders') {
+            data.actor = ObjectID(data.actor)
+          }
+
+          if (collection == 'pictures') {
+            data.trip = ObjectID(data.trip)
+          }
+
 				}
 			)
       .pipe(writableStream)

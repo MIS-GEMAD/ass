@@ -17,6 +17,10 @@ const StageSchema = new Schema(
       min: 0,
       required: 'Kindly enter the price',
     },
+    trip: {
+      type: Schema.Types.ObjectId,
+      ref: 'Trip'
+    }
   },
   { strict: true }
 );

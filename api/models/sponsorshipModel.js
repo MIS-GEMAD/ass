@@ -13,6 +13,14 @@ const SponsorshipSchema = new Schema(
     },
     is_paid: {
       type: Boolean
+    },
+    trip: {
+      type: Schema.Types.ObjectId,
+      ref: 'Trip'
+    },
+    actor: {
+      type: Schema.Types.ObjectId,
+      ref: 'Actor'
     }
   },
   { strict: true }
