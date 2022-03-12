@@ -15,9 +15,6 @@ module.exports = function (app) {
   app.route('/applications/:applicationId/cancel')
     .put(application.cancel_an_application)
 
-  app.route('/applications/:actorId')
-    .get(application.list_actor_applications)
-
   app.route('/applications/:tripId')
     .get(application.list_trip_applications)
 

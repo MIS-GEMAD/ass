@@ -4,6 +4,7 @@ exports.store_json_fs = function (req, res) {
   const streamToMongoDB = require('stream-to-mongo-db').streamToMongoDB
   const JSONStream = require('JSONStream')
   const fs = require('fs')
+  const ObjectID = require('mongodb').ObjectID;
 
   let dbURL = null
   let collection = null
@@ -29,6 +30,10 @@ exports.store_json_fs = function (req, res) {
     console.log('starting streaming the json from file: ' + sourceFile + ', to dbURL: ' + dbURL + ', into the collection: ' + collection)
     fs.createReadStream(sourceFile) // './myJsonData.json'
       .pipe(JSONStream.parse(parseString))
+      .on('data', function handleRecord(data) {
+          data._id = new ObjectID(data._id)
+				}
+			)
       .pipe(writableStream)
       .on('finish', function () {
         response += 'All documents stored in the collection!'
