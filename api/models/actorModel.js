@@ -37,22 +37,22 @@ const ActorSchema = new Schema(
       type: String,
     },
     trips: [{
-      type: [Schema.Types.ObjectId],
+      type: Schema.Types.ObjectId,
       ref: 'Trip',
     }],
     applications: [{
-      type: [Schema.Types.ObjectId],
+      type: Schema.Types.ObjectId,
       ref: 'Application',
     }],
     finders : [{
-      type: [Schema.Types.ObjectId],
+      type: Schema.Types.ObjectId,
       ref: 'Finder',
     }],
     ban: {
       type: Boolean
     },
     sponshorships: [{
-      type: [Schema.Types.ObjectId],
+      type: Schema.Types.ObjectId,
       ref: 'Sponsorship',
     }],
     validated: {
@@ -67,7 +67,7 @@ const ActorSchema = new Schema(
       type: String,
       enum : ['English','Spanish'],
       default: 'English',
-    },
+    }
   },
   { strict: false }
 );
