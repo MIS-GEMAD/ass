@@ -2,23 +2,17 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const createTicker = function () {
-  const date = new Date();
-  const ticker = `${date.getYear().toString()}${date
-    .getMonth()
-    .toString()}${date.getDay().toString()}-${String.fromCharCode(
-    65 + Math.floor(Math.random() * 26)
-  )}`;
-  return ticker;
-};
-
 const TripSchema = new Schema(
   {
     ticker: {
       type: String,
-      default: createTicker(),
-      required: 'Kindly enter the ticker',
-      unique: true
+      unique: true,
+      validate: {
+        validator: function(v) {
+          return /^\d{6}-[A-Z]{4}$/.test(v);
+        },
+        message: 'ticker is not valid, Pattern is: "YYMMDD-XXXX"'
+      }
     },
     title: {
       type: String,
@@ -29,8 +23,7 @@ const TripSchema = new Schema(
       required: 'Kindly enter the description'
     },
     price: {
-      type: Number,
-      default: 0
+      type: Number
     },
     requirements: {
       type: [String],
@@ -81,25 +74,43 @@ const TripSchema = new Schema(
       ref: 'Actor'
     }
   },
-  { strict: true }
+  { strict: false }
 );
 
+TripSchema.pre('save', function(callback) {
+  const trip = this
+
+  const date = new Date()
+  const generatedTicker = `${date.getYear().toString()}${date
+    .getMonth()
+    .toString()}${date.getDay().toString()}-${String.fromCharCode(
+    65 + Math.floor(Math.random() * 26))}${String.fromCharCode(
+      65 + Math.floor(Math.random() * 26))}${String.fromCharCode(
+        65 + Math.floor(Math.random() * 26))}${String.fromCharCode(
+          65 + Math.floor(Math.random() * 26))}`
+  trip.ticker = generatedTicker
+
+  callback()
+})
+
+// Actualizar precio en un trip al crear un stage
+
+// TripSchema.pre('findOneAndUpdate', function(next) {
+//   if (this.getUpdate().stages !== undefined) {
+//     const trip = this._update.$set
+//     const initialValue = 0
+//     const totalPrice = this._update.$set.stages
+//       .map((e) => {
+//         return e.price
+//       })
+//       .reduce((previousValue, currentValue) => previousValue + currentValue, initialValue)
+
+//       trip.price = totalPrice
+//   }
+
+//   next()
+// })
+
 TripSchema.index({ ticker: 'text', title: 'text', description: 'text' })
-
-TripSchema.pre('findOneAndUpdate', function(next) {
-  if (this.getUpdate().stages !== undefined) {
-    const newTrip = this._update.$set;
-    const initialValue = 0;
-    const totalPrice = this._update.$set.stages
-      .map((e) => {
-        return e.price;
-      })
-      .reduce((previousValue, currentValue) => previousValue + currentValue, initialValue);
-
-    newTrip.price = totalPrice;
-  }
-
-  next();
-});
 
 module.exports = mongoose.model("Trip", TripSchema);
