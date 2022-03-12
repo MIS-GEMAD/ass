@@ -36,6 +36,23 @@ docker-compose down
 docker-compose up -d
 ```
 
+## Masive charge
+
+## Step 1: Download files
+
+Go to this GoogleDrive [link](https://drive.google.com/drive/folders/1o6bA-HNdBZBbilZ-AkcnC01BHaisW_80?usp=sharing) and download the files do you want to charge. There are files with 1K, 10K, 100K and 1000K objetcs to prove the masive charge.
+
+## Step 2: Create a init_data folder in root directory of the project
+```
+mkdir init_data
+```
+
+## Step 3: Build the image as it's specified before
+
+## Step 4: Import the Postman collection that is in postmanCollection folder
+
+## Step 5: Run the Postman calls that are in MASIVECHARGE folder
+
 # Conceptual Model
 
 ![plot](./assets/acme-explorer.png)
