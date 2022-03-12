@@ -2208,41 +2208,7 @@
 			"name": "MASIVECHARGE",
 			"item": [
 				{
-					"name": "2 - trips",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/storage/fs?dbURL=mongodb://mongodb:27017/ACME_Explorer&collection=trips&sourceFile=./init_data/trips.json",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"storage",
-								"fs"
-							],
-							"query": [
-								{
-									"key": "dbURL",
-									"value": "mongodb://mongodb:27017/ACME_Explorer"
-								},
-								{
-									"key": "collection",
-									"value": "trips"
-								},
-								{
-									"key": "sourceFile",
-									"value": "./init_data/trips.json"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "1 - applications",
+					"name": "applications",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2276,7 +2242,7 @@
 					"response": []
 				},
 				{
-					"name": "1 - stages",
+					"name": "stages",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2310,7 +2276,7 @@
 					"response": []
 				},
 				{
-					"name": "1 - sponsorships",
+					"name": "sponsorships",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2344,41 +2310,7 @@
 					"response": []
 				},
 				{
-					"name": "3 - actors",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/storage/fs?dbURL=mongodb://mongodb:27017/ACME_Explorer&collection=actors&sourceFile=./init_data/actors.json",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"storage",
-								"fs"
-							],
-							"query": [
-								{
-									"key": "dbURL",
-									"value": "mongodb://mongodb:27017/ACME_Explorer"
-								},
-								{
-									"key": "collection",
-									"value": "actors"
-								},
-								{
-									"key": "sourceFile",
-									"value": "./init_data/actors.json"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "1 - pictures",
+					"name": "pictures",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2412,7 +2344,7 @@
 					"response": []
 				},
 				{
-					"name": "1 - finders",
+					"name": "finders",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2444,12 +2376,89 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "trips",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/storage/fs?dbURL=mongodb://mongodb:27017/ACME_Explorer&collection=trips&sourceFile=./init_data/trips.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"storage",
+								"fs"
+							],
+							"query": [
+								{
+									"key": "dbURL",
+									"value": "mongodb://mongodb:27017/ACME_Explorer"
+								},
+								{
+									"key": "collection",
+									"value": "trips"
+								},
+								{
+									"key": "sourceFile",
+									"value": "./init_data/trips.json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actors",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/storage/fs?dbURL=mongodb://mongodb:27017/ACME_Explorer&collection=actors&sourceFile=./init_data/actors.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"storage",
+								"fs"
+							],
+							"query": [
+								{
+									"key": "dbURL",
+									"value": "mongodb://mongodb:27017/ACME_Explorer"
+								},
+								{
+									"key": "collection",
+									"value": "actors"
+								},
+								{
+									"key": "sourceFile",
+									"value": "./init_data/actors.json"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
 			"name": "DASHBOARD",
 			"item": [
+				{
+					"name": "get stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
 				{
 					"name": "list all computations",
 					"request": {

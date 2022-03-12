@@ -1,2 +1,4 @@
 node_modules
 init_data
+coverage
+package-lock.json

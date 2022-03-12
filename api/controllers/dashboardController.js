@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const Dashboard = mongoose.model('Dashboard')
 const Trip = mongoose.model('Trip')
 const Actor = mongoose.model('Actor')
+const Application = mongoose.model('Application')
+const Finder = mongoose.model('Finder')
 
 exports.list_all_indicators = function (req, res) {
   console.log('Requesting indicators')
@@ -72,14 +74,25 @@ function createDashboardJob () {
     console.log('Cron job submitted. Rebuild period: ' + rebuildPeriod)
     async.parallel([
 
-      computeTripsPrice
+      computeTripsByManager,
+      computeApplicationsByTrip,
+      computeTripsPrice,
+      computeRatioApplicationsByStatus,
+      computeAveragePriceFinders,
+      computeTop10WordsFinders
       
     ], function (err, results) {
       if (err) {
-        console.log('Error computing datawarehouse: ' + err)
+        console.log('Error computing dashboard: ' + err)
       } else {
 
-        newDashboard.trip_price_stats = results[0]
+        newDashboard.trip_stats_by_manager = results[0]
+        newDashboard.application_by_trip = results[1]
+        newDashboard.trip_price_stats = results[2]
+        newDashboard.ratio_applications_by_status = results[3]
+        newDashboard.average_price_in_finders = results[4],
+        newDashboard.top_10_words_in_finders = results[5],
+
         newDashboard.rebuildPeriod = rebuildPeriod
 
         newDashboard.save(function (err, dashboard) {
@@ -97,234 +110,136 @@ function createDashboardJob () {
 
 module.exports.createDashboardJob = createDashboardJob
 
+function computeTripsByManager (callback) {
+
+  Trip.aggregate([
+    {
+      $group: {
+        _id: '$manager',
+        count: { $count: {} }
+      }
+    },
+    {
+      $group: {
+        _id: 0,
+        avg: { $avg: '$count' },
+        min: { $min: '$count' },
+        max: { $max: '$count' },
+        std: { $stdDevSamp: '$count' }
+      }
+    }
+  ], function (err, res) {
+      callback(err, res)
+    }
+  );
+
+}
+
+function computeApplicationsByTrip (callback) {
+
+  Application.aggregate([
+    {
+      $group: {
+        _id: '$trip',
+        count: { $count: {} }
+      }
+    },
+    {
+      $group: {
+        _id: 0,
+        avg: { $avg: '$count' },
+        min: { $min: '$count' },
+        max: { $max: '$count' },
+        std: { $stdDevSamp: '$count' }
+      }
+    }
+  ], function (err, res) {
+      callback(err, res)
+    }
+  );
+
+}
+
 function computeTripsPrice (callback) {
 
   Trip.aggregate([
     { '$group': {
-        '_id': null,
+        '_id': 0,
         'avg': { '$avg': "$price" },
         'min': { '$min': "$price" },
         'max': { '$max': "$price" },
         'stdPrice': { $stdDevSamp: '$price' }
     } }
   ], function (err, res) {
-      console.log(res)
       callback(err, res)
     }
- )
+  );
 
-};
+}
 
-/*
-function computeTripsPrice (callback) {
+function computeRatioApplicationsByStatus (callback) {
 
-  Trip.aggregate(
-    [
-    { 
-      $match: { 
-        cancelationMoment: { 
-          $exists: true 
-        } 
-      } 
-    },
-    {
-      $facet: {
-        preComputation: [
-          { 
-            $group: { 
-              _id: '$consumer', 
-              ordersNotCanceled: { 
-                $sum: 1 
-              } 
-            } 
-          },
-          { 
-            $group: { 
-              _id: null, 
-              nNoCanceladores: { 
-                $sum: 1 
-              } 
-            } 
-          },
-          { 
-            $project: { 
-              _id: 0, 
-              limitTopPercentage: { 
-                $ceil: { 
-                  $multiply: ['$nNoCanceladores', 0.1] 
-                } 
-              } 
-            } 
-          }
-        ],
-        noCanceladores: [
-          { 
-            $project: { 
-              _id: 0, 
-              consumer: 1 
-            } 
-          }, { 
-            $group: { 
-              _id: '$consumer', 
-              ordersNotCanceled: { 
-                $sum: 1 
-              } 
-            } 
-          }, { 
-            $sort: { 
-              ordersNotCanceled: -1 
-            } 
-          }
-        ]
+  Application.count({}, function(error, total){
+
+    if(error) return callback(error);
+
+    Application.aggregate([
+      {
+        $group: {
+          _id: '$status',
+          count: { $count: {} }
+        }
+      },{
+        $project: {
+          _id: 0,
+          status: '$_id',
+          ratio: { $multiply: [{ $divide: [100, total] }, '$count'] }
+        }
       }
-    },
-    { 
-      $project: { 
-        topNoCanceladores: { 
-          $slice: ['$noCanceladores', 
-          { 
-            $arrayElemAt: [
-              '$preComputation.limitTopPercentage', 0
-            ] 
-          }] 
-        } 
-      } 
+    ], function (err, res) {
+      callback(err, res)
+    });
+
+  });
+  
+}
+
+function computeAveragePriceFinders (callback) {
+
+  Finder.aggregate([
+    {
+      $group: {
+        _id: 0,
+        avg_min_price: { $avg: '$price_from' },
+        avg_max_price: { $avg: '$price_to' }
+      }
     }
   ], function (err, res) {
-    console.log(res[0].topNoCanceladores)
-    callback(err, res[0].topNoCanceladores)
-  })
+    callback(err, res)
+  });
+  
+}
 
+function computeTop10WordsFinders (callback) {
+  
+  Finder.aggregate([
+    {
+      $group: {
+        _id: '$keyword',
+        count: { $sum: 1 }
+      }
+    },
+    {
+      $project: {
+        _id: 0,
+        keyword: '$_id',
+        count: 1
+      }
+    },
+    { $limit: 10 },
+    { $sort: { count: -1 } },
+  ], function (err, res) {
+    callback(err, res)
+  });
 
-};
-
-*/
-
-// function computeTopCancellers (callback) {
-//   Orders.aggregate([
-//     { $match: { cancelationMoment: { $exists: true } } },
-//     {
-//       $facet: {
-//         preComputation: [
-//           { $group: { _id: '$consumer', ordersCanceled: { $sum: 1 } } },
-//           { $group: { _id: null, nCanceladores: { $sum: 1 } } },
-//           { $project: { _id: 0, limitTopPercentage: { $ceil: { $multiply: ['$nCanceladores', 0.1] } } } }
-//         ],
-//         canceladores: [{ $project: { _id: 0, consumer: 1 } }, { $group: { _id: '$consumer', ordersCanceled: { $sum: 1 } } }, { $sort: { ordersCanceled: -1 } }]
-//       }
-//     },
-//     { $project: { topCanceladores: { $slice: ['$canceladores', { $arrayElemAt: ['$preComputation.limitTopPercentage', 0] }] } } }
-//   ], function (err, res) {
-//     callback(err, res[0].topCanceladores)
-//   })
-// };
-
-// function computeTopNotCancellers (callback) {
-//   Orders.aggregate([
-//     { $match: { cancelationMoment: { $exists: false } } },
-//     {
-//       $facet: {
-//         preComputation: [
-//           { $group: { _id: '$consumer', ordersNotCanceled: { $sum: 1 } } },
-//           { $group: { _id: null, nNoCanceladores: { $sum: 1 } } },
-//           { $project: { _id: 0, limitTopPercentage: { $ceil: { $multiply: ['$nNoCanceladores', 0.1] } } } }
-//         ],
-//         noCanceladores: [{ $project: { _id: 0, consumer: 1 } }, { $group: { _id: '$consumer', ordersNotCanceled: { $sum: 1 } } }, { $sort: { ordersNotCanceled: -1 } }]
-//       }
-//     },
-//     { $project: { topNoCanceladores: { $slice: ['$noCanceladores', { $arrayElemAt: ['$preComputation.limitTopPercentage', 0] }] } } }
-//   ], function (err, res) {
-//     callback(err, res[0].topNoCanceladores)
-//   })
-// };
-
-// function computeBottomNotCancellers (callback) {
-//   Orders.aggregate([
-//     { $match: { cancelationMoment: { $exists: false } } },
-//     {
-//       $facet: {
-//         preComputation: [
-//           { $group: { _id: '$consumer', ordersNotCanceled: { $sum: 1 } } },
-//           { $group: { _id: null, nNoCanceladores: { $sum: 1 } } },
-//           { $project: { _id: 0, limitTopPercentage: { $ceil: { $multiply: ['$nNoCanceladores', 0.1] } } } }
-//         ],
-//         noCanceladores: [{ $project: { _id: 0, consumer: 1 } }, { $group: { _id: '$consumer', ordersNotCanceled: { $sum: 1 } } }, { $sort: { ordersNotCanceled: 1 } }]
-//       }
-//     },
-//     { $project: { bottomNoCanceladores: { $slice: ['$noCanceladores', { $arrayElemAt: ['$preComputation.limitTopPercentage', 0] }] } } }
-//   ], function (err, res) {
-//     callback(err, res[0].bottomNoCanceladores)
-//   })
-// };
-
-// function computeTopClerks (callback) {
-//   Orders.aggregate([
-//     { $match: { deliveryMoment: { $exists: true } } },
-//     {
-//       $facet: {
-//         preComputation: [
-//           { $group: { _id: '$clerk', ordersDelivered: { $sum: 1 } } },
-//           { $group: { _id: null, nDeliverers: { $sum: 1 } } },
-//           { $project: { _id: 0, limitTopPercentage: { $ceil: { $multiply: ['$nDeliverers', 0.1] } } } }
-//         ],
-//         deliverers: [{ $project: { _id: 0, clerk: 1 } }, { $group: { _id: '$clerk', ordersDelivered: { $sum: 1 } } }, { $sort: { ordersDelivered: -1 } }]
-//       }
-//     },
-//     { $project: { topDeliverers: { $slice: ['$deliverers', { $arrayElemAt: ['$preComputation.limitTopPercentage', 0] }] } } }
-//   ], function (err, res) {
-//     callback(err, res[0].topDeliverers)
-//   })
-// };
-
-// function computeBottomClerks (callback) {
-//   Orders.aggregate([
-//     { $match: { deliveryMoment: { $exists: true } } },
-//     {
-//       $facet: {
-//         preComputation: [
-//           { $group: { _id: '$clerk', ordersDelivered: { $sum: 1 } } },
-//           { $group: { _id: null, nDeliverers: { $sum: 1 } } },
-//           { $project: { _id: 0, limitTopPercentage: { $ceil: { $multiply: ['$nDeliverers', 0.1] } } } }
-//         ],
-//         deliverers: [{ $project: { _id: 0, clerk: 1 } }, { $group: { _id: '$clerk', ordersDelivered: { $sum: 1 } } }, { $sort: { ordersDelivered: 1 } }]
-//       }
-//     },
-//     { $project: { bottomDeliverers: { $slice: ['$deliverers', { $arrayElemAt: ['$preComputation.limitTopPercentage', 0] }] } } }
-//   ], function (err, res) {
-//     callback(err, res[0].bottomDeliverers)
-//   })
-// };
-
-// function computeRatioCancelledOrders (callback) {
-//   Orders.aggregate([
-//     {
-//       $project: {
-//         placementMonth: { $month: '$placementMoment' },
-//         placementYear: { $year: '$placementMoment' },
-//         cancelationMoment: 1
-//       }
-//     },
-//     {
-//       $match: {
-//         placementMonth: new Date().getMonth() + 1,
-//         placementYear: new Date().getFullYear()
-//       }
-//     },
-//     {
-//       $facet: {
-//         totalOrdersCurrentMonth: [{ $group: { _id: null, totalOrders: { $sum: 1 } } }],
-//         totalCancelledOrdersCurrentMonth: [
-//           { $match: { cancelationMoment: { $exists: true } } },
-//           { $group: { _id: null, totalOrders: { $sum: 1 } } }]
-//       }
-//     },
-
-//     { $project: { _id: 0, ratioOrdersCancelledCurrentMont: { $divide: [{ $arrayElemAt: ['$totalCancelledOrdersCurrentMonth.totalOrders', 0] }, { $arrayElemAt: ['$totalOrdersCurrentMonth.totalOrders', 0] }] } } }
-//   ], function (err, res) {
-//     if (res?.length > 0) {
-//       callback(err, res[0]?.ratioOrdersCancelledCurrentMont)
-//     } else {
-//       callback(err, res)
-//     }
-//   })
-// };
+}

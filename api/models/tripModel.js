@@ -49,10 +49,10 @@ const TripSchema = new Schema(
       default: Date.now() + 1,
       required: 'Kindly enter the end date',
     },
-    pictures: {
-      type: [Schema.Types.ObjectId],
+    pictures: [{
+      type: Schema.Types.ObjectId,
       ref: 'Picture',
-    },
+    }],
     is_cancelled: {
       type: Boolean,
       default: false
@@ -69,17 +69,37 @@ const TripSchema = new Schema(
       ref: 'Stage',
     }],
     sponsorships: [{
-      type: [Schema.Types.ObjectId],
+      type: Schema.Types.ObjectId,
       ref: 'Sponsorship',
     }],
     applications: [{
-      type: [Schema.Types.ObjectId],
+      type: Schema.Types.ObjectId,
       ref: 'Application',
-    }]
+    }],
+    manager: {
+      type: Schema.Types.ObjectId,
+      ref: 'Actor'
+    }
   },
   { strict: true }
 );
 
 TripSchema.index({ ticker: 'text', title: 'text', description: 'text' })
+
+TripSchema.pre('findOneAndUpdate', function(next) {
+  if (this.getUpdate().stages !== undefined) {
+    const newTrip = this._update.$set;
+    const initialValue = 0;
+    const totalPrice = this._update.$set.stages
+      .map((e) => {
+        return e.price;
+      })
+      .reduce((previousValue, currentValue) => previousValue + currentValue, initialValue);
+
+    newTrip.price = totalPrice;
+  }
+
+  next();
+});
 
 module.exports = mongoose.model("Trip", TripSchema);

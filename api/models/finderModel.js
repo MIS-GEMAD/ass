@@ -23,6 +23,10 @@ const FinderSchema = new Schema(
       type: [Schema.Types.ObjectId],
       ref: 'Trip',
     }],
+    actor: {
+      type: Schema.Types.ObjectId,
+      ref: 'Actor'
+    }
   },
   { strict: true }
 );
