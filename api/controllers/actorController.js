@@ -5,14 +5,14 @@ const mongoose = require('mongoose')
 const Actor = mongoose.model('Actor')
 const Application = mongoose.model('Application')
 
-exports.list_all_actors = function (req, res) {
-  Actor.find({}, function (err, actors) {
-    if (err) {
-      res.status(400).send(err)
-    } else {
-      res.status(200).json(actors)
-    }
-  })
+exports.list_all_actors = async function(req, res) {
+  try{
+    const actors = await Actor.find();
+    return res.status(200).json(actors);
+  
+  }catch(err){
+    console.log(err);
+  }
 }
 
 exports.create_an_actor = function (req, res) {

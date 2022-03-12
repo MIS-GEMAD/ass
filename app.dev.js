@@ -1,4 +1,4 @@
-
+/* eslint-disable no-unused-vars */
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
@@ -54,10 +54,14 @@ const mongoDBURI =
 mongoose.connect(mongoDBURI, {autoIndex: false});
 console.log("Connecting DB to: " + mongoDBURI);
 
+
 mongoose.connection.on("open", function () {
-  app.listen(port, function () {
+  var server = app.listen(port, function () {
     console.log("ACME-Explorer RESTful API server started on: " + port);
   });
+
+  server.close();
+
 });
 
 mongoose.connection.on("error", function (err) {
