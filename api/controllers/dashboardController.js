@@ -6,6 +6,7 @@ const Dashboard = mongoose.model('Dashboard')
 const Trip = mongoose.model('Trip')
 const Actor = mongoose.model('Actor')
 const Application = mongoose.model('Application')
+const Finder = mongoose.model('Finder')
 
 exports.list_all_indicators = function (req, res) {
   console.log('Requesting indicators')
@@ -89,7 +90,7 @@ function createDashboardJob () {
         newDashboard.application_by_trip = results[1]
         newDashboard.trip_price_stats = results[2]
         newDashboard.ratio_applications_by_status = results[3]
-        newDashboard.average_in_finders = results[4],
+        newDashboard.average_price_in_finders = results[4],
         newDashboard.top_10_words_in_finders = results[5],
 
         newDashboard.rebuildPeriod = rebuildPeriod
@@ -114,7 +115,7 @@ function computeTripsByManager (callback) {
   Trip.aggregate([
     {
       $group: {
-        _id: '$manager_id',
+        _id: '$manager',
         count: { $count: {} }
       }
     },
@@ -125,15 +126,6 @@ function computeTripsByManager (callback) {
         min: { $min: '$count' },
         max: { $max: '$count' },
         std: { $stdDevSamp: '$count' }
-      }
-    },
-    {
-      $project: {
-        _id: 0,
-        avg: 1,
-        min: 1,
-        max: 1,
-        std: 1
       }
     }
   ], function (err, res) {
@@ -148,7 +140,7 @@ function computeApplicationsByTrip (callback) {
   Application.aggregate([
     {
       $group: {
-        _id: '$trip_id',
+        _id: '$trip',
         count: { $count: {} }
       }
     },
@@ -159,15 +151,6 @@ function computeApplicationsByTrip (callback) {
         min: { $min: '$count' },
         max: { $max: '$count' },
         std: { $stdDevSamp: '$count' }
-      }
-    },
-    {
-      $project: {
-        _id: 0,
-        avg: 1,
-        min: 1,
-        max: 1,
-        std: 1
       }
     }
   ], function (err, res) {
@@ -181,7 +164,7 @@ function computeTripsPrice (callback) {
 
   Trip.aggregate([
     { '$group': {
-        '_id': null,
+        '_id': 0,
         'avg': { '$avg': "$price" },
         'min': { '$min': "$price" },
         'max': { '$max': "$price" },
@@ -195,33 +178,68 @@ function computeTripsPrice (callback) {
 }
 
 function computeRatioApplicationsByStatus (callback) {
-  const totalNum = Application.countDocuments({});
-  Application.aggregate([
-    {
-      $group: {
-        _id: '$state',
-        count: { $count: {} }
+
+  Application.count({}, function(error, total){
+
+    if(error) return callback(error);
+
+    Application.aggregate([
+      {
+        $group: {
+          _id: '$status',
+          count: { $count: {} }
+        }
+      },{
+        $project: {
+          _id: 0,
+          status: '$_id',
+          ratio: { $multiply: [{ $divide: [100, total] }, '$count'] }
+        }
       }
-    },
-    {
-      $project: {
-        _id: 0,
-        status: '$_id',
-        count: 1,
-        ratio: { $multiply: [{ $divide: [100, totalNum] }, '$count'] }
-      }
-    }
-  ], function (err, res) {
-    console.log(res)
-    callback(err, res)
+    ], function (err, res) {
+      callback(err, res)
+    });
+
   });
   
 }
 
 function computeAveragePriceFinders (callback) {
-  //TODO
+
+  Finder.aggregate([
+    {
+      $group: {
+        _id: 0,
+        avg_min_price: { $avg: '$price_from' },
+        avg_max_price: { $avg: '$price_to' }
+      }
+    }
+  ], function (err, res) {
+    callback(err, res)
+  });
+  
 }
 
 function computeTop10WordsFinders (callback) {
-  //TODO
+  
+  Finder.aggregate([
+    {
+      $group: {
+        _id: '$keyword',
+        count: { $sum: 1 }
+      }
+    },
+    {
+      $project: {
+        _id: 0,
+        keyword: '$_id',
+        count: 1
+      }
+    },
+    { $limit: 10 },
+    { $sort: { count: -1 } },
+  ], function (err, res) {
+    callback(err, res)
+  });
+
 }
