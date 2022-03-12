@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 */
 
 //Tests de Integración con Jest y supertest
-const {api,actores_Iniciales} = require ('./helpers');
+const {api, actores_Iniciales} = require ('./helpers');
 
 const Actor= require('../api/models/actorModel');
 const Application= require('../api/models/applicationModel');
@@ -18,27 +18,36 @@ const Stage = require('../api/models/stageModel');
 const Trip = require('../api/models/tripModel');
 const Finder = require('../api/models/finderModel');
 
+var http = require('http')
+const app = require('../app');
+//const server = http.createServer(app);
 
 jest.setTimeout(1000);
 
-/*beforeEach(async()=>{
+beforeEach(async()=>{
   await Actor.deleteMany({})
 
   const actor1= new Actor(actores_Iniciales[0]);
   await actor1.save();
 
-  const actor2= new Nota(actores_Iniciales[1]);
+  const actor2= new Actor(actores_Iniciales[1]);
   await actor2.save();
 
 });
-*/
+
 
 describe('ACTORS', () => {
+
+  /*
+    beforeAll(() => {
+      server.close()
+    })
+    */
     
-    test('Get Actors', () => {
-       api
+    test('Get Actors', async () => {
+       await api
         .get('/actors')
-        .expect(200)
+        .expect(300)
         .expect('Content-Type', /application\/json/)
       })
   
