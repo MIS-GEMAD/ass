@@ -9,9 +9,7 @@ chai.use(chaiHttp);
 */
 
 //Tests de Integración con Jest y supertest
-const supertest=require('supertest');
-const app = require('../app');
-const api = supertest(app);
+const {api,actores_Iniciales} = require ('./helpers');
 
 const Actor= require('../api/models/actorModel');
 const Application= require('../api/models/applicationModel');
@@ -21,8 +19,19 @@ const Trip = require('../api/models/tripModel');
 const Finder = require('../api/models/finderModel');
 
 
-jest.setTimeout(10000);
+jest.setTimeout(1000);
 
+/*beforeEach(async()=>{
+  await Actor.deleteMany({})
+
+  const actor1= new Actor(actores_Iniciales[0]);
+  await actor1.save();
+
+  const actor2= new Nota(actores_Iniciales[1]);
+  await actor2.save();
+
+});
+*/
 
 describe('ACTORS', () => {
     
