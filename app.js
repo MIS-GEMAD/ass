@@ -66,4 +66,6 @@ mongoose.connection.on("error", function (err) {
 
 //mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
 
-DashboardTools.createDashboardJob()
+DashboardTools.createDashboardJob();
+
+module.exports = app;
