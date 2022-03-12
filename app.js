@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
@@ -15,6 +15,7 @@ const Configuration = require("./api/models/configurationModel");
 const Finder = require("./api/models/finderModel");
 const Sponsorship = require("./api/models/sponsorshipModel");
 const Dashboard = require("./api/models/dashboardModel");
+const DashboardTools = require('./api/controllers/dashboardController')
 
 // body parser
 const bodyParser = require("body-parser");
@@ -50,7 +51,7 @@ const mongoDBName = process.env.mongoDBName || "ACME_Explorer";
 const mongoDBURI =
   "mongodb://" + mongoDBHostname + ":" + mongoDBPort + "/" + mongoDBName;
 
-mongoose.connect(mongoDBURI);
+mongoose.connect(mongoDBURI, {autoIndex: false});
 console.log("Connecting DB to: " + mongoDBURI);
 
 mongoose.connection.on("open", function () {
@@ -63,4 +64,6 @@ mongoose.connection.on("error", function (err) {
   console.error("DB init error " + err);
 });
 
-mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
+//mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
+
+DashboardTools.createDashboardJob()

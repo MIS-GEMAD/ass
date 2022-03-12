@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "d38e5ea2-ba37-4f79-aa08-bc9a094fe75d",
+		"_postman_id": "4d04d20c-f924-4f33-b13f-cfac121fa4fd",
 		"name": "ACME EXPLORER",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -13,7 +13,16 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "localhost:8080/actors"
+						"url": {
+							"raw": "localhost:8080/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors"
+							]
+						}
 					},
 					"response": []
 				},
@@ -54,7 +63,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/actors"
+						"url": {
+							"raw": "http://localhost:8080/actors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors"
+							]
+						}
 					},
 					"response": []
 				},
@@ -95,7 +114,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/actors"
+						"url": {
+							"raw": "http://localhost:8080/actors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors"
+							]
+						}
 					},
 					"response": []
 				},
@@ -136,7 +165,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/actors"
+						"url": {
+							"raw": "http://localhost:8080/actors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors"
+							]
+						}
 					},
 					"response": []
 				},
@@ -177,7 +216,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/actors"
+						"url": {
+							"raw": "http://localhost:8080/actors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors"
+							]
+						}
 					},
 					"response": []
 				},
@@ -218,7 +267,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/actors"
+						"url": {
+							"raw": "http://localhost:8080/actors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors"
+							]
+						}
 					},
 					"response": []
 				},
@@ -259,7 +318,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/actors"
+						"url": {
+							"raw": "http://localhost:8080/actors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors"
+							]
+						}
 					},
 					"response": []
 				},
@@ -300,7 +369,18 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/actors/622780f92d516d895cceaad0"
+						"url": {
+							"raw": "http://localhost:8080/actors/622780f92d516d895cceaad0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors",
+								"622780f92d516d895cceaad0"
+							]
+						}
 					},
 					"response": []
 				},
@@ -328,7 +408,18 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/actors/622780f92d516d895cceaad0"
+						"url": {
+							"raw": "http://localhost:8080/actors/622780f92d516d895cceaad0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors",
+								"622780f92d516d895cceaad0"
+							]
+						}
 					},
 					"response": []
 				},
@@ -359,7 +450,19 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/actors/622780f92d516d895cceaad0/ban"
+						"url": {
+							"raw": "http://localhost:8080/actors/622780f92d516d895cceaad0/ban",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors",
+								"622780f92d516d895cceaad0",
+								"ban"
+							]
+						}
 					},
 					"response": []
 				},
@@ -390,7 +493,19 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/actors/622780f92d516d895cceaad0/unban"
+						"url": {
+							"raw": "http://localhost:8080/actors/622780f92d516d895cceaad0/unban",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors",
+								"622780f92d516d895cceaad0",
+								"unban"
+							]
+						}
 					},
 					"response": []
 				},
@@ -421,7 +536,19 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/actors/622780f92d516d895cceaad0/languaje"
+						"url": {
+							"raw": "http://localhost:8080/actors/622780f92d516d895cceaad0/languaje",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors",
+								"622780f92d516d895cceaad0",
+								"languaje"
+							]
+						}
 					},
 					"response": []
 				}
@@ -454,7 +581,17 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/trips"
+						"url": {
+							"raw": "http://localhost:8080/trips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips"
+							]
+						}
 					},
 					"response": []
 				},
@@ -495,7 +632,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/trips"
+						"url": {
+							"raw": "http://localhost:8080/trips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips"
+							]
+						}
 					},
 					"response": []
 				},
@@ -536,7 +683,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/trips"
+						"url": {
+							"raw": "http://localhost:8080/trips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips"
+							]
+						}
 					},
 					"response": []
 				},
@@ -564,7 +721,18 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/trips/621cbe9ecf1e47108c29a316"
+						"url": {
+							"raw": "http://localhost:8080/trips/621cbe9ecf1e47108c29a316",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cbe9ecf1e47108c29a316"
+							]
+						}
 					},
 					"response": []
 				},
@@ -605,7 +773,18 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/trips/621cbe9ecf1e47108c29a316"
+						"url": {
+							"raw": "http://localhost:8080/trips/621cbe9ecf1e47108c29a316",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cbe9ecf1e47108c29a316"
+							]
+						}
 					},
 					"response": []
 				},
@@ -633,7 +812,18 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/trips/621cd1f77984f97f14e9b151"
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd1f77984f97f14e9b151",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd1f77984f97f14e9b151"
+							]
+						}
 					},
 					"response": []
 				},
@@ -661,7 +851,18 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/trips/621cd1f47984f97f14e9b14f"
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd1f47984f97f14e9b14f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd1f47984f97f14e9b14f"
+							]
+						}
 					},
 					"response": []
 				}
@@ -694,7 +895,17 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/applications"
+						"url": {
+							"raw": "http://localhost:8080/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications"
+							]
+						}
 					},
 					"response": []
 				},
@@ -735,7 +946,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/applications"
+						"url": {
+							"raw": "http://localhost:8080/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications"
+							]
+						}
 					},
 					"response": []
 				},
@@ -776,7 +997,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/applications"
+						"url": {
+							"raw": "http://localhost:8080/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications"
+							]
+						}
 					},
 					"response": []
 				},
@@ -817,7 +1048,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/applications"
+						"url": {
+							"raw": "http://localhost:8080/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications"
+							]
+						}
 					},
 					"response": []
 				},
@@ -858,7 +1099,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/applications"
+						"url": {
+							"raw": "http://localhost:8080/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications"
+							]
+						}
 					},
 					"response": []
 				},
@@ -899,7 +1150,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/applications"
+						"url": {
+							"raw": "http://localhost:8080/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications"
+							]
+						}
 					},
 					"response": []
 				},
@@ -940,7 +1201,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/applications"
+						"url": {
+							"raw": "http://localhost:8080/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications"
+							]
+						}
 					},
 					"response": []
 				},
@@ -968,7 +1239,18 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/applications/621cc63ecf1e47108c29a34e"
+						"url": {
+							"raw": "http://localhost:8080/applications/621cc63ecf1e47108c29a34e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications",
+								"621cc63ecf1e47108c29a34e"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1009,7 +1291,18 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/applications/621cc63ecf1e47108c29a34e"
+						"url": {
+							"raw": "http://localhost:8080/applications/621cc63ecf1e47108c29a34e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications",
+								"621cc63ecf1e47108c29a34e"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1050,7 +1343,18 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/applications/621cc6f0cf1e47108c29a351"
+						"url": {
+							"raw": "http://localhost:8080/applications/621cc6f0cf1e47108c29a351",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications",
+								"621cc6f0cf1e47108c29a351"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1078,7 +1382,18 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/applications/621cbe9ecf1e47108c29a316"
+						"url": {
+							"raw": "http://localhost:8080/applications/621cbe9ecf1e47108c29a316",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications",
+								"621cbe9ecf1e47108c29a316"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1106,7 +1421,18 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/applications/621cbab5cf1e47108c29a308"
+						"url": {
+							"raw": "http://localhost:8080/applications/621cbab5cf1e47108c29a308",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications",
+								"621cbab5cf1e47108c29a308"
+							]
+						}
 					},
 					"response": []
 				}
@@ -1139,7 +1465,19 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages"
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd18c7984f97f14e9b0f9",
+								"stages"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1180,7 +1518,19 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages"
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd18c7984f97f14e9b0f9",
+								"stages"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1221,7 +1571,19 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages"
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd18c7984f97f14e9b0f9",
+								"stages"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1249,7 +1611,20 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages/621ce2127984f97f14e9b159"
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages/621ce2127984f97f14e9b159",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd18c7984f97f14e9b0f9",
+								"stages",
+								"621ce2127984f97f14e9b159"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1277,7 +1652,20 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages/621ce2727984f97f14e9b15c"
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages/621ce2727984f97f14e9b15c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd18c7984f97f14e9b0f9",
+								"stages",
+								"621ce2727984f97f14e9b15c"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1318,7 +1706,20 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages/621ce2727984f97f14e9b15c"
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages/621ce2727984f97f14e9b15c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd18c7984f97f14e9b0f9",
+								"stages",
+								"621ce2727984f97f14e9b15c"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1359,7 +1760,20 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages/621ce2127984f97f14e9b159"
+						"url": {
+							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages/621ce2127984f97f14e9b159",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"621cd18c7984f97f14e9b0f9",
+								"stages",
+								"621ce2127984f97f14e9b159"
+							]
+						}
 					},
 					"response": []
 				}
@@ -1392,7 +1806,17 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/sponsorships"
+						"url": {
+							"raw": "http://localhost:8080/sponsorships",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsorships"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1433,7 +1857,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/sponsorships"
+						"url": {
+							"raw": "http://localhost:8080/sponsorships",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsorships"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1474,7 +1908,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/sponsorships"
+						"url": {
+							"raw": "http://localhost:8080/sponsorships",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsorships"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1502,7 +1946,18 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/sponsorships/621ce55d7984f97f14e9b16a"
+						"url": {
+							"raw": "http://localhost:8080/sponsorships/621ce55d7984f97f14e9b16a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsorships",
+								"621ce55d7984f97f14e9b16a"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1543,7 +1998,18 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/sponsorships/621ce55d7984f97f14e9b16a"
+						"url": {
+							"raw": "http://localhost:8080/sponsorships/621ce55d7984f97f14e9b16a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsorships",
+								"621ce55d7984f97f14e9b16a"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1584,7 +2050,18 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/sponsorships/621ce5857984f97f14e9b16d"
+						"url": {
+							"raw": "http://localhost:8080/sponsorships/621ce5857984f97f14e9b16d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsorships",
+								"621ce5857984f97f14e9b16d"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1612,7 +2089,18 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/sponsorships/621cd18b7984f97f14e9b0db"
+						"url": {
+							"raw": "http://localhost:8080/sponsorships/621cd18b7984f97f14e9b0db",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsorships",
+								"621cd18b7984f97f14e9b0db"
+							]
+						}
 					},
 					"response": []
 				}
@@ -1645,7 +2133,17 @@
 								"type": "text"
 							}
 						],
-						"url": "http://localhost:8080/finder"
+						"url": {
+							"raw": "http://localhost:8080/finder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"finder"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1682,7 +2180,17 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/finder"
+						"url": {
+							"raw": "http://localhost:8080/finder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"finder"
+							]
+						}
 					},
 					"response": []
 				}
@@ -1931,6 +2439,101 @@
 								{
 									"key": "sourceFile",
 									"value": "./init_data/finders.json"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DASHBOARD",
+			"item": [
+				{
+					"name": "list all computations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "get last computation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "rebuild period (every 10 seconds)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/dashboard?rebuildPeriod=*/20 * * * * *",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dashboard"
+							],
+							"query": [
+								{
+									"key": "rebuildPeriod",
+									"value": "*/20 * * * * *"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rebuild period (every 20 seconds)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/dashboard?rebuildPeriod=*/20 * * * * *",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dashboard"
+							],
+							"query": [
+								{
+									"key": "rebuildPeriod",
+									"value": "*/20 * * * * *"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rebuild period (every hour)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/dashboard?rebuildPeriod=*/20 * * * * *",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dashboard"
+							],
+							"query": [
+								{
+									"key": "rebuildPeriod",
+									"value": "*/20 * * * * *"
 								}
 							]
 						}
