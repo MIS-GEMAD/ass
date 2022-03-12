@@ -54,7 +54,7 @@ mkdir init_data
 ### Step 5: Run the Postman calls that are in MASIVECHARGE folder
 
 
-### Run test
+## Run test
 docker exec -it test npm run test
 
 # Conceptual Model
