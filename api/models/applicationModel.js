@@ -19,6 +19,14 @@ const ApplicationSchema = new Schema(
     comments: {
       type: [String],
       default: []
+    },
+    actor: {
+      type: Schema.Types.ObjectId,
+      ref: 'Actor'
+    },
+    trip: {
+      type: Schema.Types.ObjectId,
+      ref: 'Trip'
     }
   },
   { strict: true }
