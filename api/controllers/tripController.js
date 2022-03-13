@@ -165,3 +165,21 @@ exports.list_actor_trips = function (req, res) {
     }
   });
 };
+
+exports.search_trips = function (req, res) {
+  const queries = {}
+
+  const regex = new RegExp(req.body.keyword, "i")
+
+  queries.ticker = { $regex: regex };
+  queries.title = { $regex: regex };
+  queries.description = { $regex: regex };
+
+  Trip.find({ queries }, function (err, trips) {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).json(trips);
+    }
+  });
+};
