@@ -17,9 +17,6 @@ module.exports = function (app) {
   app.route('/trips/:tripId/actors/:actorId/pay')
     .put(trip.pay_a_trip)
 
-  app.route('/trips/search')
-    .get(trip.search_trips)
-
   app.route('/trips/:tripId/stages')
     .get(stage.list_all_stages)
     .post(stage.create_a_stage)
