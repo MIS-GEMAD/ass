@@ -19,7 +19,7 @@ exports.list_all_applications = function (req, res) {
 exports.create_an_application = function (req, res) {
   const reqPpal = req.body;
 
-  Actor.findById(req.body.explorer, function (err, explorer) {
+  Actor.findById(req.body.actor, function (err, explorer) {
     if (err) {
       res.status(400).send(err);
     } else {
