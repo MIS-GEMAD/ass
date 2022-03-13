@@ -42,35 +42,45 @@ exports.update_a_trip = function (req, res) {
     if (err) {
       res.status(404).send(err);
     } else {
-      Trip.findOneAndUpdate(
-        { _id: req.params.tripId },
-        req.body,
-        { new: true },
-        function (err, trip) {
-          if (err) {
-            res.status(400).send(err);
-          } else {
-            res.status(201).json(trip);
+      if( !trip.is_published ) {
+        Trip.findOneAndUpdate(
+          { _id: req.params.tripId },
+          req.body,
+          { new: true },
+          function (err, trip) {
+            if (err) {
+              res.status(400).send(err);
+            } else {
+              res.status(201).json(trip);
+            }
           }
-        }
-      );
+        );
+      } else {
+        res.status(400).send({ err: 'Cannot update a published trip' });
+      }
     }
   });
 };
 
 exports.delete_a_trip = function (req, res) {
-  Trip.deleteOne(
-    {
-      _id: req.params.tripId,
-    },
-    function (err, trip) {
-      if (err) {
-        res.status(400).send(err);
+  Trip.findById(req.params.tripId, function (err, trip) {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      if( !trip.is_published ) {
+        Trip.deleteOne({ _id: req.params.tripId }, function (err, trip) {
+            if (err) {
+              res.status(400).send(err);
+            } else {
+              res.status(204).json({ message: "Trip successfully deleted" });
+            }
+          }
+        );
       } else {
-        res.status(204).json({ message: "Trip successfully deleted" });
+        res.status(400).send({ err: 'Cannot delete a published trip' });
       }
     }
-  );
+  });
 };
 
 // TODO: Implementar via PayPal
