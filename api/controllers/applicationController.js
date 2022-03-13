@@ -172,7 +172,7 @@ exports.cancel_an_application = function (req, res) {
 
 exports.list_trip_applications = function (req, res) {
   Application.find(
-    { trip_id: req.params.tripId },
+    { trip: req.params.tripId },
     function (err, applications) {
       if (err) {
         res.status(400).send(err);
