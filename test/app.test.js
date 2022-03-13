@@ -167,7 +167,7 @@ describe('TRIPS', ()=>{
             await api
             .post('/trips')
             .send({
-              "ticker": "202660228-D",
+              "ticker": "202102-ABCH",
               "title": "viaje a córdoba",
               "description": "Esto es una descripcion hecha por manu.",
               "price": 107.38,
@@ -189,7 +189,7 @@ describe('TRIPS', ()=>{
           await api
             .put(`/trips/${tripId._id}`)
             .send(    {
-              "ticker": "2021022s8-D",
+              "ticker": "202102-ABCM",
               "title": "viaje a matalascañas1",
               "description": "Esto es una descripcion hecha por manu.",
               "price": 107.38,

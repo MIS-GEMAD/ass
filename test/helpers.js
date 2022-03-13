@@ -60,7 +60,7 @@ const actores_Iniciales = [
 
 const trips_Iniciales = [
     {
-        "ticker": "2021022s8-D",
+        "ticker": "202102-ABCD",
         "title": "viaje a matalascañas1",
         "description": "Esto es una descripcion hecha por manu.",
         "price": 107.38,
@@ -70,7 +70,7 @@ const trips_Iniciales = [
         "isCancelled": false,
     },
     {
-        "ticker": "20210221-D",
+        "ticker": "202102-ACCD",
         "title": "viaje a chipiona",
         "description": "Esto es una descripcion hecha por manu.",
         "price": 107.38,
@@ -80,7 +80,7 @@ const trips_Iniciales = [
         "isCancelled": false,
     },
     {
-        "ticker": "20110221-D",
+        "ticker": "202102-ABCE",
         "title": "viaje a chipiona",
         "description": "Esto es una descripcion hecha por manu.",
         "price": 107.38,
