@@ -3,11 +3,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt')
 
-const validateEmail = function (email) {
-  const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  return re.test(email);
-};
-
 const ActorSchema = new Schema(
   {
     role: [{
@@ -74,10 +69,6 @@ const ActorSchema = new Schema(
 
 ActorSchema.pre('save', function (callback) {
   const actor = this
-  // Break out if the password hasn't changed
-  // if (!actor.isModified('password')) return callback()
-
-  // Password changed so we need to hash it
   bcrypt.genSalt(5, function (err, salt) {
     if (err) return callback(err)
 
@@ -105,9 +96,7 @@ ActorSchema.pre('findOneAndUpdate', function (callback) {
 
 ActorSchema.methods.verifyPassword = function (password, cb) {
   bcrypt.compare(password, this.password, function (err, isMatch) {
-    // console.log('verifying password in actorModel: ' + password)
     if (err) return cb(err)
-    // console.log('iMatch: ' + isMatch)
     cb(null, isMatch)
   })
 }

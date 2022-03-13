@@ -17,11 +17,10 @@ exports.list_all_trips = function (req, res) {
 };
 
 exports.create_a_trip = function (req, res) {
-  const newTrip = new Trip(req.body);
-
-  newTrip.save(function (error, trip) {
-    if (error) {
-      res.status(400).send(error);
+  const newTrip = new Trip(req.body)
+  newTrip.save(function (err, trip) {
+    if (err) {
+      res.status(400).send(err);
     } else {
       res.status(201).json(trip);
     }
