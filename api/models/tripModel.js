@@ -23,7 +23,8 @@ const TripSchema = new Schema(
       required: 'Kindly enter the description'
     },
     price: {
-      type: Number
+      type: Number,
+      default: 0
     },
     requirements: {
       type: [String],
@@ -92,24 +93,6 @@ TripSchema.pre('save', function(callback) {
 
   callback()
 })
-
-// Actualizar precio en un trip al crear un stage
-
-// TripSchema.pre('findOneAndUpdate', function(next) {
-//   if (this.getUpdate().stages !== undefined) {
-//     const trip = this._update.$set
-//     const initialValue = 0
-//     const totalPrice = this._update.$set.stages
-//       .map((e) => {
-//         return e.price
-//       })
-//       .reduce((previousValue, currentValue) => previousValue + currentValue, initialValue)
-
-//       trip.price = totalPrice
-//   }
-
-//   next()
-// })
 
 TripSchema.index({ ticker: 'text', title: 'text', description: 'text' })
 
