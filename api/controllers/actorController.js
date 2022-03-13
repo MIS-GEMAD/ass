@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 
 const Actor = mongoose.model('Actor')
 const Application = mongoose.model('Application')
+const admin = require('firebase-admin')
+const authController = require('./authController')
 
 exports.list_all_actors = async function(req, res) {
   try{
