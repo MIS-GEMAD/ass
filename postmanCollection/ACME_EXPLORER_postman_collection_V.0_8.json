@@ -625,7 +625,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ticker\": \"220228-DBAE\",\r\n    \"title\": \"viaje a chipiona\",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"price\": 107.38,\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"startDate\": \"2023-01-03T22:47:50.569Z\",\r\n    \"endDate\": \"2023-11-02T19:16:03.854Z\",\r\n    \"is_cancelled\": false,\r\n    \"is_published\": false,\r\n    \"manager\": \"621cb9dc08e258a4d12b830e\"\r\n}",
+							"raw": "{\r\n    \"ticker\": \"220228-DBAE\",\r\n    \"title\": \"viaje a chipiona\",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"price\": 107.38,\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"start_date\": \"2023-01-03T22:47:50.569Z\",\r\n    \"end_date\": \"2023-11-02T19:16:03.854Z\",\r\n    \"is_cancelled\": false,\r\n    \"is_published\": false,\r\n    \"manager\": \"621cb9dc08e258a4d12b830e\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -676,7 +676,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ticker\": \"20210228-D\",\r\n    \"title\": \"viaje a matalascañas\",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"price\": 107.38,\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"startDate\": \"2023-01-03T22:47:50.569Z\",\r\n    \"endDate\": \"2023-11-02T19:16:03.854Z\",\r\n    \"isCancelled\": false,\r\n    \"manager\": \"621cb9dc08e258a4d12b830e\"\r\n}",
+							"raw": "{\r\n    \"ticker\": \"20210228-D\",\r\n    \"title\": \"viaje a matalascañas\",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"price\": 107.38,\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"start_date\": \"2023-01-03T22:47:50.569Z\",\r\n    \"end_date\": \"2023-11-02T19:16:03.854Z\",\r\n    \"isCancelled\": false,\r\n    \"manager\": \"621cb9dc08e258a4d12b830e\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -766,7 +766,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"viaje a CONIL de la frontera \",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"startDate\": \"2023-01-03T22:47:50.569Z\",\r\n    \"endDate\": \"2023-11-02T19:16:03.854Z\",\r\n    \"is_cancelled\": false,\r\n    \"is_published\": true,\r\n    \"manager\": \"621cb9dc08e258a4d12b830e\"\r\n}",
+							"raw": "{\r\n    \"title\": \"viaje a CONIL de la frontera \",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"start_date\": \"2023-01-03T22:47:50.569Z\",\r\n    \"end_date\": \"2023-11-02T19:16:03.854Z\",\r\n    \"is_cancelled\": false,\r\n    \"is_published\": true,\r\n    \"manager\": \"621cb9dc08e258a4d12b830e\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

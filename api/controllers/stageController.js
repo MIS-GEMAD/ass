@@ -14,10 +14,8 @@ exports.list_all_stages = function (req, res) {
   })
 }
 
-// TODO: Calcular el precio del trip como propiedad derivada y actualizarlo
 exports.create_a_stage = function (req, res) {
   const newStage = new Stage(req.body)
-
   newStage.save(function (error, stage) {
     if (error) {
       res.status(400).send(error)

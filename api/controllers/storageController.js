@@ -75,6 +75,8 @@ exports.store_json_fs = function (req, res) {
               }
 
               data.finders = new_finders
+
+              data.create = new Date(data.create)
             }
           }
 
@@ -126,6 +128,10 @@ exports.store_json_fs = function (req, res) {
             }
 
             data.manager = mongoose.Types.ObjectId(data.manager)
+
+            data.start_date = new Date(data.start_date)
+
+            data.end_date = new Date(data.end_date)
           }
 
           if (collection == 'stages') {
@@ -135,6 +141,7 @@ exports.store_json_fs = function (req, res) {
           if (collection == 'applications') {
             data.trip = mongoose.Types.ObjectId(data.trip)
             data.actor = mongoose.Types.ObjectId(data.actor)
+            data.moment = new Date(data.moment)
           }
 
           if (collection == 'sponsorships') {
@@ -144,6 +151,8 @@ exports.store_json_fs = function (req, res) {
 
           if (collection == 'finders') {
             data.actor = mongoose.Types.ObjectId(data.actor)
+            data.date_from = new Date(data.date_from)
+            data.date_to = new Date(data.date_to)
           }
 
           if (collection == 'pictures') {
