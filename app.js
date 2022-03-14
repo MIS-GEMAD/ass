@@ -17,10 +17,27 @@ const Sponsorship = require("./api/models/sponsorshipModel");
 const Dashboard = require("./api/models/dashboardModel");
 const DashboardTools = require('./api/controllers/dashboardController')
 
+// firebase
+const admin = require('firebase-admin')
+const serviceAccount = require('./acmeexplorerauth-firebase-adminsdk-4r524-aec195acfd')
+
 // body parser
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// control de CORS
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, idToken') // ojo, que si metemos un parametro propio por la cabecera hay que declararlo aquí para que no de el error CORS
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS')
+  next()
+})
+
+// para poder usar la API de firebase
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+})
 
 // Routes
 const routesActors = require("./api/routes/actorRoutes");
@@ -71,7 +88,7 @@ mongoose.connection.dropCollection('configurations')
 
 var configuration = new Configuration({
     flat_rate: 0,
-    flush_period:24,
+    flush_period:1,
     max_finder_result: 10
 })
   

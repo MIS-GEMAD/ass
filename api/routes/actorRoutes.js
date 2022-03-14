@@ -2,6 +2,7 @@
 module.exports = function (app) {
 
   const actors = require('../controllers/actorController')
+  const authController = require('../controllers/authController')
 
   app.route('/actors')
     .get(actors.list_all_actors)
@@ -9,7 +10,10 @@ module.exports = function (app) {
 
   app.route('/actors/:actorId')
     .get(actors.read_an_actor)
-    .put(actors.update_an_actor)
+    .put(authController.verifyUser(['ADMINISTRATOR',
+                                    'MANAGER',
+                                    'EXPLORER',
+                                    'SPONSOR']), actors.update_a_verified_actor)
 
   app.route('/actors/:actorId/ban')
     .put(actors.ban_an_actor)
