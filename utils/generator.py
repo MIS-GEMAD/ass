@@ -124,7 +124,7 @@ for i in range(0, 1):
         for stage in stages:
             stage.update({'trip': trip_id})
 
-        ticker = StringGenerator("[0-9]{8}[-][\l\d]{1}").render(unique = True)
+        ticker = StringGenerator("[0-9]{8}[-][A-Z]{4}").render(unique = True)
 
         img = Image.new('RGB', (15, 15), color='red')
         picture = {'_id': generate(), 'picture': img.tobytes().decode("latin1"), 'trip': trip_id}
