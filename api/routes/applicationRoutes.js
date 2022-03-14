@@ -15,6 +15,12 @@ module.exports = function (app) {
   app.route('/applications/:applicationId/cancel')
     .put(application.cancel_an_application)
 
+  app.route('/applications/:applicationId/reject')
+    .put(application.reject_an_application)
+
+  app.route('/applications/:applicationId/due')
+    .put(application.due_an_application)
+
   app.route('/applications/:tripId')
     .get(application.list_trip_applications)
 

@@ -1,11 +1,11 @@
 'use strict'
 
-exports.store_json_fs = function (req, res) {
-  const streamToMongoDB = require('stream-to-mongo-db').streamToMongoDB
-  const JSONStream = require('JSONStream')
-  const fs = require('fs')
-  const ObjectID = require('mongodb').ObjectID;
+const mongoose = require('mongoose');
+const streamToMongoDB = require('stream-to-mongo-db').streamToMongoDB
+const JSONStream = require('JSONStream')
+const fs = require('fs');
 
+exports.store_json_fs = function (req, res) {
   let dbURL = null
   let collection = null
   let sourceFile = null
@@ -20,18 +20,15 @@ exports.store_json_fs = function (req, res) {
     if (req.query.batchSize) batchSize = req.query.batchSize; else batchSize = 1000
     if (req.query.parseString) parseString = req.query.parseString; else parseString = '*'
   
-    // where the data will end up
     const outputDBConfig = { dbURL: dbURL, collection: collection, batchSize: batchSize }
   
-    // create the writable stream
     const writableStream = streamToMongoDB(outputDBConfig)
   
-    // create readable stream and consume it
     console.log('starting streaming the json from file: ' + sourceFile + ', to dbURL: ' + dbURL + ', into the collection: ' + collection)
-    fs.createReadStream(sourceFile) // './myJsonData.json'
+    fs.createReadStream(sourceFile)
       .pipe(JSONStream.parse(parseString))
       .on('data', function handleRecord(data) {
-          data._id = ObjectID(data._id)
+          data._id = mongoose.Types.ObjectId(data._id)
 
           if (collection == 'actors') {
             let sponsorship = ''
@@ -46,7 +43,7 @@ exports.store_json_fs = function (req, res) {
 
             if (data.sponsorships){
               for (sponsorship of data.sponsorships){
-                sponsorship = ObjectID(sponsorship)
+                sponsorship = mongoose.Types.ObjectId(sponsorship)
                 new_sponsorships.push(sponsorship)
               }
 
@@ -55,7 +52,7 @@ exports.store_json_fs = function (req, res) {
 
             if (data.applications){
               for (application of data.applications){
-                application = ObjectID(application)
+                application = mongoose.Types.ObjectId(application)
                 new_applications.push(application)
               }
 
@@ -64,7 +61,7 @@ exports.store_json_fs = function (req, res) {
 
             if (data.trips){
               for (trip of data.trips){
-                trip = ObjectID(trip)
+                trip = mongoose.Types.ObjectId(trip)
                 new_trips.push(trip)
               }
 
@@ -73,7 +70,7 @@ exports.store_json_fs = function (req, res) {
 
             if (data.finders){
               for (finder of data.finders){
-                finder = ObjectID(finder)
+                finder = mongoose.Types.ObjectId(finder)
                 new_finders.push(finder)
               }
 
@@ -94,7 +91,7 @@ exports.store_json_fs = function (req, res) {
 
             if (data.stages){
               for (stage of data.stages){
-                stage = ObjectID(stage)
+                stage = mongoose.Types.ObjectId(stage)
                 new_stages.push(stage)
               }
 
@@ -103,7 +100,7 @@ exports.store_json_fs = function (req, res) {
 
             if (data.applications){
               for (application of data.applications){
-                application = ObjectID(application)
+                application = mongoose.Types.ObjectId(application)
                 new_applications.push(application)
               }
 
@@ -112,7 +109,7 @@ exports.store_json_fs = function (req, res) {
 
             if (data.sponsorships){
               for (sponsorship of data.sponsorships){
-                sponsorship = ObjectID(sponsorship)
+                sponsorship = mongoose.Types.ObjectId(sponsorship)
                 new_sponsorships.push(sponsorship)
               }
 
@@ -121,36 +118,36 @@ exports.store_json_fs = function (req, res) {
 
             if (data.pictures){
               for (picture of data.pictures){
-                picture = ObjectID(picture)
+                picture = mongoose.Types.ObjectId(picture)
                 new_pictures.push(picture)
               }
 
               data.pictures = new_pictures
             }
 
-            data.manager = ObjectID(data.manager)
+            data.manager = mongoose.Types.ObjectId(data.manager)
           }
 
           if (collection == 'stages') {
-            data.trip = ObjectID(data.trip)
+            data.trip = mongoose.Types.ObjectId(data.trip)
           }
 
           if (collection == 'applications') {
-            data.trip = ObjectID(data.trip)
-            data.actor = ObjectID(data.actor)
+            data.trip = mongoose.Types.ObjectId(data.trip)
+            data.actor = mongoose.Types.ObjectId(data.actor)
           }
 
           if (collection == 'sponsorships') {
-            data.trip = ObjectID(data.trip)
-            data.actor = ObjectID(data.actor)
+            data.trip = mongoose.Types.ObjectId(data.trip)
+            data.actor = mongoose.Types.ObjectId(data.actor)
           }
 
           if (collection == 'finders') {
-            data.actor = ObjectID(data.actor)
+            data.actor = mongoose.Types.ObjectId(data.actor)
           }
 
           if (collection == 'pictures') {
-            data.trip = ObjectID(data.trip)
+            data.trip = mongoose.Types.ObjectId(data.trip)
           }
 
 				}

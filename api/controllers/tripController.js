@@ -42,35 +42,41 @@ exports.update_a_trip = function (req, res) {
     if (err) {
       res.status(404).send(err);
     } else {
-      Trip.findOneAndUpdate(
-        { _id: req.params.tripId },
-        req.body,
-        { new: true },
-        function (err, trip) {
-          if (err) {
-            res.status(400).send(err);
-          } else {
-            res.status(201).json(trip);
+      if( !trip.is_published ) {
+        Trip.findOneAndUpdate({ _id: req.params.tripId }, req.body, { new: true }, function (err, trip) {
+            if (err) {
+              res.status(400).send(err);
+            } else {
+              res.status(201).json(trip);
+            }
           }
-        }
-      );
+        );
+      } else {
+        res.status(400).send({ err: 'Cannot update a published trip' });
+      }
     }
-  });
+  })
 };
 
 exports.delete_a_trip = function (req, res) {
-  Trip.deleteOne(
-    {
-      _id: req.params.tripId,
-    },
-    function (err, trip) {
-      if (err) {
-        res.status(400).send(err);
+  Trip.findById(req.params.tripId, function (err, trip) {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      if( !trip.is_published ) {
+        Trip.deleteOne({ _id: req.params.tripId }, function (err, trip) {
+            if (err) {
+              res.status(400).send(err);
+            } else {
+              res.status(204).json({ message: "Trip successfully deleted" });
+            }
+          }
+        );
       } else {
-        res.status(204).json({ message: "Trip successfully deleted" });
+        res.status(400).send({ err: 'Cannot delete a published trip' });
       }
     }
-  );
+  });
 };
 
 // TODO: Implementar via PayPal
@@ -157,11 +163,46 @@ exports.pay_a_trip = function (req, res) {
 };
 
 exports.list_actor_trips = function (req, res) {
-  Trip.find({ actor_id: req.params.actorId }, function (err, trips) {
+  Trip.find({ actor: req.params.actorId }, function (err, trips) {
     if (err) {
       res.status(400).send(err);
     } else {
       res.status(200).json(trips);
     }
   });
+};
+
+exports.cancel_a_trip = function (req, res) {
+  Trip.findById(req.params.tripId, function (err, trip) {
+    if (err) {
+      res.status(404).send(err)
+    } else {
+      Application.find({ trip: req.params.tripId, status: 'ACCEPTED' }, function (err, applications) {
+        if (err) {
+          res.status(404).send(err)
+        } else {
+          if (
+            trip.is_published &&
+            Date.now() < trip.start_date &&
+            applications.length == 0
+          ) {
+            Trip.findOneAndUpdate(
+              { _id: req.params.tripId },
+              { status: "CANCELLED", is_cancelled: true },
+              { new: true },
+              function (err, trip) {
+                if (err) {
+                  res.status(400).send(err)
+                } else {
+                  res.status(201).json(trip)
+                }
+              }
+            )
+          } else {
+            res.status(400).send({ err: 'The trip are not published, have started or have accepted applications'})
+          }
+        }    
+      })
+    }
+  })
 };
