@@ -19,7 +19,7 @@ exports.list_all_applications = function (req, res) {
 exports.create_an_application = function (req, res) {
   const reqPpal = req.body;
 
-  Actor.findById(req.body.explorer, function (err, explorer) {
+  Actor.findById(req.body.actor, function (err, explorer) {
     if (err) {
       res.status(400).send(err);
     } else {
@@ -165,6 +165,62 @@ exports.cancel_an_application = function (req, res) {
             }
           }
         );
+      } else {
+        res.status(400).send({ err: 'To cancel an application, must be pending or accepted' })
+      }
+    }
+  });
+};
+
+exports.reject_an_application = function (req, res) {
+  Application.findById(req.params.applicationId, function (err, application) {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      if (
+        application.status === "PENDING"
+      ) {
+        Application.findOneAndUpdate(
+          { _id: req.params.applicationId },
+          { status: "REJECTED" },
+          { new: true },
+          function (err, application) {
+            if (err) {
+              res.status(400).send(err);
+            } else {
+              res.status(201).json(application);
+            }
+          }
+        );
+      } else {
+        res.status(400).send({ err: 'To reject an application, must be pending' })
+      }
+    }
+  });
+};
+
+exports.due_an_application = function (req, res) {
+  Application.findById(req.params.applicationId, function (err, application) {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      if (
+        application.status === "PENDING"
+      ) {
+        Application.findOneAndUpdate(
+          { _id: req.params.applicationId },
+          { status: "DUE" },
+          { new: true },
+          function (err, application) {
+            if (err) {
+              res.status(400).send(err);
+            } else {
+              res.status(201).json(application);
+            }
+          }
+        );
+      } else {
+        res.status(400).send({ err: 'To due an application, must be pending' })
       }
     }
   });
@@ -172,7 +228,7 @@ exports.cancel_an_application = function (req, res) {
 
 exports.list_trip_applications = function (req, res) {
   Application.find(
-    { trip_id: req.params.tripId },
+    { trip: req.params.tripId },
     function (err, applications) {
       if (err) {
         res.status(400).send(err);

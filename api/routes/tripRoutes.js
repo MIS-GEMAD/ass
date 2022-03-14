@@ -29,4 +29,7 @@ module.exports = function (app) {
   app.route('/trips/:actorId')
     .get(trip.list_actor_trips)
 
+  app.route('/trips/:tripId/cancel')
+    .put(trip.cancel_a_trip)
+
 }

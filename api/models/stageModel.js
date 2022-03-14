@@ -31,13 +31,15 @@ StageSchema.pre('save', function(callback) {
   const stage_price = this.price
 
   Trip.findById(this.trip, function (err, trip) {
-    const initial_price = trip.price
+    if ( trip != null ){
+      const initial_price = trip.price
 
-    const totalPrice = initial_price + stage_price
+      const totalPrice = initial_price + stage_price
+    
+      trip.price = totalPrice
   
-    trip.price = totalPrice
-
-    Trip.findOneAndUpdate({ _id: trip._id }, { price: totalPrice }, { new: true }, function (err, trip) {})
+      Trip.findOneAndUpdate({ _id: trip._id }, { price: totalPrice }, { new: true }, function (err, trip) {})
+    }
   })
 
   callback()

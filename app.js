@@ -64,7 +64,18 @@ mongoose.connection.on("error", function (err) {
   console.error("DB init error " + err);
 });
 
-//mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
+// mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
+
+// save inital configuration variables
+mongoose.connection.dropCollection('configurations')
+
+var configuration = new Configuration({
+    flat_rate: 0,
+    flush_period:24,
+    max_finder_result: 10
+})
+  
+configuration.save()
 
 DashboardTools.createDashboardJob();
 
