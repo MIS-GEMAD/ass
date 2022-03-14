@@ -9,7 +9,7 @@ export class ActorService {
 
     token: string;
     userRole: string;
-    private backendApiBaseURL = 'http://localhost:8080';
+    private backendApiBaseURL = 'http://node:8080';
 
     constructor(
         private http: HttpClient,
@@ -17,12 +17,12 @@ export class ActorService {
     }
 
     getActor(id: string) {
-        const url = `${this.backendApiBaseURL}/v1/actors/${id}`;
+        const url = `${this.backendApiBaseURL}/actors/${id}`;
         return this.http.get<Actor>(url).toPromise();
     }
 
     updateProfile(actor: Actor) {
-        const url = `${this.backendApiBaseURL}/v2/actors/${actor._id}`;
+        const url = `${this.backendApiBaseURL}/actors/${actor._id}`;
 
         const putActor = JSON.parse(JSON.stringify(actor));
         delete putActor.idToken;
