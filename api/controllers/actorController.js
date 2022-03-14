@@ -38,12 +38,90 @@ exports.read_an_actor = function (req, res) {
   })
 }
 
+exports.login_an_actor = async function (req, res) {
+  console.log('starting login an actor')
+  const emailParam = req.query.email
+  const password = req.query.password
+  let customToken
+
+  Actor.findOne({ email: emailParam }, function (err, actor) {
+    if (err) { // No actor found with that email as username
+      res.send(err)
+    } else if (!actor) { // an access token isn’t provided, or is invalid
+      res.status(401)
+      res.json({ message: 'forbidden', error: err })
+    } else if ((actor.role.includes('ADMINISTRATOR')) && (actor.validated === false)) { // an access token is valid, but requires more privileges
+      res.status(403)
+      res.json({ message: 'forbidden', error: err })
+    } else {
+      // Make sure the password is correct
+      actor.verifyPassword(password, async function (err, isMatch) {
+        if (err) {
+          res.send(err)
+        } else if (!isMatch) { // Password did not match
+          res.status(401) // an access token isn’t provided, or is invalid
+          res.json({ message: 'forbidden', error: err })
+        } else {
+          try {
+            customToken = await admin.auth().createCustomToken(actor.email)
+          } catch (error) {
+            console.log('Error creating custom token:', error)
+          }
+          actor.customToken = customToken
+          console.log("Login Success... sending JSON with custom token");
+          res.json(actor)
+        }
+      })
+    }
+  })
+}
+
 exports.update_an_actor = function (req, res) {
   Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
     if (err) {
       res.status(400).send(err)
     } else {
       res.status(201).json(actor)
+    }
+  })
+}
+
+exports.update_a_verified_actor = function (req, res) {
+  // Customer and Clerks can update theirselves, administrators can update any actor
+  console.log('Starting to update the verified actor...')
+  Actor.findById(req.params.actorId, async function (err, actor) {
+    if (err) {
+      res.send(err)
+    } else {
+      console.log('actor: ' + actor)
+      const idToken = req.headers.idtoken // WE NEED the FireBase custom token in the req.header... it is created by FireBase!!
+      if (actor.role.includes('MANAGER') || actor.role.includes('EXPLORER') || actor.role.includes('SPONSOR')) {
+        const authenticatedUserId = await authController.getUserId(idToken)
+
+        if (authenticatedUserId == req.params.actorId) {
+          Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
+            if (err) {
+              res.send(err)
+            } else {
+              res.json(actor)
+            }
+          })
+        } else {
+          res.status(403) // Auth error
+          res.send('The Actor is trying to update an Actor that is not himself!')
+        }
+      } else if (actor.role.includes('ADMINISTRATOR')) {
+        Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
+          if (err) {
+            res.send(err)
+          } else {
+            res.json(actor)
+          }
+        })
+      } else {
+        res.status(405) // Not allowed
+        res.send('The Actor has unidentified roles')
+      }
     }
   })
 }

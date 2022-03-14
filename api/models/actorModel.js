@@ -50,6 +50,12 @@ const ActorSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Sponsorship',
     }],
+    customToken: {
+      type: String
+    },
+    idToken: {
+      type: String
+    },
     validated: {
       type: Boolean,
       default: false
