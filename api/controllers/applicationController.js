@@ -165,6 +165,62 @@ exports.cancel_an_application = function (req, res) {
             }
           }
         );
+      } else {
+        res.status(400).send({ err: 'To cancel an application, must be pending or accepted' })
+      }
+    }
+  });
+};
+
+exports.reject_an_application = function (req, res) {
+  Application.findById(req.params.applicationId, function (err, application) {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      if (
+        application.status === "PENDING"
+      ) {
+        Application.findOneAndUpdate(
+          { _id: req.params.applicationId },
+          { status: "REJECTED" },
+          { new: true },
+          function (err, application) {
+            if (err) {
+              res.status(400).send(err);
+            } else {
+              res.status(201).json(application);
+            }
+          }
+        );
+      } else {
+        res.status(400).send({ err: 'To reject an application, must be pending' })
+      }
+    }
+  });
+};
+
+exports.due_an_application = function (req, res) {
+  Application.findById(req.params.applicationId, function (err, application) {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      if (
+        application.status === "PENDING"
+      ) {
+        Application.findOneAndUpdate(
+          { _id: req.params.applicationId },
+          { status: "DUE" },
+          { new: true },
+          function (err, application) {
+            if (err) {
+              res.status(400).send(err);
+            } else {
+              res.status(201).json(application);
+            }
+          }
+        );
+      } else {
+        res.status(400).send({ err: 'To due an application, must be pending' })
       }
     }
   });
