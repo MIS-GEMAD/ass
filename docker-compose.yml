@@ -22,17 +22,6 @@ services:
       - "8081:8081"
     networks:
       - ass
-
-  angular:
-    build: 
-      context: .
-      dockerfile: angular.Dockerfile
-    ports:
-      - 4200:4200
-    volumes:
-      - .:/app
-    networks:
-      - ass
   
   mongodb:
     image: mongo:latest
