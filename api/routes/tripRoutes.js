@@ -32,4 +32,6 @@ module.exports = function (app) {
   app.route('/trips/:tripId/cancel')
     .put(trip.cancel_a_trip)
 
+  app.route('/trips/:tripId/random-banner')
+    .get(trip.select_random_banner)
 }

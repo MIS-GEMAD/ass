@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const Trip = mongoose.model("Trip");
 const Application = mongoose.model("Application");
 const Actor = mongoose.model("Actor");
+const Sponsorship = mongoose.model("Sponsorship");
 
 exports.list_all_trips = function (req, res) {
   Trip.find({}, function (err, trip) {
@@ -205,4 +206,31 @@ exports.cancel_a_trip = function (req, res) {
       })
     }
   })
+};
+
+exports.select_random_banner = function (req, res) {
+  Trip.findById(req.params.tripId, function (err, trip) {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      if (!trip) {
+        res.status(404).send("Trip not found");
+      } else {
+        Sponsorship.find({trip: trip._id.toString(), $set: { is_paid: true }}, function (err, sponsorships) {
+          console.log(err,sponsorships)
+          if (err) {
+            res.status(400).send(err);
+          } else {
+            if (!sponsorships) {
+              res.status(404).send("Sponsorships not found");
+            } else {
+              var random = Math.floor(Math.random() * sponsorships.length)
+
+              res.status(200).json(sponsorships[random]);
+            }
+          }
+        })
+      }
+    }
+  });
 };
