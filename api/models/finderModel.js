@@ -20,7 +20,7 @@ const FinderSchema = new Schema(
       type: Date
     },
     trips : [{
-      type: [Schema.Types.ObjectId],
+      type: Schema.Types.ObjectId,
       ref: 'Trip',
     }],
     actor: {
