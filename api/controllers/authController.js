@@ -5,7 +5,11 @@ const Actor = mongoose.model('Actor')
 const admin = require('firebase-admin')
 
 exports.getUserId = async function (idToken) {
-  console.log('idToken: ' + idToken)
+  console.log('idToken (authController): ' + idToken)
+
+  if(idToken == null){
+    return null
+  }
 
   const actorFromFB = await admin.auth().verifyIdToken(idToken)
   const uid = actorFromFB.uid
@@ -30,7 +34,7 @@ exports.verifyUser = function (requiredRoles) {
   return function (req, res, callback) {
     console.log('starting verifying idToken')
     console.log('requiredRoles: ' + requiredRoles)
-    const idToken = req.headers.idtoken
+    const idToken = req.header('idToken')
     console.log('idToken: ' + idToken)
 
     admin.auth().verifyIdToken(idToken).then(function (decodedToken) {
