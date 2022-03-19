@@ -76,7 +76,7 @@ exports.verifyUser = function (requiredRoles) {
       // Handle error
       console.log('Error en autenticación: ' + err)
       res.status(403) // an access token is valid, but requires more privileges
-      res.json({ message: 'The actor has not the required roles', error: err })
+      res.json({ message: 'The token is invalid', error: err })
     })
   }
 }
