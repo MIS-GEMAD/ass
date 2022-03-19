@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
@@ -15,12 +15,30 @@ const Configuration = require("./api/models/configurationModel");
 const Finder = require("./api/models/finderModel");
 const Sponsorship = require("./api/models/sponsorshipModel");
 const Dashboard = require("./api/models/dashboardModel");
+const Cube = require("./api/models/cubeModel");
 const DashboardTools = require('./api/controllers/dashboardController')
+
+// firebase
+const admin = require('firebase-admin')
+const serviceAccount = require('./acmeexplorerauth-firebase-adminsdk-4r524-aec195acfd')
 
 // body parser
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// control de CORS
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, idToken') // ojo, que si metemos un parametro propio por la cabecera hay que declararlo aquí para que no de el error CORS
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS')
+  next()
+})
+
+// para poder usar la API de firebase
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+})
 
 // Routes
 const routesActors = require("./api/routes/actorRoutes");
@@ -54,21 +72,39 @@ const mongoDBURI =
 mongoose.connect(mongoDBURI, {autoIndex: false});
 console.log("Connecting DB to: " + mongoDBURI);
 
-
 mongoose.connection.on("open", function () {
   var server = app.listen(port, function () {
     console.log("ACME-Explorer RESTful API server started on: " + port);
   });
 
-  server.close();
-
+  server.close()
 });
 
 mongoose.connection.on("error", function (err) {
   console.error("DB init error " + err);
 });
 
-//mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
+// mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
+
+// save inital configuration variables
+var configuration = new Configuration({
+  flat_rate: 0,
+  flush_period:1,
+  max_finder_result: 10
+})
+
+var cube = new Cube({
+  period: 0,
+  explorer:0,
+  money_in_period: 0
+})
+
+// mongoose.connection.dropCollection('configurations')
+// mongoose.connection.dropCollection('cubes')
+
+configuration.save()
+
+cube.save()
 
 DashboardTools.createDashboardJob();
 
