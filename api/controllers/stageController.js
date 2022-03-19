@@ -18,6 +18,9 @@ exports.list_all_stages_from_trip = function (req, res) {
 }
 
 exports.create_a_stage = function (req, res) {
+
+  // TODO: Si un trip está ya publicado, no se pueden añadir, editar ni eliminar los stages
+
   const newStage = new Stage(req.body)
 
   // associate stage to a trip
@@ -53,6 +56,9 @@ exports.read_a_stage = function (req, res) {
 }
 
 exports.update_a_stage = function (req, res) {
+
+  // TODO: Si un trip está ya publicado, no se pueden añadir, editar ni eliminar los stages
+
   Stage.findById(req.params.stageId, function (err, stage) {
     if (err) {
       res.status(404).send(err)
@@ -69,6 +75,9 @@ exports.update_a_stage = function (req, res) {
 }
 
 exports.delete_a_stage = function (req, res) {
+
+  // TODO: Si un trip está ya publicado, no se pueden añadir, editar ni eliminar los stages
+
   Stage.deleteOne({
     _id: req.params.stageId
   }, function (err, stage) {
