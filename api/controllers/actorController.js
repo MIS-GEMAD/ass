@@ -102,11 +102,6 @@ exports.update_a_verified_actor = function (req, res) {
     } else{
       const idToken = req.header('idToken')
 
-      if(idToken == null){
-        res.status(403)
-        res.send('Missing idToken')
-      }
-
       console.log('idToken (actorController): ' + idToken)
 
       const authenticatedUserId = await authController.getUserId(idToken)

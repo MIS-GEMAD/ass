@@ -7,6 +7,8 @@ const Application = mongoose.model("Application");
 const Actor = mongoose.model("Actor");
 const Sponsorship = mongoose.model("Sponsorship");
 
+const authController = require('./authController')
+
 exports.list_all_trips = function (req, res) {
   Trip.find({}, function (err, trip) {
     if (err) {
@@ -17,12 +19,27 @@ exports.list_all_trips = function (req, res) {
   });
 };
 
-exports.create_a_trip = function (req, res) {
+exports.create_a_trip = async function (req, res) {
   const newTrip = new Trip(req.body)
+  
+
+  // associate manager to trip
+  const idToken = req.header('idToken')
+  const managerId = await authController.getUserId(idToken)
+  newTrip.manager = managerId
+
   newTrip.save(function (err, trip) {
     if (err) {
       res.status(400).send(err);
     } else {
+
+      // associate trip to trip list from manager
+      console.log("idddddd " + trip._id)
+      Actor.findById(managerId, function (err, manager) {
+        manager.trips.push(trip._id)
+        console.log("manager trips: " + manager.trips)
+      })
+
       res.status(201).json(trip);
     }
   });

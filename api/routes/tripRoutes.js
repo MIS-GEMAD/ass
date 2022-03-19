@@ -5,9 +5,11 @@ module.exports = function (app) {
 
   const stage = require('../controllers/stageController')
 
+  const authController = require('../controllers/authController')
+
   app.route('/trips')
     .get(trip.list_all_trips)
-    .post(trip.create_a_trip)
+    .post(authController.verifyUser(['MANAGER']),trip.create_a_trip)
 
   app.route('/trips/:tripId')
     .get(trip.read_a_trip)
@@ -27,7 +29,7 @@ module.exports = function (app) {
     .delete(stage.delete_a_stage)
 
   app.route('/trips/:actorId')
-    .get(trip.list_actor_trips)
+    .get(authController.verifyUser(['MANAGER']),trip.list_actor_trips)
 
   app.route('/trips/:tripId/cancel')
     .put(trip.cancel_a_trip)
