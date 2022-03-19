@@ -11,6 +11,9 @@ module.exports = function (app) {
     .get(trip.list_all_trips)
     .post(authController.verifyUser(['MANAGER']),trip.create_a_trip)
 
+  app.route('/trips/owns')
+    .get(authController.verifyUser(['MANAGER']),trip.list_trips_from_auth_manager)
+
   app.route('/trips/:tripId')
     .get(trip.read_a_trip)
     .put(trip.update_a_trip)
@@ -27,9 +30,6 @@ module.exports = function (app) {
     .get(stage.read_a_stage)
     .put(stage.update_a_stage)
     .delete(stage.delete_a_stage)
-
-  app.route('/trips/:actorId')
-    .get(authController.verifyUser(['MANAGER']),trip.list_actor_trips)
 
   app.route('/trips/:tripId/cancel')
     .put(trip.cancel_a_trip)

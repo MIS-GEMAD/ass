@@ -180,8 +180,13 @@ exports.pay_a_trip = function (req, res) {
   });
 };
 
-exports.list_actor_trips = function (req, res) {
-  Trip.find({ actor: req.params.actorId }, function (err, trips) {
+exports.list_trips_from_auth_manager = async function (req, res) {
+
+  // get auth manager
+  const idToken = req.header('idToken')
+  const managerId = await authController.getUserId(idToken)
+
+  Trip.find({ manager: managerId }, function (err, trips) {
     if (err) {
       res.status(400).send(err);
     } else {
