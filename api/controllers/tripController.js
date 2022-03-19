@@ -33,13 +33,17 @@ exports.create_a_trip = async function (req, res) {
       res.status(400).send(err);
     } else {
 
-      // associate trip to trip list from manager
-      Actor.findById(managerId, function (err, manager) {
-        manager.trips.push(trip._id)
-        console.log("manager trips: " + manager.trips)
+      // updated the manager trip list
+      Actor.findOneAndUpdate({ _id: trip.manager._id }, {"$push": {trips: trip._id}}, { new: true }, function(err, result){
+        if(err){
+          res.send(err)
+        }
+        else{
+          res.status(201).json(trip);
+        }
       })
 
-      res.status(201).json(trip);
+      
     }
   });
 };
@@ -120,9 +124,11 @@ exports.delete_a_trip = async function (req, res) {
               })
 
               // delete all stages
-              Stage.deleteMany({ trip: req.params.tripId })
+              Stage.deleteMany({ trip: req.params.tripId }, function(err){
+                console.log("deleting stages from trip " + req.params.tripId )
+                res.status(204).send ({ message: "Trip successfully deleted" });
+              })
 
-              res.status(204).send({ message: "Trip successfully deleted" });
             }
           });
         } else {

@@ -2,25 +2,45 @@
 
 const mongoose = require('mongoose')
 
+const Trip = mongoose.model('Trip')
 const Stage = mongoose.model('Stage')
 
-exports.list_all_stages = function (req, res) {
-  Stage.find({}, function (err, stage) {
+exports.list_all_stages_from_trip = function (req, res) {
+  
+  Stage.find({ trip: req.params.tripId }, function (err, stages) {
     if (err) {
       res.status(400).send(err)
     } else {
-      res.status(200).json(stage)
+      res.status(200).json(stages)
     }
   })
+
 }
 
 exports.create_a_stage = function (req, res) {
   const newStage = new Stage(req.body)
+
+  // associate stage to a trip
+  newStage.trip = req.params.tripId
+
   newStage.save(function (error, stage) {
     if (error) {
       res.status(400).send(error)
     } else {
-      res.status(201).json(stage)
+
+      console.log("intento meter en el trip " + req.params.tripId )
+      console.log("el stage " +  stage._id)
+
+      // updated the stages trip list
+      Trip.findOneAndUpdate({ _id: req.params.tripId }, {"$push": {stagessss: stage._id}}, { new: true }, function(err, result){
+        if(err){
+          res.send(err)
+        }
+        else{
+          res.status(201).json(stage);
+        }
+      })
+
     }
   })
 }
