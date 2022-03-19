@@ -28,11 +28,8 @@ exports.create_a_stage = function (req, res) {
       res.status(400).send(error)
     } else {
 
-      console.log("intento meter en el trip " + req.params.tripId )
-      console.log("el stage " +  stage._id)
-
       // updated the stages trip list
-      Trip.findOneAndUpdate({ _id: req.params.tripId }, {"$push": {stagessss: stage._id}}, { new: true }, function(err, result){
+      Trip.findOneAndUpdate({ _id: req.params.tripId }, {"$push": {stages: stage._id}}, { new: true }, function(err, result){
         if(err){
           res.send(err)
         }
