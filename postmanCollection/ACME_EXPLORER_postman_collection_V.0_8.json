@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "aa2af6ef-f4f9-437e-acbc-caef46152bac",
+		"_postman_id": "cc069dde-bac8-4bc6-941e-8bb6197074c2",
 		"name": "ACME EXPLORER",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -551,6 +551,34 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "list_explorer_applications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actors/622f3e1e2d80876e23c942ec/applications/?status=accepted",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors",
+								"622f3e1e2d80876e23c942ec",
+								"applications",
+								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "accepted"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -917,6 +945,27 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "select_random_banner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/trips/622f3e1ed47389e877e18366/random-banner",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"622f3e1ed47389e877e18366",
+								"random-banner"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -962,7 +1011,7 @@
 					"response": []
 				},
 				{
-					"name": "create_an_application 1 (PENDING)",
+					"name": "create_an_application 1",
 					"event": [
 						{
 							"listen": "test",
@@ -991,262 +1040,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"PENDING\",\r\n    \"trip\": \"622e57a69879d3fe41b48d5a\",\r\n    \"actor\": \"622e55d980564a7023010d1e\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/applications",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"applications"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create_an_application 2 (REJECTED)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"create_an_application status REJECTEDS\",()=>{\r",
-									"    pm.response.to.have.status(201);\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"REJECTED\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/applications",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"applications"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create_an_application 3 (DUE)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"create_an_application status DUE\",()=>{\r",
-									"    pm.response.to.have.status(201);\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"DUE\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/applications",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"applications"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create_an_application 4 (ACCEPTED)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"create_an_application status ACCEPTED\",()=>{\r",
-									"    pm.response.to.have.status(201);\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"ACCEPTED\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/applications",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"applications"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create_an_application 5 (CANCELLED)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"create_an_application status CANCELLED\",()=>{\r",
-									"    pm.response.to.have.status(201);\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"CANCELLED\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/applications",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"applications"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create_an_application (BAD REQUEST)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"create_an_application BAD REQUEST STATUS\",()=>{\r",
-									"    pm.response.to.have.status(400);\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"CANCEL\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
+							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"trip\": \"622f3e1e8f9dd05cfdb04fea\",\r\n    \"actor\": \"622f3e1e2d80876e23c942ec\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1901,13 +1695,15 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/sponsorships",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"actors",
+								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships"
 							]
 						}
@@ -1952,13 +1748,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/sponsorships",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"actors",
+								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships"
 							]
 						}
@@ -2003,13 +1801,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/sponsorships",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"actors",
+								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships"
 							]
 						}
@@ -2041,15 +1841,17 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/sponsorships/621ce55d7984f97f14e9b16a",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships/622f3e1ecd6edad051f8c8ad",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"actors",
+								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships",
-								"621ce55d7984f97f14e9b16a"
+								"622f3e1ecd6edad051f8c8ad"
 							]
 						}
 					},
@@ -2093,15 +1895,17 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/sponsorships/621ce55d7984f97f14e9b16a",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships/622f3e1ecd6edad051f8c8ad",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"actors",
+								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships",
-								"621ce55d7984f97f14e9b16a"
+								"622f3e1ecd6edad051f8c8ad"
 							]
 						}
 					},
@@ -2145,54 +1949,40 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/sponsorships/621ce5857984f97f14e9b16d",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships/622f3e1ecd6edad051f8c8ad",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"actors",
+								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships",
-								"621ce5857984f97f14e9b16d"
+								"622f3e1ecd6edad051f8c8ad"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "list_actor_sponsorships",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"list_actor_sponsorships\",()=>{\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
+					"name": "pay_a_sponsorship",
 					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"method": "PUT",
+						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/sponsorships/621cd18b7984f97f14e9b0db",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships/622f3e1e9877876f0ddd92a8/pay",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"actors",
+								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships",
-								"621cd18b7984f97f14e9b0db"
+								"622f3e1e9877876f0ddd92a8",
+								"pay"
 							]
 						}
 					},

@@ -143,7 +143,7 @@ exports.ban_an_actor = function (req, res) {
 }
 
 exports.list_explorer_applications = function (req, res) {
-  const status = req.query.status.toUpperCase();
+  const status = req.query.status ? req.query.status.toUpperCase() : '';
   Actor.findById({ _id: req.params.actorId }, function (err, explorer) {
     if (err) {
       res.status(400).send(err);
