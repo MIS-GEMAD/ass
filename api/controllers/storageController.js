@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const streamToMongoDB = require('stream-to-mongo-db').streamToMongoDB
 const JSONStream = require('JSONStream')
 const fs = require('fs');
+const bcrypt = require("bcrypt");
 
 exports.store_json_fs = function (req, res) {
   let dbURL = null
@@ -78,6 +79,9 @@ exports.store_json_fs = function (req, res) {
 
               data.create = new Date(data.create)
             }
+
+            data.password = bcrypt.hashSync(data.password, 5);
+
           }
 
           if (collection == 'trips') {

@@ -36,7 +36,8 @@ app.use(function (req, res, next) {
 
 // para poder usar la API de firebase
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://acmeexplorertauth.firebaseio.com'
 })
 
 // Routes
@@ -49,6 +50,7 @@ const routesSponsorships = require("./api/routes/sponsorshipRoutes");
 const routesStorage = require('./api/routes/storageRoutes');
 const routesTrips = require("./api/routes/tripRoutes");
 const routesDashboard = require("./api/routes/dashboardRoutes");
+const routesLogin = require("./api/routes/loginRoutes");
 
 routesActors(app);
 routesApplications(app);
@@ -59,6 +61,7 @@ routesSponsorships(app);
 routesStorage(app)
 routesTrips(app);
 routesDashboard(app);
+routesLogin(app);
 
 
 // MongoDB URI building

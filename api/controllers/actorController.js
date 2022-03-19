@@ -67,9 +67,15 @@ exports.login_an_actor = async function (req, res) {
           } catch (error) {
             console.log('Error creating custom token:', error)
           }
-          actor.customToken = customToken
           console.log("Login Success... sending JSON with custom token");
-          res.json(actor)
+          actor.customToken = customToken
+          actor.save(function (err, item) {
+            if (err) {
+              res.send(err)
+            } else {
+              res.json(item)
+            }
+          })
         }
       })
     }
