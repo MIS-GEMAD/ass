@@ -21,7 +21,6 @@ exports.list_all_trips = function (req, res) {
 
 exports.create_a_trip = async function (req, res) {
   const newTrip = new Trip(req.body)
-  
 
   // associate manager to trip
   const idToken = req.header('idToken')
@@ -34,7 +33,6 @@ exports.create_a_trip = async function (req, res) {
     } else {
 
       // associate trip to trip list from manager
-      console.log("idddddd " + trip._id)
       Actor.findById(managerId, function (err, manager) {
         manager.trips.push(trip._id)
         console.log("manager trips: " + manager.trips)
@@ -55,23 +53,43 @@ exports.read_a_trip = function (req, res) {
   });
 };
 
-exports.update_a_trip = function (req, res) {
-  Trip.findById(req.params.tripId, function (err, trip) {
+exports.update_a_trip = async function (req, res) {
+
+ 
+
+  Trip.findById(req.params.tripId, async function (err, trip) {
     if (err) {
       res.status(404).send(err);
     } else {
-      if( !trip.is_published ) {
-        Trip.findOneAndUpdate({ _id: req.params.tripId }, req.body, { new: true }, function (err, trip) {
-            if (err) {
-              res.status(400).send(err);
-            } else {
-              res.status(201).json(trip);
-            }
-          }
-        );
-      } else {
+
+      // check if trip is from auth manager
+      const idToken = req.header('idToken')
+      let authManagerId = await authController.getUserId(idToken)
+      authManagerId = String(authManagerId)
+      let tripManagerId = trip.manager
+      tripManagerId = String(tripManagerId)
+
+      console.log("manager id : " +  authManagerId)
+      console.log("trip manager id : " + tripManagerId)
+      
+
+      if(authManagerId != tripManagerId){
+        res.status(401).send({ message: 'This manager does not have permissions to edit this trip', error: err })
+      } else{
+        if( !trip.is_published ) {
+          Trip.findOneAndUpdate({ _id: req.params.tripId }, req.body, { new: true }, function (err, trip) {
+              if (err) {
+                res.status(400).send(err);
+              } else {
+                res.status(200).json(trip);
+              }
+          });
+        } else {
         res.status(400).send({ err: 'Cannot update a published trip' });
       }
+      }
+
+      
     }
   })
 };
