@@ -36,7 +36,7 @@ exports.create_an_application = function (req, res) {
               res.status(404).send("Trip not found");
             } else if (!trip.is_published) {
               res.status(400).send("Trip must been published");
-            } else if (trip.start_date > new Date()) {
+            } else if (trip.start_date < new Date()) {
               res.status(400).send("Trip must not been started");
             } else if (trip.is_cancelled) {
               res.status(400).send("Trip must not been cancelled");
