@@ -3,6 +3,7 @@
 const mongoose = require("mongoose");
 
 const Trip = mongoose.model("Trip");
+const Stage = mongoose.model("Stage");
 const Application = mongoose.model("Application");
 const Actor = mongoose.model("Actor");
 const Sponsorship = mongoose.model("Sponsorship");
@@ -55,8 +56,6 @@ exports.read_a_trip = function (req, res) {
 
 exports.update_a_trip = async function (req, res) {
 
- 
-
   Trip.findById(req.params.tripId, async function (err, trip) {
     if (err) {
       res.status(404).send(err);
@@ -68,10 +67,6 @@ exports.update_a_trip = async function (req, res) {
       authManagerId = String(authManagerId)
       let tripManagerId = trip.manager
       tripManagerId = String(tripManagerId)
-
-      console.log("manager id : " +  authManagerId)
-      console.log("trip manager id : " + tripManagerId)
-      
 
       if(authManagerId != tripManagerId){
         res.status(401).send({ message: 'This manager does not have permissions to edit this trip', error: err })
@@ -94,23 +89,48 @@ exports.update_a_trip = async function (req, res) {
   })
 };
 
-exports.delete_a_trip = function (req, res) {
-  Trip.findById(req.params.tripId, function (err, trip) {
+exports.delete_a_trip = async function (req, res) {
+  Trip.findById(req.params.tripId, async function (err, trip) {
     if (err) {
       res.status(404).send(err);
     } else {
-      if( !trip.is_published ) {
-        Trip.deleteOne({ _id: req.params.tripId }, function (err, trip) {
+
+      // check if trip is from auth manager
+      const idToken = req.header('idToken')
+      let authManagerId = await authController.getUserId(idToken)
+      authManagerId = String(authManagerId)
+      let tripManagerId = trip.manager
+      tripManagerId = String(tripManagerId)
+
+      if(authManagerId != tripManagerId){
+        res.status(401).send({ message: 'This manager does not have permissions to delete this trip'})
+      } else {
+        if( !trip.is_published ) {
+          Trip.deleteOne({ _id: req.params.tripId }, function (err, trip) {
             if (err) {
               res.status(400).send(err);
             } else {
-              res.status(204).json({ message: "Trip successfully deleted" });
+
+              // delete trip reference in manager trips
+              Actor.findById(authManagerId, function (err, manager) {
+                let filtered_trips_manager = manager.trips.filter(function(value, index, arr){ 
+                  return value != tripManagerId;
+                });
+                manager.trips = filtered_trips_manager
+              })
+
+              // delete all stages
+              Stage.deleteMany({ trip: req.params.tripId })
+
+              res.status(204).send({ message: "Trip successfully deleted" });
             }
-          }
-        );
-      } else {
-        res.status(400).send({ err: 'Cannot delete a published trip' });
+          });
+        } else {
+          res.status(400).send({ err: 'Cannot delete a published trip' });
+        }
       }
+
+      
     }
   });
 };
