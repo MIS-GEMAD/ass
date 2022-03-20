@@ -5,7 +5,11 @@ const Actor = mongoose.model('Actor')
 const admin = require('firebase-admin')
 
 exports.getUserId = async function (idToken) {
-  console.log('idToken: ' + idToken)
+  console.log('idToken (authController): ' + idToken)
+
+  if(idToken == null){
+    return null
+  }
 
   const actorFromFB = await admin.auth().verifyIdToken(idToken)
   const uid = actorFromFB.uid
@@ -30,8 +34,13 @@ exports.verifyUser = function (requiredRoles) {
   return function (req, res, callback) {
     console.log('starting verifying idToken')
     console.log('requiredRoles: ' + requiredRoles)
-    const idToken = req.headers.idtoken
+    const idToken = req.header('idToken')
     console.log('idToken: ' + idToken)
+
+    if(idToken == null){
+      res.status(400)
+      res.json({ message: 'Missing \'idToken\', add \'idToken\' to Headers and a valid token as a value'})
+    }
 
     admin.auth().verifyIdToken(idToken).then(function (decodedToken) {
       console.log('entra en el then de verifyIdToken: ')
@@ -52,18 +61,19 @@ exports.verifyUser = function (requiredRoles) {
         } else {
           console.log('The actor exists in our DB')
           console.log('actor: ' + actor)
+
           let isAuth = false
           for (let i = 0; i < requiredRoles.length; i++) {
             for (let j = 0; j < actor.role.length; j++) {
               if (requiredRoles[i] === actor.role[j]) {
-                if (requiredRoles[i] === 'CLERK') {
-                  if (actor.validated === true) isAuth = true
-                } else {
+                if (actor.ban === false) {
                   isAuth = true
+                  break
                 }
               }
             }
           }
+          
           if (isAuth) {
             return callback(null, actor)
           } else {

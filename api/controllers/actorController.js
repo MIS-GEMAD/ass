@@ -93,22 +93,60 @@ exports.update_an_actor = function (req, res) {
 }
 
 exports.update_a_verified_actor = function (req, res) {
-  // Customer and Clerks can update theirselves, administrators can update any actor
+
   console.log('Starting to update the verified actor...')
+
+  Actor.findById(req.params.actorId, async function (err, actor) {
+    if (err) {
+      res.send(err)
+    } else{
+      const idToken = req.header('idToken')
+
+      console.log('idToken (actorController): ' + idToken)
+
+      const authenticatedUserId = await authController.getUserId(idToken)
+
+      console.log('Attempt to update the actor with id: ' + authenticatedUserId)
+
+      if (authenticatedUserId == req.params.actorId) {
+
+        console.log('authenticatedUserId is the same as itself')
+        
+        Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err2, actor2) {
+          
+          if (err2) {
+            res.status(400).send(err2)
+          } else {
+            res.status(201).json(actor2)
+          }
+
+        })
+
+      } else {
+        res.status(403)
+        res.send('The Actor is trying to update an Actor that is not himself!')
+      }
+    }
+  });
+
+  /*
   Actor.findById(req.params.actorId, async function (err, actor) {
     if (err) {
       res.send(err)
     } else {
       console.log('actor: ' + actor)
-      const idToken = req.headers.idtoken // WE NEED the FireBase custom token in the req.header... it is created by FireBase!!
-      if (actor.role.includes('MANAGER') || actor.role.includes('EXPLORER') || actor.role.includes('SPONSOR')) {
+      const idToken = req.headers.idtoken
+      if (actor.role.includes('ADMINISTRATOR') || actor.role.includes('MANAGER') || actor.role.includes('EXPLORER') || actor.role.includes('SPONSOR')) {
         const authenticatedUserId = await authController.getUserId(idToken)
+
+        console.log("Attempt to update the actor with id: "+ authenticatedUserId)
 
         if (authenticatedUserId == req.params.actorId) {
           Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
             if (err) {
               res.send(err)
             } else {
+              console.log("Updated actor")
               res.json(actor)
             }
           })
@@ -130,16 +168,34 @@ exports.update_a_verified_actor = function (req, res) {
       }
     }
   })
+  */
 }
 
 exports.ban_an_actor = function (req, res) {
-  Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
+  Actor.findById(req.params.actorId, async function (err, actor) {
     if (err) {
-      res.status(400).send(err)
+      res.status(404).send(err);
     } else {
-      res.status(201).json(actor)
+      if (!actor) {
+        res.status(404).send("Actor not found");
+      } else {
+        const idToken = req.header('idToken')
+        let authAdministratorId = await authController.getUserId(idToken)
+        authAdministratorId = String(authAdministratorId);
+        if(authAdministratorId === req.params.actorId) {
+          res.send('Actor cannot ban himself')
+        } else {
+          Actor.findOneAndUpdate({ _id: req.params.actorId }, { ban: true }, { new: true }, function (err, actor) {
+            if (err) {
+              res.status(400).send(err)
+            } else {
+              res.status(200).json(actor)
+            }
+          })
+        }
+      }
     }
-  })
+  });
 }
 
 exports.list_explorer_applications = function (req, res) {
@@ -172,14 +228,32 @@ exports.list_explorer_applications = function (req, res) {
     }
   });
 };
+
 exports.unban_an_actor = function (req, res) {
-  Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
+  Actor.findById(req.params.actorId, async function (err, actor) {
     if (err) {
-      res.status(400).send(err)
+      res.status(404).send(err);
     } else {
-      res.status(201).json(actor)
+      if (!actor) {
+        res.status(404).send("Actor not found");
+      } else {
+        const idToken = req.header('idToken')
+        let authAdministratorId = await authController.getUserId(idToken)
+        authAdministratorId = String(authAdministratorId);
+        if(authAdministratorId === req.params.actorId) {
+          res.send('Actor cannot unban himself')
+        } else {
+          Actor.findOneAndUpdate({ _id: req.params.actorId }, { ban: false }, { new: true }, function (err, actor) {
+            if (err) {
+              res.status(400).send(err)
+            } else {
+              res.status(200).json(actor)
+            }
+          })
+        }
+      }
     }
-  })
+  });
 }
 
 exports.update_preferred_languaje = function (req, res) {

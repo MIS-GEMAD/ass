@@ -5,33 +5,43 @@ module.exports = function (app) {
 
   const stage = require('../controllers/stageController')
 
+  const authController = require('../controllers/authController')
+
   app.route('/trips')
     .get(trip.list_all_trips)
-    .post(trip.create_a_trip)
+    .post(authController.verifyUser(['MANAGER']),trip.create_a_trip)
+
+  app.route('/trips/owns')
+    .get(authController.verifyUser(['MANAGER']),trip.list_trips_from_auth_manager)
 
   app.route('/trips/:tripId')
     .get(trip.read_a_trip)
-    .put(trip.update_a_trip)
-    .delete(trip.delete_a_trip)
+    .put(authController.verifyUser(['MANAGER']), trip.update_a_trip)
+    .delete(authController.verifyUser(['MANAGER']), trip.delete_a_trip)
+
+  app.route('/trips/:tripId/stages')
+    .get(stage.list_all_stages_from_trip)
+    .post(authController.verifyUser(['MANAGER']), stage.create_a_stage)
+
+  app.route('/trips/:tripId/stages/:stageId')
+    .get(stage.read_a_stage)
+    .put(authController.verifyUser(['MANAGER']), stage.update_a_stage)
+    .delete(authController.verifyUser(['MANAGER']), stage.delete_a_stage)
+
+  /*
 
   app.route('/trips/:tripId/actors/:actorId/pay')
     .put(trip.pay_a_trip)
 
-  app.route('/trips/:tripId/stages')
-    .get(stage.list_all_stages)
-    .post(stage.create_a_stage)
 
-  app.route('/trips/:tripId/stages/:stageId')
-    .get(stage.read_a_stage)
-    .put(stage.update_a_stage)
-    .delete(stage.delete_a_stage)
 
-  app.route('/trips/:actorId')
-    .get(trip.list_actor_trips)
+
 
   app.route('/trips/:tripId/cancel')
     .put(trip.cancel_a_trip)
 
   app.route('/trips/:tripId/random-banner')
     .get(trip.select_random_banner)
+
+  */
 }

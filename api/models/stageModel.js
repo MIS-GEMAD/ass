@@ -25,6 +25,7 @@ const StageSchema = new Schema(
   { strict: true }
 );
 
+
 StageSchema.pre('save', function(callback) {
   const Trip = mongoose.model('Trip')
 
