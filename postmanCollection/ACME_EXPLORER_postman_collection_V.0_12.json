@@ -408,7 +408,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/actors/622f3e1e2946a83ccf7550b3",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -416,7 +416,7 @@
 							"port": "8080",
 							"path": [
 								"actors",
-								"622f3e1e2946a83ccf7550b3"
+								"622f3e1e60a1b9cbe9cac3af"
 							]
 						}
 					},
@@ -1677,18 +1677,21 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"type": "text"
+							},
+							{
+								"key": "idToken",
+								"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImIwNmExMTkxNThlOGIyODIxNzE0MThhNjdkZWE4Mzc0MGI1ZWU3N2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc4MDI1NDIsInVzZXJfaWQiOiJzcG9uc29yMUBzcG9uc29yMS5jb20iLCJzdWIiOiJzcG9uc29yMUBzcG9uc29yMS5jb20iLCJpYXQiOjE2NDc4MDI1NDIsImV4cCI6MTY0NzgwNjE0MiwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6e30sInNpZ25faW5fcHJvdmlkZXIiOiJjdXN0b20ifX0.WKJbEg9L2l7obdIdIZ5wvusbfUoPRsy8-5_sfwf29jPRdVg1UaOQ-7Z-qJlMSuaRdYqOb44hvNwZGazFsfcSqoAJJU2kiFwr37i07D5iGQaFypAYBIbSZwVyMICX_K1jyfjrtLqyoPyVF2rGrcxImSA1s0sa6Gfn1gQOcKT4jNxgFfIHvFvSqnhf88z65xwQmnveHDXYRHbb1kQ7rIF2TB9C7ZVGCqGjUqSveT_BjA2BE6aX-ptwhoTXK6rRqwP6u5vjrOz7VtbxFgF2E3sRxQyg7PjjaQ9edgBlZhrPCJDOcc5I1h9piX9Hs06AjFFdW5yEMvUG7cdYHAgpginARg",
+								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships",
+							"raw": "http://localhost:8080/sponsorships",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"actors",
-								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships"
 							]
 						}
@@ -1696,7 +1699,7 @@
 					"response": []
 				},
 				{
-					"name": "create_a_sponsorship 1",
+					"name": "create_a_sponsorship",
 					"event": [
 						{
 							"listen": "test",
@@ -1717,10 +1720,9 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
+								"key": "idToken",
+								"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImIwNmExMTkxNThlOGIyODIxNzE0MThhNjdkZWE4Mzc0MGI1ZWU3N2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc4MDI1NDIsInVzZXJfaWQiOiJzcG9uc29yMUBzcG9uc29yMS5jb20iLCJzdWIiOiJzcG9uc29yMUBzcG9uc29yMS5jb20iLCJpYXQiOjE2NDc4MDI1NDIsImV4cCI6MTY0NzgwNjE0MiwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6e30sInNpZ25faW5fcHJvdmlkZXIiOiJjdXN0b20ifX0.WKJbEg9L2l7obdIdIZ5wvusbfUoPRsy8-5_sfwf29jPRdVg1UaOQ-7Z-qJlMSuaRdYqOb44hvNwZGazFsfcSqoAJJU2kiFwr37i07D5iGQaFypAYBIbSZwVyMICX_K1jyfjrtLqyoPyVF2rGrcxImSA1s0sa6Gfn1gQOcKT4jNxgFfIHvFvSqnhf88z65xwQmnveHDXYRHbb1kQ7rIF2TB9C7ZVGCqGjUqSveT_BjA2BE6aX-ptwhoTXK6rRqwP6u5vjrOz7VtbxFgF2E3sRxQyg7PjjaQ9edgBlZhrPCJDOcc5I1h9piX9Hs06AjFFdW5yEMvUG7cdYHAgpginARg",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -1733,15 +1735,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships",
+							"raw": "http://localhost:8080/sponsorships",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"actors",
-								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships"
 							]
 						}
@@ -1749,60 +1749,7 @@
 					"response": []
 				},
 				{
-					"name": "create_a_sponsorship 2",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"create_an_sponsorship 2\",()=>{\r",
-									"    pm.response.to.have.status(201);\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"banner\": \"http://facebook.com\",\r\n    \"link\": \"http://aliqua.com/81e03759-bb85-409e-bdf9-1ed3f5f63b17\",\r\n    \"trip\": [\"621cd18c7984f97f14e9b101\"]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"actors",
-								"622f3e1e60a1b9cbe9cac3af",
-								"sponsorships"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "read_a_sponsorship 1",
+					"name": "read_a_sponsorship",
 					"event": [
 						{
 							"listen": "test",
@@ -1823,27 +1770,30 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"type": "text"
+							},
+							{
+								"key": "idToken",
+								"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImIwNmExMTkxNThlOGIyODIxNzE0MThhNjdkZWE4Mzc0MGI1ZWU3N2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc4MDI1NDIsInVzZXJfaWQiOiJzcG9uc29yMUBzcG9uc29yMS5jb20iLCJzdWIiOiJzcG9uc29yMUBzcG9uc29yMS5jb20iLCJpYXQiOjE2NDc4MDI1NDIsImV4cCI6MTY0NzgwNjE0MiwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6e30sInNpZ25faW5fcHJvdmlkZXIiOiJjdXN0b20ifX0.WKJbEg9L2l7obdIdIZ5wvusbfUoPRsy8-5_sfwf29jPRdVg1UaOQ-7Z-qJlMSuaRdYqOb44hvNwZGazFsfcSqoAJJU2kiFwr37i07D5iGQaFypAYBIbSZwVyMICX_K1jyfjrtLqyoPyVF2rGrcxImSA1s0sa6Gfn1gQOcKT4jNxgFfIHvFvSqnhf88z65xwQmnveHDXYRHbb1kQ7rIF2TB9C7ZVGCqGjUqSveT_BjA2BE6aX-ptwhoTXK6rRqwP6u5vjrOz7VtbxFgF2E3sRxQyg7PjjaQ9edgBlZhrPCJDOcc5I1h9piX9Hs06AjFFdW5yEMvUG7cdYHAgpginARg",
+								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships/622f3e1ecd6edad051f8c8ad",
+							"raw": "http://localhost:8080/sponsorships/62377cbcf0bfd42c3667c2fd",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"actors",
-								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships",
-								"622f3e1ecd6edad051f8c8ad"
+								"62377cbcf0bfd42c3667c2fd"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "update_a_sponsorship 1",
+					"name": "update_a_sponsorship",
 					"event": [
 						{
 							"listen": "test",
@@ -1880,24 +1830,22 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships/622f3e1ecd6edad051f8c8ad",
+							"raw": "http://localhost:8080/sponsorships/62377fe7b22591309958c35b",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"actors",
-								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships",
-								"622f3e1ecd6edad051f8c8ad"
+								"62377fe7b22591309958c35b"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "delete_a_sponsorship 2",
+					"name": "delete_a_sponsorship",
 					"event": [
 						{
 							"listen": "test",
@@ -1918,10 +1866,9 @@
 						"method": "DELETE",
 						"header": [
 							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
+								"key": "idToken",
+								"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImIwNmExMTkxNThlOGIyODIxNzE0MThhNjdkZWE4Mzc0MGI1ZWU3N2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc4MDI1NDIsInVzZXJfaWQiOiJzcG9uc29yMUBzcG9uc29yMS5jb20iLCJzdWIiOiJzcG9uc29yMUBzcG9uc29yMS5jb20iLCJpYXQiOjE2NDc4MDI1NDIsImV4cCI6MTY0NzgwNjE0MiwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6e30sInNpZ25faW5fcHJvdmlkZXIiOiJjdXN0b20ifX0.WKJbEg9L2l7obdIdIZ5wvusbfUoPRsy8-5_sfwf29jPRdVg1UaOQ-7Z-qJlMSuaRdYqOb44hvNwZGazFsfcSqoAJJU2kiFwr37i07D5iGQaFypAYBIbSZwVyMICX_K1jyfjrtLqyoPyVF2rGrcxImSA1s0sa6Gfn1gQOcKT4jNxgFfIHvFvSqnhf88z65xwQmnveHDXYRHbb1kQ7rIF2TB9C7ZVGCqGjUqSveT_BjA2BE6aX-ptwhoTXK6rRqwP6u5vjrOz7VtbxFgF2E3sRxQyg7PjjaQ9edgBlZhrPCJDOcc5I1h9piX9Hs06AjFFdW5yEMvUG7cdYHAgpginARg",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -1934,15 +1881,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships/622f3e1ecd6edad051f8c8ad",
+							"raw": "http://localhost:8080/sponsorships/622f3e1ecd6edad051f8c8ad",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"actors",
-								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships",
 								"622f3e1ecd6edad051f8c8ad"
 							]
