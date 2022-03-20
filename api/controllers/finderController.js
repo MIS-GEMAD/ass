@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 
 const Finder = mongoose.model("Finder");
 
+const Configuration = mongoose.model("Configuration");
+
 const authController = require('../controllers/authController')
 
 exports.create_a_finder_criteria = async function (req, res) {
@@ -24,5 +26,24 @@ exports.create_a_finder_criteria = async function (req, res) {
       res.status(200).json(finder);
     }
   });
-
 };
+
+exports.flush_finder_criterias = function (req, res) {
+  Configuration.find({}, function (err, configurations) {
+    const configuration = configurations[0]
+    if (err) {
+      res.status(404).send(err)
+    } else {
+      Finder.find({}, async function (err, finders) {
+        for (const finder of finders) {
+          const now = new Date()
+          const flush_period = configuration.flush_finder_criterias 
+          if (finder.moment.getHours() <= now.getHours()) {
+            Finder.updateOne({ _id: finder._id }, { $set: { trips: [] } }, function(err, finder){ });
+          }
+        }
+        res.status(201).send('All finders flushed!')
+      })
+    }
+  })
+}
