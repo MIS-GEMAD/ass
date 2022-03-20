@@ -92,13 +92,12 @@ var configuration = new Configuration({
 })
 
 var cube = new Cube({
-  period: 0,
-  explorer:0,
-  money_in_period: 0
+  money_in_period: 0,
+  explorers_in_period: []
 })
 
-// mongoose.connection.dropCollection('configurations')
-// mongoose.connection.dropCollection('cubes')
+mongoose.connection.dropCollection('configurations')
+mongoose.connection.dropCollection('cubes')
 
 configuration.save()
 
