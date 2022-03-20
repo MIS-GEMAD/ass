@@ -3,9 +3,12 @@
 const mongoose = require("mongoose");
 
 const Trip = mongoose.model("Trip");
+const Stage = mongoose.model("Stage");
 const Application = mongoose.model("Application");
 const Actor = mongoose.model("Actor");
 const Sponsorship = mongoose.model("Sponsorship");
+
+const authController = require('./authController')
 
 exports.list_all_trips = function (req, res) {
   Trip.find({}, function (err, trip) {
@@ -17,13 +20,30 @@ exports.list_all_trips = function (req, res) {
   });
 };
 
-exports.create_a_trip = function (req, res) {
+exports.create_a_trip = async function (req, res) {
   const newTrip = new Trip(req.body)
+
+  // associate manager to trip
+  const idToken = req.header('idToken')
+  const managerId = await authController.getUserId(idToken)
+  newTrip.manager = managerId
+
   newTrip.save(function (err, trip) {
     if (err) {
       res.status(400).send(err);
     } else {
-      res.status(201).json(trip);
+
+      // updated the manager trip list
+      Actor.findOneAndUpdate({ _id: trip.manager._id }, {"$push": {trips: trip._id}}, { new: true }, function(err, result){
+        if(err){
+          res.send(err)
+        }
+        else{
+          res.status(201).json(trip);
+        }
+      })
+
+      
     }
   });
 };
@@ -38,44 +58,85 @@ exports.read_a_trip = function (req, res) {
   });
 };
 
-exports.update_a_trip = function (req, res) {
-  Trip.findById(req.params.tripId, function (err, trip) {
+exports.update_a_trip = async function (req, res) {
+
+  Trip.findById(req.params.tripId, async function (err, trip) {
     if (err) {
       res.status(404).send(err);
     } else {
-      if( !trip.is_published ) {
-        Trip.findOneAndUpdate({ _id: req.params.tripId }, req.body, { new: true }, function (err, trip) {
-            if (err) {
-              res.status(400).send(err);
-            } else {
-              res.status(201).json(trip);
-            }
-          }
-        );
-      } else {
+
+      // check if trip is from auth manager
+      const idToken = req.header('idToken')
+      let authManagerId = await authController.getUserId(idToken)
+      authManagerId = String(authManagerId)
+      let tripManagerId = trip.manager
+      tripManagerId = String(tripManagerId)
+
+      if(authManagerId != tripManagerId){
+        res.status(401).send({ message: 'This manager does not have permissions to edit this trip', error: err })
+      } else{
+        if( !trip.is_published ) {
+          Trip.findOneAndUpdate({ _id: req.params.tripId }, req.body, { new: true }, function (err, trip) {
+              if (err) {
+                res.status(400).send(err);
+              } else {
+                res.status(200).json(trip);
+              }
+          });
+        } else {
         res.status(400).send({ err: 'Cannot update a published trip' });
       }
+      }
+
+      
     }
   })
 };
 
-exports.delete_a_trip = function (req, res) {
-  Trip.findById(req.params.tripId, function (err, trip) {
+exports.delete_a_trip = async function (req, res) {
+  Trip.findById(req.params.tripId, async function (err, trip) {
     if (err) {
       res.status(404).send(err);
     } else {
-      if( !trip.is_published ) {
-        Trip.deleteOne({ _id: req.params.tripId }, function (err, trip) {
+
+      // check if trip is from auth manager
+      const idToken = req.header('idToken')
+      let authManagerId = await authController.getUserId(idToken)
+      authManagerId = String(authManagerId)
+      let tripManagerId = trip.manager
+      tripManagerId = String(tripManagerId)
+
+      if(authManagerId != tripManagerId){
+        res.status(401).send({ message: 'This manager does not have permissions to delete this trip'})
+      } else {
+        if( !trip.is_published ) {
+          Trip.deleteOne({ _id: req.params.tripId }, function (err, trip) {
             if (err) {
               res.status(400).send(err);
             } else {
-              res.status(204).json({ message: "Trip successfully deleted" });
+
+              // delete trip reference in manager trips
+              Actor.findById(authManagerId, function (err, manager) {
+                let filtered_trips_manager = manager.trips.filter(function(value, index, arr){ 
+                  return value != tripManagerId;
+                });
+                manager.trips = filtered_trips_manager
+              })
+
+              // delete all stages
+              Stage.deleteMany({ trip: req.params.tripId }, function(err){
+                console.log("deleting stages from trip " + req.params.tripId )
+                res.status(204).send ({ message: "Trip successfully deleted" });
+              })
+
             }
-          }
-        );
-      } else {
-        res.status(400).send({ err: 'Cannot delete a published trip' });
+          });
+        } else {
+          res.status(400).send({ err: 'Cannot delete a published trip' });
+        }
       }
+
+      
     }
   });
 };
@@ -163,8 +224,13 @@ exports.pay_a_trip = function (req, res) {
   });
 };
 
-exports.list_actor_trips = function (req, res) {
-  Trip.find({ actor: req.params.actorId }, function (err, trips) {
+exports.list_trips_from_auth_manager = async function (req, res) {
+
+  // get auth manager
+  const idToken = req.header('idToken')
+  const managerId = await authController.getUserId(idToken)
+
+  Trip.find({ manager: managerId }, function (err, trips) {
     if (err) {
       res.status(400).send(err);
     } else {

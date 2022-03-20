@@ -3,12 +3,12 @@
   "ban": "false",
   "name": "Arline",
   "role": "SPONSOR",
-  "email": "xDWaVezT4205@gmail.com",
+  "email": "sponsor1@sponsor1.com",
   "phone": "3957142707",
   "address": "21 Lawton Street, Coaldale, Tennessee",
   "created": "2020-03-24T05:08:06.482Z",
   "surname": "Blackburn",
-  "password": "c3ca81b0-7bda-4d93-93d0-e1284a5eebab",
+  "password": "sponsor1",
   "validated": "true",
   "preferred_language": "English",
   "_id": "622f3e1e60a1b9cbe9cac3af",
@@ -27,18 +27,19 @@
     "622f3e1d2cbe75c2c4bb54da",
     "622f3e1d1b7e715d3288a25e",
     "622f3e1d9357fe693f05ae64"
-  ]
+  ],
+  "customToken" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTY0NzY4ODM4MCwiZXhwIjoxNjQ3NjkxOTgwLCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay00cjUyNEBhY21lZXhwbG9yZXJhdXRoLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwic3ViIjoiZmlyZWJhc2UtYWRtaW5zZGstNHI1MjRAYWNtZWV4cGxvcmVyYXV0aC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6InNwb25zb3IxQHNwb25zb3IxLmNvbSJ9.KrkFIuxTZTVz3hs8C7tX1kbTreagucqmvwIJTlvGei8YmK1Gyj2eqSdWUTvAOfGCJFzF6Y_7963wIgngn0P5PF2uCBSC231hrecBiKINB9CjyktE_vITrEsCOpHmhyk3MQf9hFAfhTkIEhXLHe32aGkPpqS8vESU0ZdeCDst-acEV9WSfcBLh6depvSaDhsIwhiWWxsEfs2dv1Hfk_Y8TbL2wgvxbxtggyiC8iKK8FEFqf48pu5SQs5suh2Bl6O39psjmrbuyp6hZbnL3NqRtfRHuDe3ecnAfIg1R92SzH9fSVOeQdjVhTrhuUxrh9A3QZZtrLmmsVBQGNbJP5jkaw"
 },
 {
   "ban": "false",
   "name": "Celia",
   "role": "EXPLORER",
-  "email": "BnBZoIDG6407@gmail.com",
+  "email": "explorer1@explorer1.com",
   "phone": "2614961979",
   "address": "64 Louise Terrace, Wyoming, Alabama",
   "created": "2020-04-04T08:09:47.953Z",
   "surname": "Park",
-  "password": "44773bbf-b534-421d-abf1-4c9054f161d1",
+  "password": "explorer1",
   "validated": "true",
   "preferred_language": "English",
   "_id": "622f3e1e2d80876e23c942ec",
@@ -59,32 +60,34 @@
     "622f3e1d376310ddf3862b76",
     "622f3e1dba2b63c969054393",
     "622f3e1d3ba7ac3538dbf346"
-  ]
+  ],
+  "customToken" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTY0NzY5MDY1NywiZXhwIjoxNjQ3Njk0MjU3LCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay00cjUyNEBhY21lZXhwbG9yZXJhdXRoLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwic3ViIjoiZmlyZWJhc2UtYWRtaW5zZGstNHI1MjRAYWNtZWV4cGxvcmVyYXV0aC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6ImV4cGxvcmVyMUBleHBsb3JlcjEuY29tIn0.UMZA7Hi7Dp06GKpJnna3R0PtmW7v2RqqL5dcmGOIiMqOfrnXtcRzovRVCzp0fefZP53jJReodCPfVgdMgph9y_Ev_labmBC5WASgYVBiqst2ZlX_uc59ukfoRKvr-qdMmu6EOBCHjE_cBRmZ-70xB8OrF40JJciTBa7V4xhOysLsCs_T_NVfio3Nfu8OLfHCoY7oSmx3iz70it54cTfrTqOv-ftmH29kBflbwYgLNQZJUNqk7WRrlcwbcldS6T7HRHswQbg8IfKpQA8eaeZXaaRGh2rSiGprXHXBrNRRCL6uV_L8DsirYbo4GNG73LZ4xC0eu5KA1BwACaWrjvc22Q"
 },
 {
-  "ban": "true",
+  "ban": "false",
   "name": "Hinton",
   "role": "ADMINISTRATOR",
-  "email": "ZXEKUdeh4426@gmail.com",
+  "email": "admin1@admin1.com",
   "phone": "9693811624",
   "address": "46 Eckford Street, Norris, Colorado",
   "created": "2021-05-02T09:47:49.361Z",
   "surname": "Scott",
-  "password": "e2859214-ded1-4482-967d-a5aaf2587dfe",
-  "validated": "false",
+  "password": "admin1",
+  "validated": "true",
   "preferred_language": "English",
-  "_id": "622f3e1e7bc702ec587d0528"
+  "_id": "622f3e1e7bc702ec587d0528",
+  "customToken" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTY0NzY5MTA3MywiZXhwIjoxNjQ3Njk0NjczLCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay00cjUyNEBhY21lZXhwbG9yZXJhdXRoLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwic3ViIjoiZmlyZWJhc2UtYWRtaW5zZGstNHI1MjRAYWNtZWV4cGxvcmVyYXV0aC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6ImFkbWluMUBhZG1pbjEuY29tIn0.JoIHUJgu0UlY5VIFsF5_R4NVOXHAIkJZunhZvGl1slQ3JEmkCor7VGGolyGHZCrQW2kFbTH7FXza3JRnJ_8gFA2GEke794DsUh7GVU7r_3NwFXHmKBRAdydOR1VvL4ZBWca9P8O5Kv1UrD3VnFf-kZDms09in4NKuErUd8K-iOmZ-c11GQ6xJH2SVOVdLFiSGh4SaS-_oVR7hyS8CQWHxtSGdCWjiZC69j8yqL4jWsR0MAJlFGGrhcQrjV-4wj5hL8eUGX-xB7QvbyLt-R9BBb6X5IBtlN70Xw9JZKDUpmm9VYvGccqm7MGd1UMVsKZo9KRZvaVxEjIMyMav6FfYCw"
 },
 {
-  "ban": "true",
+  "ban": "false",
   "name": "Alvarado",
   "role": "SPONSOR",
-  "email": "himFAjds5252@gmail.com",
+  "email": "sponsor2@sponsor2.com",
   "phone": "2702001961",
   "address": "7 Schermerhorn Street, Lowgap, American Samoa",
   "created": "2021-03-16T14:14:25.231Z",
   "surname": "Wilkerson",
-  "password": "5fd9b5b7-2731-49fc-96cc-076454509ebc",
+  "password": "sponsor2",
   "validated": "true",
   "preferred_language": "English",
   "_id": "622f3e1e7abaa820d5e0a624",
@@ -98,18 +101,19 @@
   "finders": [
     "622f3e1d2ff4e65b268881ba",
     "622f3e1d54eb9971006dea92"
-  ]
+  ],
+  "customToken" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTY0NzY5MTA3MywiZXhwIjoxNjQ3Njk0NjczLCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay00cjUyNEBhY21lZXhwbG9yZXJhdXRoLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwic3ViIjoiZmlyZWJhc2UtYWRtaW5zZGstNHI1MjRAYWNtZWV4cGxvcmVyYXV0aC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6ImFkbWluMUBhZG1pbjEuY29tIn0.JoIHUJgu0UlY5VIFsF5_R4NVOXHAIkJZunhZvGl1slQ3JEmkCor7VGGolyGHZCrQW2kFbTH7FXza3JRnJ_8gFA2GEke794DsUh7GVU7r_3NwFXHmKBRAdydOR1VvL4ZBWca9P8O5Kv1UrD3VnFf-kZDms09in4NKuErUd8K-iOmZ-c11GQ6xJH2SVOVdLFiSGh4SaS-_oVR7hyS8CQWHxtSGdCWjiZC69j8yqL4jWsR0MAJlFGGrhcQrjV-4wj5hL8eUGX-xB7QvbyLt-R9BBb6X5IBtlN70Xw9JZKDUpmm9VYvGccqm7MGd1UMVsKZo9KRZvaVxEjIMyMav6FfYCw"
 },
 {
-  "ban": "true",
+  "ban": "false",
   "name": "Mindy",
   "role": "MANAGER",
-  "email": "pbVzpUgD5416@gmail.com",
+  "email": "manager1@manager1.com",
   "phone": "9886340789",
   "address": "1 Herkimer Place, Cashtown, Mississippi",
   "created": "2021-04-01T14:41:31.618Z",
   "surname": "Robinson",
-  "password": "ef7bf3e7-9ee4-47ac-b1a0-743cecc76c28",
+  "password": "manager1",
   "validated": "true",
   "preferred_language": "Spanish",
   "_id": "622f3e1e2946a83ccf7550b3",
@@ -140,19 +144,20 @@
     "622f3e1d23355ca456d2bc5f",
     "622f3e1d9e6d6d8552b0864b",
     "622f3e1dabfb1a6212f73773"
-  ]
+  ],
+  "customToken" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTY0NzY5MDU0NSwiZXhwIjoxNjQ3Njk0MTQ1LCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay00cjUyNEBhY21lZXhwbG9yZXJhdXRoLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwic3ViIjoiZmlyZWJhc2UtYWRtaW5zZGstNHI1MjRAYWNtZWV4cGxvcmVyYXV0aC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6Im1hbmFnZXIxQG1hbmFnZXIxLmNvbSJ9.DGJBOju-w_yh3fs1z9gY8XyHA1vZlwN9sK4f0-KYAUd07otI3-Of0h_9-h-LzzLF5d-s6SS0tYQ1I7druHrgzjwayj6MSb0Tm8eRd0Z4wqqU5RYocPTMvjMzJRJesKM3tqHqBFO4tQsDYgBquSU2ovfExUZnOyjGgbhuJ8KJZIFCh09H-9SG4mX_8Eg1gh_tL-cJT9zNxWTykZaUIvYxEy8gIZyliw9FyDd73mCHhlmrhmH3iRdZ6Hzhz35QIeMa_UNnzBfzHHr6r_b4b8T3jF3YC7rA1jxWHEuwD0M78aIROPjFryGH49uO7sJrUFPKfJ38aHJ4inuBucIpu58WEw"
 },
 {
   "ban": "false",
   "name": "Scott",
   "role": "EXPLORER",
-  "email": "nahKDzza4117@gmail.com",
+  "email": "explorer2@explorer2.com",
   "phone": "4551352484",
   "address": "41 Fane Court, Greenock, North Dakota",
   "created": "2020-08-27T19:36:57.725Z",
   "surname": "Burris",
-  "password": "040c2a0a-e425-4afc-aed1-c81a8a0c7b69",
-  "validated": "false",
+  "password": "explorer2",
+  "validated": "true",
   "preferred_language": "Spanish",
   "_id": "622f3e1ec8d1a5af269d6443",
   "applications": [
@@ -173,7 +178,8 @@
   "finders": [
     "622f3e1d120fc290aa23f955",
     "622f3e1da3f12730016b3dd9"
-  ]
+  ],
+  "customToken" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTY0NzY5MDQ3MywiZXhwIjoxNjQ3Njk0MDczLCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay00cjUyNEBhY21lZXhwbG9yZXJhdXRoLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwic3ViIjoiZmlyZWJhc2UtYWRtaW5zZGstNHI1MjRAYWNtZWV4cGxvcmVyYXV0aC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6ImV4cGxvcmVyMkBleHBsb3JlcjIuY29tIn0.XjYhVMpaoSEnADhwvSUwpAaboipW0exVg7BGQCWIOUXAC7mwvay8LFMTuqILtUhr3fVEnJ7mBOJX2JD5FQe8VIRWmHbpigDYCAJ1rXz4MSwDbB2xQj1Ab7_lIUfM8_nLVjh5_NtkXRGSeDRJ-E1ktasSNqZA54CS6eXUg0vjgCZvAXr9KfzzIAK4nZRpQpu_0pyOScUGpMVdCtmHyvAlnTAc9tslVHOArnDm-PXqbcbwhlDUG7RgtZsGX5jpngwXSfgIG8oY0HXrweHDpocTEmqbC1-hqSzE_p6tTVvlU9hD4PxPMwyOBep5Lgv4S2cLgsux6OK9V4a-zvOZ-4tHGA"
 },
 {
   "ban": "true",
@@ -203,15 +209,16 @@
   "ban": "false",
   "name": "Sanford",
   "role": "ADMINISTRATOR",
-  "email": "wCxfWuZR2696@gmail.com",
+  "email": "admin2@admin2.com",
   "phone": "5638086920",
   "address": "71 Seigel Street, Canby, New Hampshire",
   "created": "2021-05-25T18:11:28.832Z",
   "surname": "Decker",
-  "password": "6b283e07-f86d-4a59-8f24-8e081b052a7e",
+  "password": "admin2",
   "validated": "true",
   "preferred_language": "English",
-  "_id": "622f3e1e31cc821a015c09d0"
+  "_id": "622f3e1e31cc821a015c09d0",
+  "customToken" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTY0NzY5MTI0NiwiZXhwIjoxNjQ3Njk0ODQ2LCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay00cjUyNEBhY21lZXhwbG9yZXJhdXRoLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwic3ViIjoiZmlyZWJhc2UtYWRtaW5zZGstNHI1MjRAYWNtZWV4cGxvcmVyYXV0aC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6ImFkbWluMkBhZG1pbjIuY29tIn0.waS9fG-GtcMF_8isjG7LhX0L0eJI_DHbXI45X8b8QDxmlNd1lrQeH8Rke9uOcJHdkEcAFiEHPpbgeQxo4UWwAYPOccUe2AufBGhA1usowUENgqCiYCT814Qp7GFbr16F_ecYOAf9ApctfNYQMM-gwMGRrYPMQKfcw2E3FDVNMn-imkomi5TvSG7_ilxQ4UFntpXdogIKqE-8tCvnvftfPic3WbW-0OGIXUqfQnjp4kg3cKKCls_oJnO_-xDEt-IepjZUZjO-8xRe6twVvf2kjTYJ5_ujGvdq_y-gsb6sQjZl8pU2XcZyStAJfn1GlmF1qfTjbQ0DBLJX07Sxs52WsA"
 },
 {
   "ban": "true",
@@ -537,16 +544,16 @@
   ]
 },
 {
-  "ban": "true",
+  "ban": "false",
   "name": "Tami",
   "role": "MANAGER",
-  "email": "BZvvNPUd7376@gmail.com",
+  "email": "manager2@manager2.com",
   "phone": "6885923765",
   "address": "61 Schenck Avenue, Bascom, District Of Columbia",
   "created": "2021-12-27T10:32:21.176Z",
   "surname": "Juarez",
-  "password": "5ef1c107-98e6-43b4-a3fc-6de2bafd407e",
-  "validated": "false",
+  "password": "manager2",
+  "validated": "true",
   "preferred_language": "English",
   "_id": "622f3e1e3215d2c3a587e5ec",
   "applications": [
@@ -577,7 +584,8 @@
     "622f3e1d1663753531ed9835",
     "622f3e1d27949083761f2d47",
     "622f3e1d82dfc8892bd9047b"
-  ]
+  ],
+  "customToken" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTY0NzY5MDc5NCwiZXhwIjoxNjQ3Njk0Mzk0LCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay00cjUyNEBhY21lZXhwbG9yZXJhdXRoLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwic3ViIjoiZmlyZWJhc2UtYWRtaW5zZGstNHI1MjRAYWNtZWV4cGxvcmVyYXV0aC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6Im1hbmFnZXIyQG1hbmFnZXIyLmNvbSJ9.XnoOx2sAM-IwoVcnC-oYIaPS1AqQrELzQG9fN9-QG2d0FfvQawJir8EFbs0eu5RW89NZx_uAzuAKcqIQkWJLARpjT2k8M-aabY5XJGL7yPcMBJ0i2EtX7ORsSbdBYdIrn216Y8CsuZXTYdJuLYZAYmlJ6Non8JcYMFAXSLGL1nVen3O2zyOe9YOKTC4Ll-Q5suLaL7k7Kp4t0V_nQCQLfCi00kTIv0FXcg5CWySIHIpl5NeRhNxf87drPY3E9DtotCpZaXmnvGRkiP8ifSKmmQth2bZI1F0PVOd8srybuB-49_12LqIYlk33qM0ipaMt_YeoIH1vmWkJtNk0jIIEpA"
 },
 {
   "ban": "false",

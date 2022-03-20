@@ -15,6 +15,7 @@ const Configuration = require("./api/models/configurationModel");
 const Finder = require("./api/models/finderModel");
 const Sponsorship = require("./api/models/sponsorshipModel");
 const Dashboard = require("./api/models/dashboardModel");
+const Cube = require("./api/models/cubeModel");
 const DashboardTools = require('./api/controllers/dashboardController')
 
 // firebase
@@ -87,15 +88,24 @@ mongoose.connection.on("error", function (err) {
 // mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
 
 // save inital configuration variables
-mongoose.connection.dropCollection('configurations')
-
 var configuration = new Configuration({
-    flat_rate: 0,
-    flush_period:1,
-    max_finder_result: 10
+  flat_rate: 0,
+  flush_period:1,
+  max_finder_result: 10
 })
-  
+
+var cube = new Cube({
+  period: 0,
+  explorer:0,
+  money_in_period: 0
+})
+
+// mongoose.connection.dropCollection('configurations')
+// mongoose.connection.dropCollection('cubes')
+
 configuration.save()
+
+cube.save()
 
 DashboardTools.createDashboardJob();
 

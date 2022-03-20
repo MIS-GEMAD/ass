@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 const Finder = mongoose.model("Finder");
 const Trip = mongoose.model("Trip");
+const Actor = mongoose.model("Actor");
 
 exports.create_a_finder_criteria = function (req, res) {
   Actor.findById(req.body.actor, function (err, explorer) {

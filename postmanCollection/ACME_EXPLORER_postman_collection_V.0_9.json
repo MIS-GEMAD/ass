@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "aa2af6ef-f4f9-437e-acbc-caef46152bac",
+		"_postman_id": "8f9cc814-86f8-422e-829b-70ce7d2f3831",
 		"name": "ACME EXPLORER",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -354,15 +354,14 @@
 						"method": "PUT",
 						"header": [
 							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
+								"key": "idToken",
+								"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImIwNmExMTkxNThlOGIyODIxNzE0MThhNjdkZWE4Mzc0MGI1ZWU3N2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc3MDEzNDMsInVzZXJfaWQiOiJleHBsb3JlcjFAZXhwbG9yZXIxLmNvbSIsInN1YiI6ImV4cGxvcmVyMUBleHBsb3JlcjEuY29tIiwiaWF0IjoxNjQ3NzAxMzQzLCJleHAiOjE2NDc3MDQ5NDMsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnt9LCJzaWduX2luX3Byb3ZpZGVyIjoiY3VzdG9tIn19.gvrprXVLcUMRdVA8EtgxZw300mZf9EPrYb-jk8aaUWdXI40LPYvw8aGzmEqqOG9ku_QROGZyh8hRAIgBVXlyIXMhhNkU0PXDml8s_CkfjJTw3CxEjnocetiD_AH1o7FbZ_vf1gF4mYnEBWDizvm5unZ1nUg8g-o6e9_FgN-9Mc-Itv0jKxC3pVm31Y99W3KMKggcQkDlNKdMfgMwe9uw9vmjDPCpKDpBCHwEUauY13Mxleg6Y3sbJAdkLw8zTj01_vmRaqP-Nhww7qIZ-VLeHTl2XvbtkbkbhdNtfatZIh9Ox0Yrk_LJTMVI_Cu38v4tYa1DraBRwcZWR7zmyNTuzA",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"password\": \"123456ABCDEFGH\",\r\n    \"role\": [\r\n        \"EXPLORER\"\r\n    ],\r\n    \"name\": \"Manuel\",\r\n    \"surname\": \"García\",\r\n    \"email\": \"antoniogarcia123@gmail.com\",\r\n    \"phone\": \"623154879\",\r\n    \"address\": \"Calle Resolana\",\r\n    \"trips\": [\"621cbe9ecf1e47108c29a316\"],\r\n    \"applications\": [],\r\n    \"search_criteria\": [],\r\n    \"sponshorships\": [],\r\n    \"validated\": false,\r\n    \"preferred_language\": \"Spanish\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Manuel\",\r\n    \"surname\": \"García\",\r\n    \"phone\": \"623154879\",\r\n    \"address\": \"Calle Resolana\",\r\n    \"preferred_language\": \"Spanish\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -370,7 +369,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/actors/622780f92d516d895cceaad0",
+							"raw": "http://localhost:8080/actors/622f3e1e2d80876e23c942ec",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -378,14 +377,14 @@
 							"port": "8080",
 							"path": [
 								"actors",
-								"622780f92d516d895cceaad0"
+								"622f3e1e2d80876e23c942ec"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "read_an_actor 1 (EXPLORER SPANISH)",
+					"name": "read_an_actor (EXPLORER SPANISH)",
 					"event": [
 						{
 							"listen": "test",
@@ -409,7 +408,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/actors/622780f92d516d895cceaad0",
+							"raw": "http://localhost:8080/actors/622f3e1e2946a83ccf7550b3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -417,7 +416,7 @@
 							"port": "8080",
 							"path": [
 								"actors",
-								"622780f92d516d895cceaad0"
+								"622f3e1e2946a83ccf7550b3"
 							]
 						}
 					},
@@ -451,7 +450,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/actors/622780f92d516d895cceaad0/ban",
+							"raw": "http://localhost:8080/actors/622f3e1e2d80876e23c942ec",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -459,8 +458,7 @@
 							"port": "8080",
 							"path": [
 								"actors",
-								"622780f92d516d895cceaad0",
-								"ban"
+								"622f3e1e2d80876e23c942ec"
 							]
 						}
 					},
@@ -551,6 +549,34 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "list_explorer_applications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actors/622f3e1e2d80876e23c942ec/applications/?status=accepted",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actors",
+								"622f3e1e2d80876e23c942ec",
+								"applications",
+								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "accepted"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -596,7 +622,7 @@
 					"response": []
 				},
 				{
-					"name": "create_a_trip 1",
+					"name": "create_a_trip",
 					"event": [
 						{
 							"listen": "test",
@@ -617,15 +643,14 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
+								"key": "idToken",
+								"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImYxZDU2YTI1MWU0ZGRhM2Y0NWM0MWZkNWQ0ZGEwMWQyYjlkNzJlMGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc3MjE5MzQsInVzZXJfaWQiOiJtYW5hZ2VyMUBtYW5hZ2VyMS5jb20iLCJzdWIiOiJtYW5hZ2VyMUBtYW5hZ2VyMS5jb20iLCJpYXQiOjE2NDc3MjE5MzQsImV4cCI6MTY0NzcyNTUzNCwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6e30sInNpZ25faW5fcHJvdmlkZXIiOiJjdXN0b20ifX0.KWLokTpQpPPzSGdDaINocHDAZPlC0O-rvn2U2WLGsAUC6h1b4tXZ4kb66F5CyuIHghTzfE8lKp7nwqw_pL5FJYNvcncBq0mOdJILD686w0lMRPWt6Dy71HtzsDmCG6LWHLCJIuHcLjdtS3pIErGoI9QuZbAuFNCkCfOVbIOtPwFBAMuZD32FjHrmGT3K4U0ep-Y3fiQ_vyr1EssSa8Xk_20RsSDfy3BfTxcjVbGJg9--9g6XTCkAqgdPgfC-7nn70r9trw5J6rmEJ0fOJIdlNzPYqtOu5W7OqNdavCwpLsS5kETJEvN3sR1c8FmGgRwEj8pySOTj8OrWSfkH7dl_SA",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ticker\": \"220228-DBAE\",\r\n    \"title\": \"viaje a chipiona\",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"price\": 107.38,\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"start_date\": \"2023-01-03T22:47:50.569Z\",\r\n    \"end_date\": \"2023-11-02T19:16:03.854Z\",\r\n    \"is_cancelled\": false,\r\n    \"is_published\": false,\r\n    \"manager\": \"621cb9dc08e258a4d12b830e\"\r\n}",
+							"raw": "{\r\n    \"ticker\": \"220228-DBAE\",\r\n    \"title\": \"Viajesito rico\",\r\n    \"description\": \"Esto es una maravilla\",\r\n    \"price\": 107.38,\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"start_date\": \"2023-01-03T22:47:50.569Z\",\r\n    \"end_date\": \"2023-11-02T19:16:03.854Z\",\r\n    \"is_cancelled\": false,\r\n    \"is_published\": false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -647,58 +672,51 @@
 					"response": []
 				},
 				{
-					"name": "create_a_trip 2",
+					"name": "list_trips_from_auth_manager",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"create_a_trip 2\",()=>{\r",
-									"    pm.response.to.have.status(201);\r",
-									"})"
+									"pm.test(\"TEST GET ALL TRIPS OF AN ACTOR\",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "idToken",
+								"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImYxZDU2YTI1MWU0ZGRhM2Y0NWM0MWZkNWQ0ZGEwMWQyYjlkNzJlMGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc3MjE5MzQsInVzZXJfaWQiOiJtYW5hZ2VyMUBtYW5hZ2VyMS5jb20iLCJzdWIiOiJtYW5hZ2VyMUBtYW5hZ2VyMS5jb20iLCJpYXQiOjE2NDc3MjE5MzQsImV4cCI6MTY0NzcyNTUzNCwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6e30sInNpZ25faW5fcHJvdmlkZXIiOiJjdXN0b20ifX0.KWLokTpQpPPzSGdDaINocHDAZPlC0O-rvn2U2WLGsAUC6h1b4tXZ4kb66F5CyuIHghTzfE8lKp7nwqw_pL5FJYNvcncBq0mOdJILD686w0lMRPWt6Dy71HtzsDmCG6LWHLCJIuHcLjdtS3pIErGoI9QuZbAuFNCkCfOVbIOtPwFBAMuZD32FjHrmGT3K4U0ep-Y3fiQ_vyr1EssSa8Xk_20RsSDfy3BfTxcjVbGJg9--9g6XTCkAqgdPgfC-7nn70r9trw5J6rmEJ0fOJIdlNzPYqtOu5W7OqNdavCwpLsS5kETJEvN3sR1c8FmGgRwEj8pySOTj8OrWSfkH7dl_SA",
+								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"ticker\": \"20210228-D\",\r\n    \"title\": \"viaje a matalascañas\",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"price\": 107.38,\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"start_date\": \"2023-01-03T22:47:50.569Z\",\r\n    \"end_date\": \"2023-11-02T19:16:03.854Z\",\r\n    \"isCancelled\": false,\r\n    \"manager\": \"621cb9dc08e258a4d12b830e\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8080/trips",
+							"raw": "http://localhost:8080/trips/owns",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"trips"
+								"trips",
+								"owns"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "read_a_trip 1",
+					"name": "read_a_trip",
 					"event": [
 						{
 							"listen": "test",
@@ -722,7 +740,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/trips/622e57a69879d3fe41b48d5a",
+							"raw": "http://localhost:8080/trips/62364199ea29f0b79095efe1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -730,7 +748,7 @@
 							"port": "8080",
 							"path": [
 								"trips",
-								"622e57a69879d3fe41b48d5a"
+								"62364199ea29f0b79095efe1"
 							]
 						}
 					},
@@ -758,15 +776,14 @@
 						"method": "PUT",
 						"header": [
 							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
+								"key": "idToken",
+								"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImIwNmExMTkxNThlOGIyODIxNzE0MThhNjdkZWE4Mzc0MGI1ZWU3N2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc3MDg1NzYsInVzZXJfaWQiOiJtYW5hZ2VyMUBtYW5hZ2VyMS5jb20iLCJzdWIiOiJtYW5hZ2VyMUBtYW5hZ2VyMS5jb20iLCJpYXQiOjE2NDc3MDg1NzYsImV4cCI6MTY0NzcxMjE3NiwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6e30sInNpZ25faW5fcHJvdmlkZXIiOiJjdXN0b20ifX0.DInPyWDLXl_yZbL_PeWTxCUQKPcuoZY-e7A3TrKH9snf2lSKpb4oWUlY1oRHb3qKJ1QxKNP3UH_C--UEktSnNbLtoCHurB7oC_8jimBbTtm6aiSOPUS7nzPUe7d4GDrE2PbudCu-GsxgvC-TNGp6qQzuyGBdd8nGqUrVBYowED1qzaKpg6Ao74B0647UpV6owA9f31mtddCr4JnLXolU6NCoyvLt_E3aFqbOhEPvgbHFOGWG3aeSDDDWusts3nc6SIDWza4gua-sDGHwF7ROc-GfJAjUzYqGYx3nUaQ6YK90o5AccFNRkrDzd3VYxp9p0XpO45bVBq06My_iindT5g",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"viaje a CONIL de la frontera \",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"start_date\": \"2023-01-03T22:47:50.569Z\",\r\n    \"end_date\": \"2023-11-02T19:16:03.854Z\",\r\n    \"is_cancelled\": false,\r\n    \"is_published\": true,\r\n    \"manager\": \"621cb9dc08e258a4d12b830e\"\r\n}",
+							"raw": "{\r\n    \"title\": \"viaje a CONIL de la frontera \",\r\n    \"description\": \"Esto es una descripcion hecha por manu.\",\r\n    \"requirements\": [\"Alcohol\",\"Dinero\"],\r\n    \"start_date\": \"2023-01-03T22:47:50.569Z\",\r\n    \"end_date\": \"2023-11-02T19:16:03.854Z\",\r\n    \"is_cancelled\": false,\r\n    \"is_published\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -774,7 +791,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/trips/622e57a69879d3fe41b48d5a",
+							"raw": "http://localhost:8080/trips/6236149fb6b0c359e34dc6fb",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -782,14 +799,14 @@
 							"port": "8080",
 							"path": [
 								"trips",
-								"622e57a69879d3fe41b48d5a"
+								"6236149fb6b0c359e34dc6fb"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "delete_a_trip 2",
+					"name": "delete_a_trip",
 					"event": [
 						{
 							"listen": "test",
@@ -810,49 +827,15 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/trips/622e4da6e989671a57788c52",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"trips",
-								"622e4da6e989671a57788c52"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "list_actor_trips",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"TEST GET ALL TRIPS OF AN ACTOR\",()=>{\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
+							},
 							{
-								"key": "Content-Type",
-								"value": "application/json",
+								"key": "idToken",
+								"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImYxZDU2YTI1MWU0ZGRhM2Y0NWM0MWZkNWQ0ZGEwMWQyYjlkNzJlMGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc3MTI2NjEsInVzZXJfaWQiOiJtYW5hZ2VyMUBtYW5hZ2VyMS5jb20iLCJzdWIiOiJtYW5hZ2VyMUBtYW5hZ2VyMS5jb20iLCJpYXQiOjE2NDc3MTI2NjEsImV4cCI6MTY0NzcxNjI2MSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6e30sInNpZ25faW5fcHJvdmlkZXIiOiJjdXN0b20ifX0.IqGKoyFMuZDzaOfPIlTu_vvDDcoKEhLtUE5ruIsqU8Cj-ZcjzydEc37C2db3LC_c-gDGjNauS1rMANIebTAES-iIHy_xO004YmbfINVlwD4bgGg3sfR1cxU-F9YCFv7sNgdxddfHrZ_O7RWDoNHfNwFawZ8Gyklyudcbl5oO2aYQWWyepMOEvgcGKZspVPNRx_NHFDVbaPa6q7P7mldoPAvp_y1Osy7zWgfPeLbWbvbY3BUbVGP2x0S6A4mRLRfY9vMJlgPfGl5_DoujZu4OLYBWKFnmagTmdF4HVgOWhmpifNz8qL1yCc34bSc5lSzvW0ig-GfwxSuj9jiu4fkFNQ",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/trips/621cd1f47984f97f14e9b14f",
+							"raw": "http://localhost:8080/trips/62361cef898e598520a673ed",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -860,7 +843,7 @@
 							"port": "8080",
 							"path": [
 								"trips",
-								"621cd1f47984f97f14e9b14f"
+								"62361cef898e598520a673ed"
 							]
 						}
 					},
@@ -917,6 +900,27 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "select_random_banner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/trips/622f3e1ed47389e877e18366/random-banner",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trips",
+								"622f3e1ed47389e877e18366",
+								"random-banner"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -962,7 +966,7 @@
 					"response": []
 				},
 				{
-					"name": "create_an_application 1 (PENDING)",
+					"name": "create_an_application 1",
 					"event": [
 						{
 							"listen": "test",
@@ -991,262 +995,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"PENDING\",\r\n    \"trip\": \"622e57a69879d3fe41b48d5a\",\r\n    \"actor\": \"622e55d980564a7023010d1e\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/applications",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"applications"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create_an_application 2 (REJECTED)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"create_an_application status REJECTEDS\",()=>{\r",
-									"    pm.response.to.have.status(201);\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"REJECTED\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/applications",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"applications"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create_an_application 3 (DUE)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"create_an_application status DUE\",()=>{\r",
-									"    pm.response.to.have.status(201);\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"DUE\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/applications",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"applications"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create_an_application 4 (ACCEPTED)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"create_an_application status ACCEPTED\",()=>{\r",
-									"    pm.response.to.have.status(201);\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"ACCEPTED\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/applications",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"applications"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create_an_application 5 (CANCELLED)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"create_an_application status CANCELLED\",()=>{\r",
-									"    pm.response.to.have.status(201);\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"CANCELLED\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/applications",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"applications"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create_an_application (BAD REQUEST)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"create_an_application BAD REQUEST STATUS\",()=>{\r",
-									"    pm.response.to.have.status(400);\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"status\":\"CANCEL\",\r\n    \"trip\": \"621cbe9ecf1e47108c29a316\"\r\n\r\n}",
+							"raw": "{\r\n    \"moment\": \"2022-01-03T22:47:50.569Z\",\r\n    \"trip\": \"622f3e1e8f9dd05cfdb04fea\",\r\n    \"actor\": \"622f3e1e2d80876e23c942ec\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1536,7 +1285,7 @@
 			"name": "STAGES",
 			"item": [
 				{
-					"name": "list_all_stages",
+					"name": "list_all_stages_from_trip",
 					"event": [
 						{
 							"listen": "test",
@@ -1560,7 +1309,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages",
+							"raw": "http://localhost:8080/trips/62363c1f55f2d40be5be4a6b/stages",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1568,7 +1317,7 @@
 							"port": "8080",
 							"path": [
 								"trips",
-								"621cd18c7984f97f14e9b0f9",
+								"62363c1f55f2d40be5be4a6b",
 								"stages"
 							]
 						}
@@ -1576,7 +1325,7 @@
 					"response": []
 				},
 				{
-					"name": "create_a_stage 1",
+					"name": "create_a_stage",
 					"event": [
 						{
 							"listen": "test",
@@ -1597,15 +1346,14 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
+								"key": "idToken",
+								"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImYxZDU2YTI1MWU0ZGRhM2Y0NWM0MWZkNWQ0ZGEwMWQyYjlkNzJlMGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc3MjE5MzQsInVzZXJfaWQiOiJtYW5hZ2VyMUBtYW5hZ2VyMS5jb20iLCJzdWIiOiJtYW5hZ2VyMUBtYW5hZ2VyMS5jb20iLCJpYXQiOjE2NDc3MjE5MzQsImV4cCI6MTY0NzcyNTUzNCwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6e30sInNpZ25faW5fcHJvdmlkZXIiOiJjdXN0b20ifX0.KWLokTpQpPPzSGdDaINocHDAZPlC0O-rvn2U2WLGsAUC6h1b4tXZ4kb66F5CyuIHghTzfE8lKp7nwqw_pL5FJYNvcncBq0mOdJILD686w0lMRPWt6Dy71HtzsDmCG6LWHLCJIuHcLjdtS3pIErGoI9QuZbAuFNCkCfOVbIOtPwFBAMuZD32FjHrmGT3K4U0ep-Y3fiQ_vyr1EssSa8Xk_20RsSDfy3BfTxcjVbGJg9--9g6XTCkAqgdPgfC-7nn70r9trw5J6rmEJ0fOJIdlNzPYqtOu5W7OqNdavCwpLsS5kETJEvN3sR1c8FmGgRwEj8pySOTj8OrWSfkH7dl_SA",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"CHIPIONA 2014\",\r\n    \"description\": \"CHIPIONA Con los chavales 2014\",\r\n    \"price\": 28.55\r\n}",
+							"raw": "{\r\n    \"title\": \"CHIPIONA 2014\",\r\n    \"description\": \"CHICLANA Con los chavales 2014\",\r\n    \"price\": 100\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1613,7 +1361,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages",
+							"raw": "http://localhost:8080/trips/62364199ea29f0b79095efe1/stages",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1621,7 +1369,7 @@
 							"port": "8080",
 							"path": [
 								"trips",
-								"621cd18c7984f97f14e9b0f9",
+								"62364199ea29f0b79095efe1",
 								"stages"
 							]
 						}
@@ -1901,13 +1649,15 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/sponsorships",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"actors",
+								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships"
 							]
 						}
@@ -1952,13 +1702,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/sponsorships",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"actors",
+								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships"
 							]
 						}
@@ -2003,13 +1755,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/sponsorships",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"actors",
+								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships"
 							]
 						}
@@ -2041,15 +1795,17 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/sponsorships/621ce55d7984f97f14e9b16a",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships/622f3e1ecd6edad051f8c8ad",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"actors",
+								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships",
-								"621ce55d7984f97f14e9b16a"
+								"622f3e1ecd6edad051f8c8ad"
 							]
 						}
 					},
@@ -2093,15 +1849,17 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/sponsorships/621ce55d7984f97f14e9b16a",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships/622f3e1ecd6edad051f8c8ad",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"actors",
+								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships",
-								"621ce55d7984f97f14e9b16a"
+								"622f3e1ecd6edad051f8c8ad"
 							]
 						}
 					},
@@ -2145,54 +1903,40 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/sponsorships/621ce5857984f97f14e9b16d",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships/622f3e1ecd6edad051f8c8ad",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"actors",
+								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships",
-								"621ce5857984f97f14e9b16d"
+								"622f3e1ecd6edad051f8c8ad"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "list_actor_sponsorships",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"list_actor_sponsorships\",()=>{\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
+					"name": "pay_a_sponsorship",
 					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"method": "PUT",
+						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/sponsorships/621cd18b7984f97f14e9b0db",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/sponsorships/622f3e1e9877876f0ddd92a8/pay",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"actors",
+								"622f3e1e60a1b9cbe9cac3af",
 								"sponsorships",
-								"621cd18b7984f97f14e9b0db"
+								"622f3e1e9877876f0ddd92a8",
+								"pay"
 							]
 						}
 					},
@@ -2267,7 +2011,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"explorer\":\"621cd18b7984f97f14e9b0dc\",\r\n    \"keyword\":\"acvbfsdfd\",\r\n    \"price_from\": 10,\r\n    \"price_to\": 100,\r\n    \"date_from\":\"2023-01-03T22:47:50.569Z\",\r\n    \"date_to\": \"2023-11-02T19:16:03.854Z\",\r\n    \"trips\":[\"621cd18c7984f97f14e9b0f9\"]\r\n\r\n}",
+							"raw": "{\r\n    \"explorer\":\"622f3e1e2d80876e23c942ec\",\r\n    \"keyword\":\"acvbfsdfd\",\r\n    \"price_from\": 10,\r\n    \"price_to\": 100,\r\n    \"date_from\":\"2023-01-03T22:47:50.569Z\",\r\n    \"date_to\": \"2023-11-02T19:16:03.854Z\",\r\n    \"trips\":[\"622f3e1eff59855cba428140\"]\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

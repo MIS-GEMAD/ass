@@ -3,10 +3,10 @@ module.exports = function (app) {
 
   const cube = require('../controllers/cubeController')
 
-  app.route('/cube/:period')
-    .get(cube.get_explorers)
+  app.route('/cube/show')
+    .get(cube.show_cube)
 
-    app.route('/cube/:period/:explorerId')
-    .get(cube.get_amount)
+  app.route('/cube/compute')
+    .put(cube.compute_cube)
 
 }
