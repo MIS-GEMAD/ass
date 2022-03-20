@@ -12,7 +12,8 @@ const SponsorshipSchema = new Schema(
       type: mongoose.SchemaTypes.Url,
     },
     is_paid: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     trip: {
       type: Schema.Types.ObjectId,
