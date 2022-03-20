@@ -145,46 +145,6 @@ exports.update_a_verified_actor = function (req, res) {
     }
   });
 
-  /*
-  Actor.findById(req.params.actorId, async function (err, actor) {
-    if (err) {
-      res.send(err)
-    } else {
-      console.log('actor: ' + actor)
-      const idToken = req.headers.idtoken
-      if (actor.role.includes('ADMINISTRATOR') || actor.role.includes('MANAGER') || actor.role.includes('EXPLORER') || actor.role.includes('SPONSOR')) {
-        const authenticatedUserId = await authController.getUserId(idToken)
-
-        console.log("Attempt to update the actor with id: "+ authenticatedUserId)
-
-        if (authenticatedUserId == req.params.actorId) {
-          Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
-            if (err) {
-              res.send(err)
-            } else {
-              console.log("Updated actor")
-              res.json(actor)
-            }
-          })
-        } else {
-          res.status(403) // Auth error
-          res.send('The Actor is trying to update an Actor that is not himself!')
-        }
-      } else if (actor.role.includes('ADMINISTRATOR')) {
-        Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
-          if (err) {
-            res.send(err)
-          } else {
-            res.json(actor)
-          }
-        })
-      } else {
-        res.status(405) // Not allowed
-        res.send('The Actor has unidentified roles')
-      }
-    }
-  })
-  */
 }
 
 exports.ban_an_actor = function (req, res) {
@@ -213,37 +173,6 @@ exports.ban_an_actor = function (req, res) {
     }
   });
 }
-
-exports.list_explorer_applications = function (req, res) {
-  const status = req.query.status ? req.query.status.toUpperCase() : '';
-  Actor.findById({ _id: req.params.actorId }, function (err, explorer) {
-    if (err) {
-      res.status(400).send(err);
-    } else {
-      if (!explorer) {
-        res.status(404).send("Explorer not found");
-      } else if (!explorer.role.find((role) => role === "EXPLORER")) {
-        res.status(400).send("Actor must be explorer");
-      } else {
-        Application.find(
-          {
-            _id: {
-              $in: explorer.applications,
-            },
-            status: status,
-          },
-          function (err, applications) {
-            if (err) {
-              res.status(400).send(err);
-            } else {
-              res.status(200).json(applications);
-            }
-          }
-        );
-      }
-    }
-  });
-};
 
 exports.unban_an_actor = function (req, res) {
   Actor.findById(req.params.actorId, async function (err, actor) {

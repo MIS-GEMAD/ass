@@ -246,17 +246,31 @@ exports.due_an_application = async function (req, res) {
 
 exports.list_applications_from_auth_explorer = async function (req, res) {
 
-    // get auth explorer
-    const idToken = req.header('idToken')
-    const explorerId = await authController.getUserId(idToken)
-  
-    Application.find({ actor: explorerId }, function (err, applications) {
+  const status = req.query.status ? req.query.status.toUpperCase() : '';
+
+  // get auth explorer
+  const idToken = req.header('idToken')
+  const explorerId = await authController.getUserId(idToken)
+
+  if (status == '') {
+    Application.find({ actor: explorerId}, function (err, applications) {
       if (err) {
         res.status(400).send(err);
       } else {
         res.status(200).json(applications);
       }
     });
+  } else {
+    Application.find({ actor: explorerId}, { status: status}, function (err, applications) {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).json(applications);
+      }
+    });
+  }
+
+
 }
 
 exports.pay_a_trip = async function (req, res) {
