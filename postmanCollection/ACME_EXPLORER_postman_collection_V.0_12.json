@@ -798,7 +798,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/trips/62375c246c39cadb793d8215",
+							"raw": "http://localhost:8080/trips/62376464cd2ade0b56317607",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -806,7 +806,7 @@
 							"port": "8080",
 							"path": [
 								"trips",
-								"62375c246c39cadb793d8215"
+								"62376464cd2ade0b56317607"
 							]
 						}
 					},
@@ -1007,7 +1007,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"trip\": \"62375c246c39cadb793d8215\"\r\n}",
+							"raw": "{\r\n    \"trip\": \"62376464cd2ade0b56317607\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1023,6 +1023,50 @@
 							"port": "8080",
 							"path": [
 								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list_applications_from_auth_explorer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TEST GET ALL TRIPS OF AN ACTOR\",()=>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "idToken",
+								"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImYxZDU2YTI1MWU0ZGRhM2Y0NWM0MWZkNWQ0ZGEwMWQyYjlkNzJlMGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc3MjE5MzQsInVzZXJfaWQiOiJtYW5hZ2VyMUBtYW5hZ2VyMS5jb20iLCJzdWIiOiJtYW5hZ2VyMUBtYW5hZ2VyMS5jb20iLCJpYXQiOjE2NDc3MjE5MzQsImV4cCI6MTY0NzcyNTUzNCwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6e30sInNpZ25faW5fcHJvdmlkZXIiOiJjdXN0b20ifX0.KWLokTpQpPPzSGdDaINocHDAZPlC0O-rvn2U2WLGsAUC6h1b4tXZ4kb66F5CyuIHghTzfE8lKp7nwqw_pL5FJYNvcncBq0mOdJILD686w0lMRPWt6Dy71HtzsDmCG6LWHLCJIuHcLjdtS3pIErGoI9QuZbAuFNCkCfOVbIOtPwFBAMuZD32FjHrmGT3K4U0ep-Y3fiQ_vyr1EssSa8Xk_20RsSDfy3BfTxcjVbGJg9--9g6XTCkAqgdPgfC-7nn70r9trw5J6rmEJ0fOJIdlNzPYqtOu5W7OqNdavCwpLsS5kETJEvN3sR1c8FmGgRwEj8pySOTj8OrWSfkH7dl_SA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/applications/owns",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications",
+								"owns"
 							]
 						}
 					},
@@ -1956,11 +2000,16 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"type": "text"
+							},
+							{
+								"key": "idToken",
+								"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImIwNmExMTkxNThlOGIyODIxNzE0MThhNjdkZWE4Mzc0MGI1ZWU3N2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc4MDE2MjQsInVzZXJfaWQiOiJleHBsb3JlcjFAZXhwbG9yZXIxLmNvbSIsInN1YiI6ImV4cGxvcmVyMUBleHBsb3JlcjEuY29tIiwiaWF0IjoxNjQ3ODAxNjI0LCJleHAiOjE2NDc4MDUyMjQsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnt9LCJzaWduX2luX3Byb3ZpZGVyIjoiY3VzdG9tIn19.EpHGFrAuSXXHsQiGtojlXN53Q-Dyug13sCJl9jjEGUgrfDETKe0icp3iKDhUunTTaeytpfEHDJ9hhGt1J1d5jUdpNeBntTe-jBOm_fxW9wnMM1ASoFK1FIh4-K86xwVXcKaQF18609h1oo6YTh3QN5N_XCoqhxKEMBVlRRTZ3Vw0nNwXWKs5qS44iLZpJcL3OLlhap_Lx0JqSDTNsW0rbAgEsXM1OOS362u9lY6O2qypJNlv7Fv7CptnJLWReuGZxAr57YKw_Yffm6BB352-LSiGD5mm5atLZsSgwyOE7AfnO_53vSbOyCq5TH-JKI5tw2YAOyzvBURnCqYFu_zWxw",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"actor\":\"622f3e1e2d80876e23c942ec\",\r\n    \"keyword\":\"acvbfsdfd\",\r\n    \"price_from\": 10,\r\n    \"price_to\": 100,\r\n    \"date_from\":\"2023-01-03T22:47:50.569Z\",\r\n    \"date_to\": \"2023-11-02T19:16:03.854Z\"\r\n}",
+							"raw": "{\r\n    \"keyword\":\"acvbfsdfd\",\r\n    \"price_from\": 10,\r\n    \"price_to\": 100,\r\n    \"date_from\":\"2023-01-03T22:47:50.569Z\",\r\n    \"date_to\": \"2023-11-02T19:16:03.854Z\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1990,7 +2039,13 @@
 					"name": "updates_finder_result",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "idToken",
+								"value": "",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"max_finder_result\": 15\n}",
@@ -2019,7 +2074,13 @@
 					"name": "updates_rate",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "idToken",
+								"value": "",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"flat_rate\": 15\n}",
@@ -2047,7 +2108,13 @@
 					"name": "updates_period",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "idToken",
+								"value": "",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"flush_period\": 20\n}",
