@@ -318,3 +318,34 @@ exports.select_random_banner = function (req, res) {
     }
   });
 };
+
+exports.list_trip_applications = function (req, res) {
+  Trip.findById(req.params.tripId, async function (err, trip) {
+    if (err) {
+      res.status(404).send(err)
+    } else {
+
+      const idToken = req.header('idToken')
+      let authManagerId = await authController.getUserId(idToken)
+      authManagerId = String(authManagerId)
+      let tripManagerId = trip.manager
+      tripManagerId = String(tripManagerId)
+
+      if(authManagerId != tripManagerId){
+        res.status(401).send({ message: 'This manager does not have permissions to list this trip applications'})
+      } else {
+        Application.find(
+          { trip: req.params.tripId },
+          function (err, applications) {
+            if (err) {
+              res.status(400).send(err);
+            } else {
+              res.status(200).json(applications);
+            }
+          }
+        )
+      }
+    }
+  })
+};
+

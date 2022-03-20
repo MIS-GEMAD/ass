@@ -18,12 +18,9 @@ module.exports = function (app) {
     .put(authController.verifyUser(['EXPLORER']), application.cancel_an_application)
 
   app.route('/applications/:applicationId/reject')
-    .put(authController.verifyUser(['EXPLORER']), application.reject_an_application)
+    .put(authController.verifyUser(['MANAGER']), application.reject_an_application)
 
   app.route('/applications/:applicationId/due')
-    .put(authController.verifyUser(['EXPLORER']), application.due_an_application)
-
-  app.route('/applications/:tripId')
-    .get(application.list_trip_applications)
+    .put(authController.verifyUser(['MANAGER']), application.due_an_application)
 
 }

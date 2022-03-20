@@ -225,16 +225,3 @@ exports.due_an_application = function (req, res) {
     }
   });
 };
-
-exports.list_trip_applications = function (req, res) {
-  Application.find(
-    { trip: req.params.tripId },
-    function (err, applications) {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(200).json(applications);
-      }
-    }
-  );
-};
