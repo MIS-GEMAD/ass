@@ -98,50 +98,28 @@ exports.create_an_application = async function (req, res) {
 
 };
 
-exports.read_an_application = function (req, res) {
-  Application.findById(req.params.applicationId, function (err, application) {
+exports.read_an_application = async function (req, res) {
+  Application.findById(req.params.applicationId, async function (err, application) {
     if (err) {
       res.status(400).send(err);
     } else {
-      res.status(200).json(application);
+
+       // check if application is from auth explorer
+       const idToken = req.header('idToken')
+       let authexplorerId = await authController.getUserId(idToken)
+       authexplorerId = String(authexplorerId)
+       let applicationExplorerId = application.actor
+       applicationExplorerId = String(applicationExplorerId)
+ 
+       if(authexplorerId != applicationExplorerId){
+        res.status(401).send({ message: 'This explorer does not have permissions to view this trip', error: err })
+       } else{
+        res.status(200).json(application);
+       }
+
+      
     }
   });
-};
-
-exports.update_an_application = function (req, res) {
-  Application.findById(req.params.applicationId, function (err, application) {
-    if (err) {
-      res.status(404).send(err);
-    } else {
-      Application.findOneAndUpdate(
-        { _id: req.params.applicationId },
-        req.body,
-        { new: true },
-        function (err, application) {
-          if (err) {
-            res.status(400).send(err);
-          } else {
-            res.status(201).json(application);
-          }
-        }
-      );
-    }
-  });
-};
-
-exports.delete_an_application = function (req, res) {
-  Application.deleteOne(
-    {
-      _id: req.params.applicationId,
-    },
-    function (err, application) {
-      if (err) {
-        res.status(404).send(err);
-      } else {
-        res.status(204).json({ message: "Application successfully deleted" });
-      }
-    }
-  );
 };
 
 exports.cancel_an_application = function (req, res) {
@@ -226,15 +204,17 @@ exports.due_an_application = function (req, res) {
   });
 };
 
-exports.list_trip_applications = function (req, res) {
-  Application.find(
-    { trip: req.params.tripId },
-    function (err, applications) {
+exports.list_applications_from_auth_explorer = async function (req, res) {
+
+    // get auth explorer
+    const idToken = req.header('idToken')
+    const explorerId = await authController.getUserId(idToken)
+  
+    Application.find({ actor: explorerId }, function (err, applications) {
       if (err) {
         res.status(400).send(err);
       } else {
         res.status(200).json(applications);
       }
-    }
-  );
-};
+    });
+}
