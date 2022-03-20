@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "78336414-00f9-452f-993e-a262eeec6476",
+		"_postman_id": "401694dc-f0d6-407d-850a-51ff2ba12208",
 		"name": "ACME EXPLORER",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -439,10 +439,16 @@
 					],
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "idToken",
+								"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImIwNmExMTkxNThlOGIyODIxNzE0MThhNjdkZWE4Mzc0MGI1ZWU3N2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc3ODIxMjAsInVzZXJfaWQiOiJhZG1pbjFAYWRtaW4xLmNvbSIsInN1YiI6ImFkbWluMUBhZG1pbjEuY29tIiwiaWF0IjoxNjQ3NzgyMTIwLCJleHAiOjE2NDc3ODU3MjAsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnt9LCJzaWduX2luX3Byb3ZpZGVyIjoiY3VzdG9tIn19.P-Y5CvNoTPm0X0hMES-0ZpaSTkE1v3q8RDmtjlpCXwQ0VD1wgvQmHo_nKeVYyOtfSkyja4KQwWneios_uTLOvCBATu56WDl0OtJr5HTPrLn2jvlTvouve7w0RIPX8gBFxrDtSUUABuBSCErQ2V-t3nYiQGhdhW_Fti5qiGx360c1otYgbl6OWqdMInVVbej5sijSZIk9EexkksplkrtW5x7F8-rAWB8whr8xwcgn4PHEhZ6PwkHHzLzZbDGsez3-H6akG8XC6kYixUb_mWRKqlr33Utlh-vcIFEqSEYoNfbpyECUm3WdNUQ2JdSJ-U-ijLT_AE6oK-EadLo6CRUFlQ",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"password\": \"123456ABCDEFGH\",\n    \"ban\": true\n}",
+							"raw": "{\n    \"password\": \"123456ABCDEFGH\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -450,7 +456,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/actors/622f3e1e2d80876e23c942ec",
+							"raw": "http://localhost:8080/actors/622f3e1e60a1b9cbe9cac3af/ban",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -458,7 +464,8 @@
 							"port": "8080",
 							"path": [
 								"actors",
-								"622f3e1e2d80876e23c942ec"
+								"622f3e1e60a1b9cbe9cac3af",
+								"ban"
 							]
 						}
 					},
@@ -1973,7 +1980,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"explorer\":\"622f3e1e2d80876e23c942ec\",\r\n    \"keyword\":\"acvbfsdfd\",\r\n    \"price_from\": 10,\r\n    \"price_to\": 100,\r\n    \"date_from\":\"2023-01-03T22:47:50.569Z\",\r\n    \"date_to\": \"2023-11-02T19:16:03.854Z\",\r\n    \"trips\":[\"622f3e1eff59855cba428140\"]\r\n\r\n}",
+							"raw": "{\r\n    \"actor\":\"622f3e1e2d80876e23c942ec\",\r\n    \"keyword\":\"acvbfsdfd\",\r\n    \"price_from\": 10,\r\n    \"price_to\": 100,\r\n    \"date_from\":\"2023-01-03T22:47:50.569Z\",\r\n    \"date_to\": \"2023-11-02T19:16:03.854Z\",\r\n    \"trips\":[\"622f3e1eff59855cba428140\"]\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

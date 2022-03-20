@@ -16,13 +16,13 @@ module.exports = function (app) {
                                     'SPONSOR']), actors.update_a_verified_actor)
 
   app.route('/actors/:actorId/ban')
-    .put(actors.ban_an_actor)
+    .put(authController.verifyUser(['ADMINISTRATOR']), actors.ban_an_actor)
 
   app.route('/actors/:actorId/applications')
     .get(actors.list_explorer_applications)
 
   app.route('/actors/:actorId/unban')
-    .put(actors.unban_an_actor)
+    .put(authController.verifyUser(['ADMINISTRATOR']), actors.unban_an_actor)
 
   app.route('/actors/:actorId/languaje')
     .put(actors.update_preferred_languaje)

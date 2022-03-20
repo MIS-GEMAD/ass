@@ -172,13 +172,27 @@ exports.update_a_verified_actor = function (req, res) {
 }
 
 exports.ban_an_actor = function (req, res) {
-  Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
+  Actor.findById(req.params.actorId, async function (err, actor) {
     if (err) {
-      res.status(400).send(err)
+      res.status(404).send(err);
     } else {
-      res.status(201).json(actor)
+      if (!actor) {
+        res.status(404).send("Actor not found");
+      } else {
+        const idToken = req.header('idToken')
+        let authAdministratorId = await authController.getUserId(idToken)
+        authAdministratorId = String(authAdministratorId);
+
+        Actor.findOneAndUpdate({ _id: req.params.actorId }, { ban: true }, { new: true }, function (err, actor) {
+          if (err) {
+            res.status(400).send(err)
+          } else {
+            res.status(200).json(actor)
+          }
+        })
+      }
     }
-  })
+  });
 }
 
 exports.list_explorer_applications = function (req, res) {
@@ -211,14 +225,29 @@ exports.list_explorer_applications = function (req, res) {
     }
   });
 };
+
 exports.unban_an_actor = function (req, res) {
-  Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
+  Actor.findById(req.params.actorId, async function (err, actor) {
     if (err) {
-      res.status(400).send(err)
+      res.status(404).send(err);
     } else {
-      res.status(201).json(actor)
+      if (!actor) {
+        res.status(404).send("Actor not found");
+      } else {
+        const idToken = req.header('idToken')
+        let authAdministratorId = await authController.getUserId(idToken)
+        authAdministratorId = String(authAdministratorId);
+
+        Actor.findOneAndUpdate({ _id: req.params.actorId }, { ban: false }, { new: true }, function (err, actor) {
+          if (err) {
+            res.status(400).send(err)
+          } else {
+            res.status(200).json(actor)
+          }
+        })
+      }
     }
-  })
+  });
 }
 
 exports.update_preferred_languaje = function (req, res) {
