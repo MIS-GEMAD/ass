@@ -31,8 +31,6 @@ module.exports = function (app) {
     .put(authController.verifyUser(['MANAGER']), stage.update_a_stage)
     .delete(authController.verifyUser(['MANAGER']), stage.delete_a_stage)
 
-
-
   /*
 
 

@@ -15,6 +15,9 @@ module.exports = function (app) {
   app.route('/applications/:applicationId')
     .get(application.read_an_application)
 
+  app.route('/applications/:applicationId/pay')
+    .get(application.pay_a_trip)
+
   app.route('/applications/:applicationId/cancel')
     .put(authController.verifyUser(['EXPLORER']), application.cancel_an_application)
 
