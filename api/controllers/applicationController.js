@@ -122,30 +122,45 @@ exports.read_an_application = async function (req, res) {
   });
 };
 
-exports.cancel_an_application = function (req, res) {
-  Application.findById(req.params.applicationId, function (err, application) {
+exports.cancel_an_application = async function (req, res) {
+
+  Application.findById(req.params.applicationId, async function (err, application) {
     if (err) {
       res.status(404).send(err);
     } else {
-      if (
-        application.status === "PENDING" ||
-        application.status === "ACCEPTED"
-      ) {
-        Application.findOneAndUpdate(
-          { _id: req.params.applicationId },
-          { status: "CANCELLED" },
-          { new: true },
-          function (err, application) {
-            if (err) {
-              res.status(400).send(err);
-            } else {
-              res.status(201).json(application);
+
+      const idToken = req.header('idToken')
+      let authExplorerId = await authController.getUserId(idToken)
+      authExplorerId = String(authExplorerId)
+      let applicationExplorerId = application.actor
+      applicationExplorerId = String(applicationExplorerId)
+ 
+      if(authExplorerId != applicationExplorerId){
+        res.status(401).send({ message: 'This explorer does not have permissions to cancel this application'})
+      } else{
+
+        if (
+          application.status === "PENDING" ||
+          application.status === "ACCEPTED"
+        ) {
+          Application.findOneAndUpdate(
+            { _id: req.params.applicationId },
+            { status: "CANCELLED" },
+            { new: true },
+            function (err, application) {
+              if (err) {
+                res.status(400).send(err);
+              } else {
+                res.status(201).json(application);
+              }
             }
-          }
-        );
-      } else {
-        res.status(400).send({ err: 'To cancel an application, must be pending or accepted' })
+          );
+        } else {
+          res.status(400).send({ message: 'To cancel an application, must be pending or accepted' })
+        }
+
       }
+
     }
   });
 };
