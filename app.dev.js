@@ -37,7 +37,8 @@ app.use(function (req, res, next) {
 
 // para poder usar la API de firebase
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://acmeexplorertauth.firebaseio.com'
 })
 
 // Routes
@@ -50,6 +51,7 @@ const routesSponsorships = require("./api/routes/sponsorshipRoutes");
 const routesStorage = require('./api/routes/storageRoutes');
 const routesTrips = require("./api/routes/tripRoutes");
 const routesDashboard = require("./api/routes/dashboardRoutes");
+const routesLogin = require("./api/routes/loginRoutes");
 
 routesActors(app);
 routesApplications(app);
@@ -60,6 +62,7 @@ routesSponsorships(app);
 routesStorage(app)
 routesTrips(app);
 routesDashboard(app);
+routesLogin(app);
 
 
 // MongoDB URI building
@@ -80,31 +83,32 @@ mongoose.connection.on("open", function () {
   server.close()
 });
 
+mongoose.connection.on("connected", function () {
+  // save inital configuration variable
+  var configuration = new Configuration({
+    flat_rate: 0,
+    flush_period:1,
+    max_finder_result: 10
+  })
+  
+  var cube = new Cube({
+    money_in_period: 0,
+    explorers_in_period: []
+  })
+  
+  mongoose.connection.dropCollection('configurations')
+  mongoose.connection.dropCollection('cubes')
+  
+  configuration.save()
+  
+  cube.save()
+})
+
 mongoose.connection.on("error", function (err) {
   console.error("DB init error " + err);
 });
 
 // mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
-
-// save inital configuration variables
-var configuration = new Configuration({
-  flat_rate: 0,
-  flush_period:1,
-  max_finder_result: 10
-})
-
-var cube = new Cube({
-  period: 0,
-  explorer:0,
-  money_in_period: 0
-})
-
-// mongoose.connection.dropCollection('configurations')
-// mongoose.connection.dropCollection('cubes')
-
-configuration.save()
-
-cube.save()
 
 DashboardTools.createDashboardJob();
 
