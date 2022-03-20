@@ -241,37 +241,53 @@ exports.list_trips_from_auth_manager = async function (req, res) {
   });
 };
 
-exports.cancel_a_trip = function (req, res) {
-  Trip.findById(req.params.tripId, function (err, trip) {
+exports.cancel_a_trip = async function (req, res) {
+  Trip.findById(req.params.tripId, async function (err, trip) {
     if (err) {
       res.status(404).send(err)
     } else {
-      Application.find({ trip: req.params.tripId, status: 'ACCEPTED' }, function (err, applications) {
-        if (err) {
-          res.status(404).send(err)
-        } else {
-          if (
-            trip.is_published &&
-            Date.now() < trip.start_date &&
-            applications.length == 0
-          ) {
-            Trip.findOneAndUpdate(
-              { _id: req.params.tripId },
-              { status: "CANCELLED", is_cancelled: true },
-              { new: true },
-              function (err, trip) {
-                if (err) {
-                  res.status(400).send(err)
-                } else {
-                  res.status(201).json(trip)
-                }
-              }
-            )
+
+       // check if trip is from auth manager
+       const idToken = req.header('idToken')
+       let authManagerId = await authController.getUserId(idToken)
+       authManagerId = String(authManagerId)
+       let tripManagerId = trip.manager
+       tripManagerId = String(tripManagerId)
+ 
+       if(authManagerId != tripManagerId){
+         res.status(401).send({ message: 'This manager does not have permissions to cancel this trip'})
+       } else {
+
+        Application.find({ trip: req.params.tripId, status: 'ACCEPTED' }, function (err, applications) {
+          if (err) {
+            res.status(404).send(err)
           } else {
-            res.status(400).send({ err: 'The trip are not published, have started or have accepted applications'})
-          }
-        }    
-      })
+            if (
+              trip.is_published &&
+              Date.now() < trip.start_date &&
+              applications.length == 0
+            ) {
+              Trip.findOneAndUpdate(
+                { _id: req.params.tripId },
+                { status: "CANCELLED", is_cancelled: true },
+                { new: true },
+                function (err, trip) {
+                  if (err) {
+                    res.status(400).send(err)
+                  } else {
+                    res.status(201).json(trip)
+                  }
+                }
+              )
+            } else {
+              res.status(400).send({ err: 'The trip are not published, have started or have accepted applications'})
+            }
+          }    
+        })
+
+       }
+
+      
     }
   })
 };
