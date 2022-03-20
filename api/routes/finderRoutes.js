@@ -3,7 +3,9 @@ module.exports = function (app) {
 
   const finder = require('../controllers/finderController')
 
+  const authController = require('../controllers/authController')
+
   app.route('/finder')
-    .post(finder.create_a_finder_criteria)
+    .post(authController.verifyUser(['EXPLORER']), finder.create_a_finder_criteria)
 
 }
