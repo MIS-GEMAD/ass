@@ -76,6 +76,24 @@ mongoose.connection.on("open", function () {
   app.listen(port, function () {
     console.log("ACME-Explorer RESTful API server started on: " + port);
   });
+  // save inital configuration variable
+  var configuration = new Configuration({
+    flat_rate: 0,
+    flush_period:1,
+    max_finder_result: 10
+  })
+  
+  var cube = new Cube({
+    money_in_period: 0,
+    explorers_in_period: []
+  })
+  
+  mongoose.connection.dropCollection('configurations')
+  mongoose.connection.dropCollection('cubes')
+  
+  configuration.save()
+  
+  cube.save()
 });
 
 mongoose.connection.on("error", function (err) {
@@ -83,25 +101,6 @@ mongoose.connection.on("error", function (err) {
 });
 
 // mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
-
-// save inital configuration variables
-var configuration = new Configuration({
-  flat_rate: 0,
-  flush_period:1,
-  max_finder_result: 10
-})
-
-var cube = new Cube({
-  money_in_period: 0,
-  explorers_in_period: []
-})
-
-mongoose.connection.dropCollection('configurations')
-mongoose.connection.dropCollection('cubes')
-
-configuration.save()
-
-cube.save()
 
 DashboardTools.createDashboardJob();
 
