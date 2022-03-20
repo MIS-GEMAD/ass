@@ -23,6 +23,11 @@ module.exports = function (app) {
     .get(stage.list_all_stages_from_trip)
     .post(authController.verifyUser(['MANAGER']), stage.create_a_stage)
 
+  app.route('/trips/:tripId/stages/:stageId')
+    .get(stage.read_a_stage)
+    .put(authController.verifyUser(['MANAGER']), stage.update_a_stage)
+    .delete(authController.verifyUser(['MANAGER']), stage.delete_a_stage)
+
   /*
 
   app.route('/trips/:tripId/actors/:actorId/pay')
@@ -30,10 +35,7 @@ module.exports = function (app) {
 
 
 
-  app.route('/trips/:tripId/stages/:stageId')
-    .get(stage.read_a_stage)
-    .put(stage.update_a_stage)
-    .delete(stage.delete_a_stage)
+
 
   app.route('/trips/:tripId/cancel')
     .put(trip.cancel_a_trip)
