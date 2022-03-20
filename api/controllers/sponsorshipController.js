@@ -19,12 +19,18 @@ exports.list_all_sponsorships = async function (req, res) {
       res.status(400).send(err);
     } else{
 
-      Sponsorship.find({actor: authSponsorId}, function (err, sponsorship) {
-        if (err) {
-          res.status(400).send(err)
+      Sponsorship.find({actor: authSponsorId, is_paid : true}, function (err, sponsorships) {
+
+        if(!sponsorships) {
+          res.status(404).send("There are no paid sponsorships")
         } else {
-          res.status(200).json(sponsorship)
+          if (err) {
+            res.status(400).send(err)
+          } else {
+            res.status(200).json(sponsorships)
+          }
         }
+        
       })
 
     }
@@ -78,20 +84,26 @@ exports.read_a_sponsorship = async function (req, res) {
     if (err) {
       res.status(400).send(err);
     } else{
-      Sponsorship.findById(req.params.sponsorshipId, function (err, sponsorship) {
+      Sponsorship.find({_id: req.params.sponsorshipId, is_paid : true}, function (err, sponsorships) {
         if (err) {
           res.status(400).send(err)
         } else {
 
-          if(sponsorship != null) {
-            // check is my sponsorship
-            if(sponsorship.actor == authSponsorId) {
-              res.status(200).json(sponsorship)
-            }else{
-              res.status(400).send("This sponsor does not have permission to view this sponsorship")
-            }
+          if(!sponsorships) {
+            res.status(404).send("The sponsorship does not exist or is not paid yet")
           } else {
-            res.sendStatus(404)
+
+            if(sponsorships[0] != null) {
+              if(sponsorships[0].actor == authSponsorId) {
+                res.status(200).json(sponsorships[0])
+              }else{
+                res.status(400).send("The sponsorship does not exist or is not paid yet")
+              }
+            } else {
+              res.status(400).send("The sponsorship does not exist or is not paid yet")
+            }
+
+            
           }
 
 
