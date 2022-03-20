@@ -4,6 +4,12 @@ const Schema = mongoose.Schema;
 
 const FinderSchema = new Schema(
   {
+    moment: {
+      type: Date,
+      max: Date.now(),
+      default: Date.now(),
+      required: 'Kindly enter the moment'
+    },
     keyword: {
       type: String
     },
@@ -28,7 +34,7 @@ const FinderSchema = new Schema(
       ref: 'Actor'
     }
   },
-  { strict: true }
+  { strict: false }
 );
 
 FinderSchema.pre('save', function(callback) {
