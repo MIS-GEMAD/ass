@@ -182,14 +182,17 @@ exports.ban_an_actor = function (req, res) {
         const idToken = req.header('idToken')
         let authAdministratorId = await authController.getUserId(idToken)
         authAdministratorId = String(authAdministratorId);
-
-        Actor.findOneAndUpdate({ _id: req.params.actorId }, { ban: true }, { new: true }, function (err, actor) {
-          if (err) {
-            res.status(400).send(err)
-          } else {
-            res.status(200).json(actor)
-          }
-        })
+        if(authAdministratorId === req.params.actorId) {
+          res.send('Actor cannot ban himself')
+        } else {
+          Actor.findOneAndUpdate({ _id: req.params.actorId }, { ban: true }, { new: true }, function (err, actor) {
+            if (err) {
+              res.status(400).send(err)
+            } else {
+              res.status(200).json(actor)
+            }
+          })
+        }
       }
     }
   });
@@ -237,14 +240,17 @@ exports.unban_an_actor = function (req, res) {
         const idToken = req.header('idToken')
         let authAdministratorId = await authController.getUserId(idToken)
         authAdministratorId = String(authAdministratorId);
-
-        Actor.findOneAndUpdate({ _id: req.params.actorId }, { ban: false }, { new: true }, function (err, actor) {
-          if (err) {
-            res.status(400).send(err)
-          } else {
-            res.status(200).json(actor)
-          }
-        })
+        if(authAdministratorId === req.params.actorId) {
+          res.send('Actor cannot unban himself')
+        } else {
+          Actor.findOneAndUpdate({ _id: req.params.actorId }, { ban: false }, { new: true }, function (err, actor) {
+            if (err) {
+              res.status(400).send(err)
+            } else {
+              res.status(200).json(actor)
+            }
+          })
+        }
       }
     }
   });
