@@ -221,7 +221,45 @@ exports.list_applications_from_auth_explorer = async function (req, res) {
 
 exports.pay_a_trip = async function (req, res) {
 
-  Application.findById(req.params.applicationId, function (err, application) {
+  Application.findById(req.params.applicationId, async function (err, application) {
+
+     // check if application is from auth explorer
+     const idToken = req.header('idToken')
+     let authExplorerId = await authController.getUserId(idToken)
+     authExplorerId = String(authExplorerId)
+     let applicationExplorerId = application.actor
+     applicationExplorerId = String(applicationExplorerId)
+
+     if(authExplorerId != applicationExplorerId){
+      res.status(401).send({ message: 'This explorer does not have permissions to pay this trip'})
+     } else {
+
+      if(application.status == "DUE"){
+
+        Application.findOneAndUpdate(
+          { _id: req.params.applicationId },
+          { status: "ACCEPTED" },
+          { new: true },
+          function (err, application) {
+            if (err) {
+              res.status(400).send(err);
+            } else {
+              res.status(201).json(application);
+            }
+          }
+        );
+
+      } else{
+        res.status(401).send({ message: 'The application must be in DUE status'})
+      }
+
+     }
+
+    
+  });
+
+  /*
+Application.findById(req.params.applicationId, function (err, application) {
     let tripId = application.trip
 
     Trip.findById(tripId, function (err, trip) {
@@ -305,6 +343,7 @@ exports.pay_a_trip = async function (req, res) {
     });
 
   })
+  */
 
 
   

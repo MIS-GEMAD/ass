@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8f6272c5-9836-449a-8103-d030a84115ba",
+		"_postman_id": "4bd1a14c-4827-4f66-a9a8-6cb2f3187e23",
 		"name": "ACME EXPLORER",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -762,7 +762,7 @@
 					"response": []
 				},
 				{
-					"name": "update_a_trip 1",
+					"name": "update_a_trip",
 					"event": [
 						{
 							"listen": "test",
@@ -891,7 +891,13 @@
 					"name": "cancel_a_trip",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "idToken",
+								"value": "",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:8080/trips/622e57a69879d3fe41b48d5a/cancel",
 							"protocol": "http",
@@ -973,7 +979,7 @@
 					"response": []
 				},
 				{
-					"name": "create_an_application 1",
+					"name": "create_an_application",
 					"event": [
 						{
 							"listen": "test",
@@ -1024,7 +1030,7 @@
 					"response": []
 				},
 				{
-					"name": "read_an_application 1",
+					"name": "read_an_application",
 					"event": [
 						{
 							"listen": "test",
@@ -1063,7 +1069,7 @@
 					"response": []
 				},
 				{
-					"name": "update_an_application 1",
+					"name": "update_an_application",
 					"event": [
 						{
 							"listen": "test",
@@ -1115,7 +1121,7 @@
 					"response": []
 				},
 				{
-					"name": "delete_an_application 2",
+					"name": "delete_an_application",
 					"event": [
 						{
 							"listen": "test",
@@ -1285,6 +1291,33 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "pay_a_trip",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "idToken",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/applications/623748bf79419e871b55377f/pay",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"applications",
+								"623748bf79419e871b55377f",
+								"pay"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1384,60 +1417,7 @@
 					"response": []
 				},
 				{
-					"name": "create_a_stage 2",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"create_an_stage 2\",()=>{\r",
-									"    pm.response.to.have.status(201);\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"MATALASCAÑAS 2014\",\r\n    \"description\": \"MATALASCAÑAS Con los chavales 2014\",\r\n    \"price\": 28.55\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"trips",
-								"621cd18c7984f97f14e9b0f9",
-								"stages"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "read_a_stage 1",
+					"name": "read_a_stage",
 					"event": [
 						{
 							"listen": "test",
@@ -1457,6 +1437,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "idToken",
+								"value": "",
 								"type": "text"
 							}
 						],
@@ -1478,48 +1463,7 @@
 					"response": []
 				},
 				{
-					"name": "read_a_stage 2",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"read_a_stage 2 \",()=>{\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/trips/621cd18c7984f97f14e9b0f9/stages/621ce2727984f97f14e9b15c",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"trips",
-								"621cd18c7984f97f14e9b0f9",
-								"stages",
-								"621ce2727984f97f14e9b15c"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update_a_stage 2",
+					"name": "update_a_stage",
 					"event": [
 						{
 							"listen": "test",
@@ -1540,10 +1484,9 @@
 						"method": "PUT",
 						"header": [
 							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
+								"key": "idToken",
+								"value": "",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -1573,7 +1516,7 @@
 					"response": []
 				},
 				{
-					"name": "delete_a_stage 1",
+					"name": "delete_a_stage",
 					"event": [
 						{
 							"listen": "test",
@@ -1594,10 +1537,9 @@
 						"method": "DELETE",
 						"header": [
 							{
-								"key": "Content-Type",
+								"key": "idToken",
 								"value": "text/plain",
-								"type": "text",
-								"disabled": true
+								"type": "text"
 							}
 						],
 						"body": {

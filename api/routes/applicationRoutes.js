@@ -13,18 +13,18 @@ module.exports = function (app) {
     .get(authController.verifyUser(['EXPLORER']), application.list_applications_from_auth_explorer)
 
   app.route('/applications/:applicationId')
-    .get(application.read_an_application)
+    .get(authController.verifyUser(['EXPLORER']), application.read_an_application)
 
   app.route('/applications/:applicationId/pay')
-    .get(application.pay_a_trip)
+    .put(authController.verifyUser(['EXPLORER']), application.pay_a_trip)
 
   app.route('/applications/:applicationId/cancel')
-    .put(authController.verifyUser(['EXPLORER']), application.cancel_an_application)
+    .put(authController.verifyUser(['MANAGER']), application.cancel_an_application)
 
   app.route('/applications/:applicationId/reject')
-    .put(authController.verifyUser(['EXPLORER']), application.reject_an_application)
+    .put(authController.verifyUser(['MANAGER']), application.reject_an_application)
 
   app.route('/applications/:applicationId/due')
-    .put(authController.verifyUser(['EXPLORER']), application.due_an_application)
+    .put(authController.verifyUser(['MANAGER']), application.due_an_application)
 
 }

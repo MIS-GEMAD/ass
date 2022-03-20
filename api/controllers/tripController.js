@@ -159,6 +159,7 @@ exports.list_trips_from_auth_manager = async function (req, res) {
 };
 
 exports.cancel_a_trip = async function (req, res) {
+  
   Trip.findById(req.params.tripId, async function (err, trip) {
     if (err) {
       res.status(404).send(err)
