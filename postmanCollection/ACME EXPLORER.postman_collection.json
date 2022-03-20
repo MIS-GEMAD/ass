@@ -1345,58 +1345,6 @@
 					"response": []
 				},
 				{
-					"name": "delete_an_application",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"delete_an_application 2\",()=>{\r",
-									"    pm.response.to.have.status(204);\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/applications/621cc6f0cf1e47108c29a351",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"applications",
-								"621cc6f0cf1e47108c29a351"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "list_trip_applications",
 					"event": [
 						{
@@ -2276,7 +2224,13 @@
 					"name": "show_cube",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "idToken",
+								"value": "",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:8080/cube/show",
 							"protocol": "http",
@@ -2296,7 +2250,13 @@
 					"name": "compute_cube",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "idToken",
+								"value": "",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"actor\": \"622f3e1e2d80876e23c942ec\",\n    \"date_from\": \"2021-05-02T19:16:03.854Z\",\n    \"date_to\": \"2021-07-02T19:16:03.854Z\",\n    \"arbitrary_money\": 9.0,\n    \"comparision\": \">=\"\n}",
