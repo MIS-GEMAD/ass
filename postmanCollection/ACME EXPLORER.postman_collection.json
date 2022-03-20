@@ -2608,7 +2608,13 @@
 					"name": "rebuild period (every 10 seconds)",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "idToken",
+								"value": "",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/dashboard?rebuildPeriod=*/20 * * * * *",
 							"host": [
@@ -2632,7 +2638,13 @@
 					"name": "rebuild period (every 20 seconds)",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "idToken",
+								"value": "",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/dashboard?rebuildPeriod=*/20 * * * * *",
 							"host": [
@@ -2656,7 +2668,13 @@
 					"name": "rebuild period (every hour)",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "idToken",
+								"value": "",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/dashboard?rebuildPeriod=*/20 * * * * *",
 							"host": [
