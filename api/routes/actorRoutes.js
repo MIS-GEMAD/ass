@@ -8,6 +8,9 @@ module.exports = function (app) {
     .get(actors.list_all_actors)
     .post(actors.create_an_actor)
 
+  app.route('/actors/manager')
+    .post(authController.verifyUser(['ADMINISTRATOR']), actors.create_a_manager)
+
   app.route('/actors/:actorId')
     .get(actors.read_an_actor)
     .put(authController.verifyUser(['ADMINISTRATOR',
