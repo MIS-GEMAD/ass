@@ -28,7 +28,6 @@ exports.create_an_application = async function (req, res) {
     if (err) {
       res.status(400).send(err);
     } else {
-
       if (!trip) {
         res.status(404).send("Trip not found");
       } else if (!trip.is_published) {
@@ -38,7 +37,6 @@ exports.create_an_application = async function (req, res) {
       } else if (trip.is_cancelled) {
         res.status(400).send("Trip must not been cancelled");
       } else {
-
          // check if application is unique
          Application.find(
            { trip: trip._id },
@@ -51,7 +49,6 @@ exports.create_an_application = async function (req, res) {
             },
            function(err, applications) {
               if (!applications.length) {
-
               // set application properties
               req.body.status = "PENDING"
               req.body.actor = explorerId
@@ -61,14 +58,12 @@ exports.create_an_application = async function (req, res) {
                 if (error) {
                   res.status(400).send(error);
                 } else{
-
                   // updated the application trip list
                   Trip.findOneAndUpdate({ _id: req.body.trip }, {"$push": {applications: application._id}}, { new: true }, function(err, result){
                     if(err){
                       res.send(err)
                     }
                     else{
-
                       // updated the application explorer list
                       Actor.findOneAndUpdate({ _id: explorerId}, {"$push": {applications: application._id}}, { new: true }, function(err, result){
                         if(err){
@@ -84,14 +79,11 @@ exports.create_an_application = async function (req, res) {
 
                 }
               })
-
              }else {
               res.status(400).send('Cannot apply twice for a trip')
              }
            }
          )
-
-
       }
     }
   });
@@ -165,76 +157,89 @@ exports.cancel_an_application = async function (req, res) {
   });
 };
 
-exports.reject_an_application = function (req, res) {
-  Application.findById(req.params.applicationId, function (err, application) {
+exports.reject_an_application = async function (req, res) {
+  Application.findById(req.params.applicationId, async function (err, application) {
     if (err) {
       res.status(404).send(err);
     } else {
-      const idToken = req.header('idToken')
-      let authManagerId = await authController.getUserId(idToken)
-      authManagerId = String(authManagerId)
-      let applicationManagerId = application.actor
-      applicationManagerId = String(applicationManagerId)
-
-      if(authManagerId != applicationManagerId){
-        res.status(401).send({ message: 'This manager does not have permissions to cancel this application'})
-      } else{
-        if (
-          application.status === "PENDING"
-        ) {
-          Application.findOneAndUpdate(
-            { _id: req.params.applicationId },
-            { status: "REJECTED" },
-            { new: true },
-            function (err, application) {
-              if (err) {
-                res.status(400).send(err);
-              } else {
-                res.status(201).json(application);
-              }
-            }
-          );
+      console.log(application)
+      Trip.findById(application.trip, async function (err, trip) {
+        if (err) {
+          res.status(404).send(err);
         } else {
-          res.status(400).send({ err: 'To reject an application, must be pending' })
+          const idToken = req.header('idToken')
+          let authManagerId = await authController.getUserId(idToken)
+          authManagerId = String(authManagerId)
+          let applicationManagerId = trip.manager
+          applicationManagerId = String(applicationManagerId)
+    
+          if(authManagerId != applicationManagerId){
+            res.status(401).send({ message: 'This manager does not have permissions to reject this application'})
+          } else{
+            if (
+              application.status === "PENDING"
+            ) {
+              Application.findOneAndUpdate(
+                { _id: req.params.applicationId },
+                { status: "REJECTED" },
+                { new: true },
+                function (err, application) {
+                  if (err) {
+                    res.status(400).send(err);
+                  } else {
+                    res.status(201).json(application);
+                  }
+                }
+              );
+            } else {
+              res.status(400).send({ err: 'To reject an application, must be pending' })
+            }
+          }
         }
-      }
+      })
     }
   });
 };
 
-exports.due_an_application = function (req, res) {
-  Application.findById(req.params.applicationId, function (err, application) {
+exports.due_an_application = async function (req, res) {
+  Application.findById(req.params.applicationId, async function (err, application) {
     if (err) {
       res.status(404).send(err);
     } else {
-      const idToken = req.header('idToken')
-      let authManagerId = await authController.getUserId(idToken)
-      authManagerId = String(authManagerId)
-      let applicationManagerId = application.actor
-      applicationManagerId = String(applicationManagerId)
-
-      if(authManagerId != applicationManagerId){
-        res.status(401).send({ message: 'This manager does not have permissions to cancel this application'})
-      } else{
-        if (
-          application.status === "PENDING"
-        ) {
-          Application.findOneAndUpdate(
-            { _id: req.params.applicationId },
-            { status: "DUE" },
-            { new: true },
-            function (err, application) {
-              if (err) {
-                res.status(400).send(err);
-              } else {
-                res.status(201).json(application);
-              }
-            }
-          );
+      Trip.findById(application.trip, async function (err, trip) {
+        if (err) {
+          res.status(404).send(err);
         } else {
-          res.status(400).send({ err: 'To due an application, must be pending' })
+          const idToken = req.header('idToken')
+          let authManagerId = await authController.getUserId(idToken)
+          authManagerId = String(authManagerId)
+          let applicationManagerId = trip.manager
+          applicationManagerId = String(applicationManagerId)
+
+          if(authManagerId != applicationManagerId){
+            res.status(401).send({ message: 'This manager does not have permissions to due this application'})
+          } else{
+            if (
+              application.status === "PENDING"
+            ) {
+              Application.findOneAndUpdate(
+                { _id: req.params.applicationId },
+                { status: "DUE" },
+                { new: true },
+                function (err, application) {
+                  if (err) {
+                    res.status(400).send(err);
+                  } else {
+                    res.status(201).json(application);
+                  }
+                }
+              );
+            } else {
+              res.status(400).send({ err: 'To due an application, must be pending' })
+            }
+          }
         }
-      }
+      })
     }
   });
 };
