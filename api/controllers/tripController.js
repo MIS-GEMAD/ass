@@ -115,18 +115,20 @@ exports.delete_a_trip = async function (req, res) {
               res.status(400).send(err);
             } else {
 
-              // delete trip reference in manager trips
-              Actor.findById(authManagerId, function (err, manager) {
-                let filtered_trips_manager = manager.trips.filter(function(value, index, arr){ 
-                  return value != tripManagerId;
-                });
-                manager.trips = filtered_trips_manager
-              })
+              // updated the manager trip list
+              Actor.findOneAndUpdate({ _id: authManagerId }, {"$pull": {trips: req.params.tripId}}, { new: true }, function(err, result){
+                if(err){
+                  res.send(err)
+                }
+                else{
 
-              // delete all stages
-              Stage.deleteMany({ trip: req.params.tripId }, function(err){
-                console.log("deleting stages from trip " + req.params.tripId )
-                res.status(204).send ({ message: "Trip successfully deleted" });
+                  // delete all stages
+                  Stage.deleteMany({ trip: req.params.tripId }, function(err){
+                    console.log("deleting stages from trip " + req.params.tripId )
+                    res.status(204).send ({ message: "Trip successfully deleted" });
+                  })
+
+                }
               })
 
             }
