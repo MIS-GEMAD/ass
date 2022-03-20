@@ -521,7 +521,7 @@
 					"response": []
 				},
 				{
-					"name": "update_preferred_languaje",
+					"name": "update_preferred_languaje_from_auth_actor",
 					"event": [
 						{
 							"listen": "test",
@@ -537,10 +537,16 @@
 					],
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "idToken",
+								"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImYxZDU2YTI1MWU0ZGRhM2Y0NWM0MWZkNWQ0ZGEwMWQyYjlkNzJlMGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc4MTQ1NjAsInVzZXJfaWQiOiJleHBsb3JlcjFAZXhwbG9yZXIxLmNvbSIsInN1YiI6ImV4cGxvcmVyMUBleHBsb3JlcjEuY29tIiwiaWF0IjoxNjQ3ODE0NTYwLCJleHAiOjE2NDc4MTgxNjAsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnt9LCJzaWduX2luX3Byb3ZpZGVyIjoiY3VzdG9tIn19.OyrmTclg3hPhkR3VyXRoBKTc1X8clAVy1FNUwtLdFUmcZpdAvqUGns94gy92MILi0cl_JrezVRgGDd6RBg8oNl_ywmBp4brJTF0Xrz0Wl48t2Gkny6zQHt6R-rQYnZ4DSnPWrn6ZqXcBdAwSldP8mCQFiM0dudVgVIwCS3obaKZwXtEBycKyUDpsMIZytqXRjsQQnAxiX3btQQaUrK4EwJlNUBRSqJn4QCptvXvFROp2eJzkjOZ1LePajwGWsRbtQhaCEQoppFRWIm_zDDM9cgWFpvcx5BoycgG1qiB2s1CZNeathQim80_pDwLr-frCqcbFs2eqaC3N4bIRsov47w",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"password\": \"123456ABCDEFGH\",\n    \"preferred_language\": \"Spanish\"\n}",
+							"raw": "{\n    \"preferred_language\": \"English\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -548,15 +554,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/actors/622780f92d516d895cceaad0/languaje",
+							"raw": "http://localhost:8080/profile/languaje",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"actors",
-								"622780f92d516d895cceaad0",
+								"profile",
 								"languaje"
 							]
 						}

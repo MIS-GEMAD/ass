@@ -24,7 +24,10 @@ module.exports = function (app) {
   app.route('/actors/:actorId/unban')
     .put(authController.verifyUser(['ADMINISTRATOR']), actors.unban_an_actor)
 
-  app.route('/actors/:actorId/languaje')
-    .put(actors.update_preferred_languaje)
+  app.route('/profile/languaje')
+    .put(authController.verifyUser(['ADMINISTRATOR',
+                                    'MANAGER',
+                                    'EXPLORER',
+                                    'SPONSOR']), actors.update_preferred_languaje)
 
 }

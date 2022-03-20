@@ -98,16 +98,6 @@ exports.login_an_actor = async function (req, res) {
   })
 }
 
-exports.update_an_actor = function (req, res) {
-  Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
-    if (err) {
-      res.status(400).send(err)
-    } else {
-      res.status(201).json(actor)
-    }
-  })
-}
-
 exports.update_a_verified_actor = function (req, res) {
 
   console.log('Starting to update the verified actor...')
@@ -201,12 +191,23 @@ exports.unban_an_actor = function (req, res) {
   });
 }
 
-exports.update_preferred_languaje = function (req, res) {
-  Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
-    if (err) {
-      res.status(400).send(err)
-    } else {
-      res.status(201).json(actor)
-    }
-  })
+exports.update_preferred_languaje = async function (req, res) {
+
+  const idToken = req.header('idToken')
+  let authActorId = await authController.getUserId(idToken)
+  authActorId = String(authActorId);
+
+  Actor.findById(authActorId, function (err, actor) {
+
+    Actor.findOneAndUpdate({ _id: authActorId }, req.body, { new: true }, function (err, actor) {
+      if (err) {
+        res.status(400).send(err)
+      } else {
+        res.status(201).json(actor)
+      }
+    })
+
+  });
+
+
 }
