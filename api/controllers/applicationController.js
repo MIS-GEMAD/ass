@@ -170,23 +170,33 @@ exports.reject_an_application = function (req, res) {
     if (err) {
       res.status(404).send(err);
     } else {
-      if (
-        application.status === "PENDING"
-      ) {
-        Application.findOneAndUpdate(
-          { _id: req.params.applicationId },
-          { status: "REJECTED" },
-          { new: true },
-          function (err, application) {
-            if (err) {
-              res.status(400).send(err);
-            } else {
-              res.status(201).json(application);
+      const idToken = req.header('idToken')
+      let authManagerId = await authController.getUserId(idToken)
+      authManagerId = String(authManagerId)
+      let applicationManagerId = application.actor
+      applicationManagerId = String(applicationManagerId)
+
+      if(authManagerId != applicationManagerId){
+        res.status(401).send({ message: 'This manager does not have permissions to cancel this application'})
+      } else{
+        if (
+          application.status === "PENDING"
+        ) {
+          Application.findOneAndUpdate(
+            { _id: req.params.applicationId },
+            { status: "REJECTED" },
+            { new: true },
+            function (err, application) {
+              if (err) {
+                res.status(400).send(err);
+              } else {
+                res.status(201).json(application);
+              }
             }
-          }
-        );
-      } else {
-        res.status(400).send({ err: 'To reject an application, must be pending' })
+          );
+        } else {
+          res.status(400).send({ err: 'To reject an application, must be pending' })
+        }
       }
     }
   });
@@ -197,23 +207,33 @@ exports.due_an_application = function (req, res) {
     if (err) {
       res.status(404).send(err);
     } else {
-      if (
-        application.status === "PENDING"
-      ) {
-        Application.findOneAndUpdate(
-          { _id: req.params.applicationId },
-          { status: "DUE" },
-          { new: true },
-          function (err, application) {
-            if (err) {
-              res.status(400).send(err);
-            } else {
-              res.status(201).json(application);
+      const idToken = req.header('idToken')
+      let authManagerId = await authController.getUserId(idToken)
+      authManagerId = String(authManagerId)
+      let applicationManagerId = application.actor
+      applicationManagerId = String(applicationManagerId)
+
+      if(authManagerId != applicationManagerId){
+        res.status(401).send({ message: 'This manager does not have permissions to cancel this application'})
+      } else{
+        if (
+          application.status === "PENDING"
+        ) {
+          Application.findOneAndUpdate(
+            { _id: req.params.applicationId },
+            { status: "DUE" },
+            { new: true },
+            function (err, application) {
+              if (err) {
+                res.status(400).send(err);
+              } else {
+                res.status(201).json(application);
+              }
             }
-          }
-        );
-      } else {
-        res.status(400).send({ err: 'To due an application, must be pending' })
+          );
+        } else {
+          res.status(400).send({ err: 'To due an application, must be pending' })
+        }
       }
     }
   });
