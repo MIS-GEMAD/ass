@@ -255,4 +255,3 @@ exports.list_trip_applications = function (req, res) {
     }
   })
 };
-

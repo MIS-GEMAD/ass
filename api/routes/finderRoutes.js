@@ -8,4 +8,7 @@ module.exports = function (app) {
   app.route('/finder')
     .post(authController.verifyUser(['EXPLORER']), finder.create_a_finder_criteria)
 
+  app.route('/finder/flush')
+    .put(authController.verifyUser(['ADMINISTRATOR']), finder.flush_finder_criterias)
+
 }

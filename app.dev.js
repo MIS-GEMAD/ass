@@ -83,7 +83,11 @@ mongoose.connection.on("open", function () {
   server.close()
 });
 
-mongoose.connection.on("connected", function () {
+mongoose.connection.on("error", function (err) {
+  console.error("DB init error " + err);
+});
+
+mongoose.connection.on("all", function () {
   // save inital configuration variable
   var configuration = new Configuration({
     flat_rate: 0,
@@ -103,10 +107,6 @@ mongoose.connection.on("connected", function () {
   
   cube.save()
 })
-
-mongoose.connection.on("error", function (err) {
-  console.error("DB init error " + err);
-});
 
 // mongoose.connection.dropDatabase(function(err, result) {console.log(err,result)});
 
