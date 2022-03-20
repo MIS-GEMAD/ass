@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "401694dc-f0d6-407d-850a-51ff2ba12208",
+		"_postman_id": "8f6272c5-9836-449a-8103-d030a84115ba",
 		"name": "ACME EXPLORER",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1980,7 +1980,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"actor\":\"622f3e1e2d80876e23c942ec\",\r\n    \"keyword\":\"acvbfsdfd\",\r\n    \"price_from\": 10,\r\n    \"price_to\": 100,\r\n    \"date_from\":\"2023-01-03T22:47:50.569Z\",\r\n    \"date_to\": \"2023-11-02T19:16:03.854Z\",\r\n    \"trips\":[\"622f3e1eff59855cba428140\"]\r\n\r\n}",
+							"raw": "{\r\n    \"actor\":\"622f3e1e2d80876e23c942ec\",\r\n    \"keyword\":\"acvbfsdfd\",\r\n    \"price_from\": 10,\r\n    \"price_to\": 100,\r\n    \"date_from\":\"2023-01-03T22:47:50.569Z\",\r\n    \"date_to\": \"2023-11-02T19:16:03.854Z\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2095,7 +2095,57 @@
 		},
 		{
 			"name": "CUBE",
-			"item": []
+			"item": [
+				{
+					"name": "show_cube",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cube/show",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cube",
+								"show"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "compute_cube",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"actor\": \"622f3e1e2d80876e23c942ec\",\n    \"date_from\": \"2021-05-02T19:16:03.854Z\",\n    \"date_to\": \"2021-07-02T19:16:03.854Z\",\n    \"arbitrary_money\": 9.0,\n    \"comparision\": \">=\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cube/compute",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cube",
+								"compute"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "MASIVECHARGE",
