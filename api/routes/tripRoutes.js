@@ -9,10 +9,10 @@ module.exports = function (app) {
 
   app.route('/trips')
     .get(trip.list_all_trips)
-    .post(authController.verifyUser(['MANAGER']),trip.create_a_trip)
+    .post(authController.verifyUser(['MANAGER']), trip.create_a_trip)
 
   app.route('/trips/owns')
-    .get(authController.verifyUser(['MANAGER']),trip.list_trips_from_auth_manager)
+    .get(authController.verifyUser(['MANAGER']), trip.list_trips_from_auth_manager)
 
   app.route('/trips/:tripId')
     .get(trip.read_a_trip)
