@@ -6,7 +6,7 @@ module.exports = function (app) {
 
   app.route('/actors')
     .get(actors.list_all_actors)
-    .post(authController.verifyUser(['EXPLORER', 'SPONSOR']), actors.create_an_actor)
+    .post(actors.create_an_actor)
 
   app.route('/actors/manager')
     .post(authController.verifyUser(['ADMINISTRATOR']), actors.create_a_manager)
