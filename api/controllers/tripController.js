@@ -227,11 +227,8 @@ exports.pay_a_trip = function (req, res) {
 };
 
 exports.list_trips_from_auth_manager = async function (req, res) {
-
-  // get auth manager
   const idToken = req.header('idToken')
   const managerId = await authController.getUserId(idToken)
-
   Trip.find({ manager: managerId }, function (err, trips) {
     if (err) {
       res.status(400).send(err);
@@ -246,18 +243,15 @@ exports.cancel_a_trip = async function (req, res) {
     if (err) {
       res.status(404).send(err)
     } else {
-
        // check if trip is from auth manager
        const idToken = req.header('idToken')
        let authManagerId = await authController.getUserId(idToken)
        authManagerId = String(authManagerId)
        let tripManagerId = trip.manager
        tripManagerId = String(tripManagerId)
- 
        if(authManagerId != tripManagerId){
          res.status(401).send({ message: 'This manager does not have permissions to cancel this trip'})
        } else {
-
         Application.find({ trip: req.params.tripId, status: 'ACCEPTED' }, function (err, applications) {
           if (err) {
             res.status(404).send(err)
@@ -286,8 +280,6 @@ exports.cancel_a_trip = async function (req, res) {
         })
 
        }
-
-      
     }
   })
 };
@@ -309,7 +301,6 @@ exports.select_random_banner = function (req, res) {
               res.status(404).send("Sponsorships not found");
             } else {
               var random = Math.floor(Math.random() * sponsorships.length)
-
               res.status(200).json(sponsorships[random]);
             }
           }
@@ -324,13 +315,11 @@ exports.list_trip_applications = function (req, res) {
     if (err) {
       res.status(404).send(err)
     } else {
-
       const idToken = req.header('idToken')
       let authManagerId = await authController.getUserId(idToken)
       authManagerId = String(authManagerId)
       let tripManagerId = trip.manager
       tripManagerId = String(tripManagerId)
-
       if(authManagerId != tripManagerId){
         res.status(401).send({ message: 'This manager does not have permissions to list this trip applications'})
       } else {
