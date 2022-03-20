@@ -79,6 +79,9 @@ mongoose.connection.on("open", function () {
   app.listen(port, function () {
     console.log("ACME-Explorer RESTful API server started on: " + port);
   });
+});
+
+mongoose.connection.on("connected", function () {
   // save inital configuration variable
   var configuration = new Configuration({
     flat_rate: 0,
@@ -97,7 +100,7 @@ mongoose.connection.on("open", function () {
   configuration.save()
   
   cube.save()
-});
+})
 
 mongoose.connection.on("error", function (err) {
   console.error("DB init error " + err);

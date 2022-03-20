@@ -19,6 +19,22 @@ exports.list_all_actors = async function(req, res) {
 
 exports.create_an_actor = function (req, res) {
   const newActor = new Actor(req.body)
+  if (req.body.role == 'ADMINISTRATOR' || req.body.role == 'MANAGER') {
+    res.status(400).send({ err: 'An administrator or a manager cannot be registered' });
+  } else {
+    newActor.save(function (err, actor) {
+      if (err) {
+        res.status(400).send(err)
+      } else {
+        res.status(201).json(actor)
+      }
+    })
+  }
+}
+
+exports.create_a_manager = function (req, res) {
+  req.body.role = 'MANAGER'
+  const newActor = new Actor(req.body)
   newActor.save(function (err, actor) {
     if (err) {
       res.status(400).send(err)
