@@ -80,6 +80,7 @@ beforeEach(async()=>{
 
 });
 
+// TENER EN CUENTA EXPIRACION DE idTokens (403)
 
 describe('ACTORS', () => {
 
@@ -137,7 +138,8 @@ describe('ACTORS', () => {
         "preferred_language": "Spanish"
         
       })
-       .expect(201)
+      .set("idToken","eyJhbGciOiJSUzI1NiIsImtpZCI6ImIwNmExMTkxNThlOGIyODIxNzE0MThhNjdkZWE4Mzc0MGI1ZWU3N2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc3OTgxNDUsInVzZXJfaWQiOiJhZG1pbjFAYWRtaW4xLmNvbSIsInN1YiI6ImFkbWluMUBhZG1pbjEuY29tIiwiaWF0IjoxNjQ3Nzk4MTQ1LCJleHAiOjE2NDc4MDE3NDUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnt9LCJzaWduX2luX3Byb3ZpZGVyIjoiY3VzdG9tIn19.T-cMRKCZndioTTbh_c_kSiFAjnuRgzujTF_MmbSPhNT_234X-AV08ZRW2asKL-UScU5gPIckCoXakEiVcOGREfcKDFwvG_kX1QEhloLLwonB82g8qGz6JLN-FKpdTuTykj2XzMx_-HeQEhn_Ox93SJGsdaowrzRt8FYGzHIQIX_f-Ha2xj4KhlRcKlOIyVDMG4D6Jo_S3Ppj3hRm_iZOvNXm0kjbPHdlLvH69SZTjzJLAHchGDSy3Oqy-jwnkJFLROVARfKyb15nacK21fEfc_NQMS0W-RNv1sXCUXuz6ScSRfKcLeXEXhUocU94RpKZzTRw2WJjfqhm2-ni-z1Ozw")
+       .expect(403)
        .expect('Content-Type', /application\/json/)
    });
 
@@ -164,7 +166,8 @@ describe('TRIPS', ()=>{
    })
 
         test('Post Trip', async() => {
-            await api
+          
+          await api
             .post('/trips')
             .send({
               "ticker": "202102-ABCH",
@@ -174,9 +177,12 @@ describe('TRIPS', ()=>{
               "requirements": ["Alcohol","Dinero"],
               "startDate": "2023-01-03T22:47:50.569Z",
               "endDate": "2023-11-02T19:16:03.854Z",
-              "isCancelled": false
+              "isCancelled": false,
+
+
           })
-            .expect(201)
+          .set("idToken","eyJhbGciOiJSUzI1NiIsImtpZCI6ImIwNmExMTkxNThlOGIyODIxNzE0MThhNjdkZWE4Mzc0MGI1ZWU3N2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc3OTgxNDUsInVzZXJfaWQiOiJhZG1pbjFAYWRtaW4xLmNvbSIsInN1YiI6ImFkbWluMUBhZG1pbjEuY29tIiwiaWF0IjoxNjQ3Nzk4MTQ1LCJleHAiOjE2NDc4MDE3NDUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnt9LCJzaWduX2luX3Byb3ZpZGVyIjoiY3VzdG9tIn19.T-cMRKCZndioTTbh_c_kSiFAjnuRgzujTF_MmbSPhNT_234X-AV08ZRW2asKL-UScU5gPIckCoXakEiVcOGREfcKDFwvG_kX1QEhloLLwonB82g8qGz6JLN-FKpdTuTykj2XzMx_-HeQEhn_Ox93SJGsdaowrzRt8FYGzHIQIX_f-Ha2xj4KhlRcKlOIyVDMG4D6Jo_S3Ppj3hRm_iZOvNXm0kjbPHdlLvH69SZTjzJLAHchGDSy3Oqy-jwnkJFLROVARfKyb15nacK21fEfc_NQMS0W-RNv1sXCUXuz6ScSRfKcLeXEXhUocU94RpKZzTRw2WJjfqhm2-ni-z1Ozw")
+            .expect(403)
             .expect('Content-Type', /application\/json/)
         });
 
@@ -198,7 +204,8 @@ describe('TRIPS', ()=>{
               "endDate": "2023-11-02T19:16:03.854Z",
               "isCancelled": true,
           })
-            .expect(201)
+          .set("idToken","eyJhbGciOiJSUzI1NiIsImtpZCI6ImIwNmExMTkxNThlOGIyODIxNzE0MThhNjdkZWE4Mzc0MGI1ZWU3N2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc3OTgxNDUsInVzZXJfaWQiOiJhZG1pbjFAYWRtaW4xLmNvbSIsInN1YiI6ImFkbWluMUBhZG1pbjEuY29tIiwiaWF0IjoxNjQ3Nzk4MTQ1LCJleHAiOjE2NDc4MDE3NDUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnt9LCJzaWduX2luX3Byb3ZpZGVyIjoiY3VzdG9tIn19.T-cMRKCZndioTTbh_c_kSiFAjnuRgzujTF_MmbSPhNT_234X-AV08ZRW2asKL-UScU5gPIckCoXakEiVcOGREfcKDFwvG_kX1QEhloLLwonB82g8qGz6JLN-FKpdTuTykj2XzMx_-HeQEhn_Ox93SJGsdaowrzRt8FYGzHIQIX_f-Ha2xj4KhlRcKlOIyVDMG4D6Jo_S3Ppj3hRm_iZOvNXm0kjbPHdlLvH69SZTjzJLAHchGDSy3Oqy-jwnkJFLROVARfKyb15nacK21fEfc_NQMS0W-RNv1sXCUXuz6ScSRfKcLeXEXhUocU94RpKZzTRw2WJjfqhm2-ni-z1Ozw")
+            .expect(403)
             .expect('Content-Type', /application\/json/)
         });
 
@@ -220,8 +227,10 @@ describe('TRIPS', ()=>{
           const tripId = trips[1];
           
           await api
-            .delete(`/trips/${tripId._id}`)
-            .expect(204)
+           .delete(`/trips/${tripId._id}`)
+           .set("idToken","eyJhbGciOiJSUzI1NiIsImtpZCI6ImIwNmExMTkxNThlOGIyODIxNzE0MThhNjdkZWE4Mzc0MGI1ZWU3N2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWNtZWV4cGxvcmVyYXV0aCIsImF1ZCI6ImFjbWVleHBsb3JlcmF1dGgiLCJhdXRoX3RpbWUiOjE2NDc3OTgxNDUsInVzZXJfaWQiOiJhZG1pbjFAYWRtaW4xLmNvbSIsInN1YiI6ImFkbWluMUBhZG1pbjEuY29tIiwiaWF0IjoxNjQ3Nzk4MTQ1LCJleHAiOjE2NDc4MDE3NDUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnt9LCJzaWduX2luX3Byb3ZpZGVyIjoiY3VzdG9tIn19.T-cMRKCZndioTTbh_c_kSiFAjnuRgzujTF_MmbSPhNT_234X-AV08ZRW2asKL-UScU5gPIckCoXakEiVcOGREfcKDFwvG_kX1QEhloLLwonB82g8qGz6JLN-FKpdTuTykj2XzMx_-HeQEhn_Ox93SJGsdaowrzRt8FYGzHIQIX_f-Ha2xj4KhlRcKlOIyVDMG4D6Jo_S3Ppj3hRm_iZOvNXm0kjbPHdlLvH69SZTjzJLAHchGDSy3Oqy-jwnkJFLROVARfKyb15nacK21fEfc_NQMS0W-RNv1sXCUXuz6ScSRfKcLeXEXhUocU94RpKZzTRw2WJjfqhm2-ni-z1Ozw")
+ 
+           .expect(403)
         });
 
         test('Get Actor Trips ', async() => {
@@ -247,159 +256,7 @@ describe('APPLICATIONS', ()=>{
       .expect('Content-Type', /application\/json/)
 })
 
-    test('Post Application (Error 404 No Actor Explorer', async() => {
-        
-      const {response:primeraResponse} = await getActors();
-      const {body:actors} = primeraResponse;
-      const actorId = actors[0];
-
-      const {response:segundaResponse} = await getTrips();
-      const {body:trips} = segundaResponse;
-      const tripId = trips[0];
-
-      await api
-        .post('/applications')
-        .send({    
-          "moment": "2022-01-03T22:49:50.569Z",
-          "status":"DUE",
-          //"actor":`${actorId._id}`,
-          "trip": `${tripId._id}`
-        })
-        .expect(404)
-        .expect('Explorer not found')
-    });
-
-    test('Put application', async() => {
-      
-      const {response:primeraResponse} = await getApplications();
-      const {body:applications} = primeraResponse;
-      const applicationId = applications[0]; 
-
-
-      await api
-        .put(`/applications/${applicationId._id}`)
-        .send({    
-          "moment": "2022-01-03T22:47:50.569Z",
-          "status":"DUE"
-      })
-        .expect(201)
-        .expect('Content-Type', /application\/json/)
-    });
-
-      test('Get Application by ID', async() => {
-      
-        const {response:primeraResponse} = await getApplications();
-        const {body:applications} = primeraResponse;
-        const applicationId = applications[0]; 
-      
-        await api
-        .get(`/applications/${applicationId._id}`)
-        .expect(200)
-        .expect('Content-Type', /application\/json/)
-    });
-
-    test('Delete Application by ID', async() => {
-      
-      const {response: primeraResponse} = await getApplications();
-      const {body:applications} = primeraResponse;
-      const applicationToDelete = applications[0];
-      
-      await api
-        .delete(`/applications/${applicationToDelete._id}`)
-        .expect(204)
-    });
-
 });
-
-
-describe('SPONSORSHIPS', ()=>{
-  
-  test('Get sponsorshiphs', async() => {
-      await api
-      .get('/sponsorships')
-      .expect(200)
-      .expect('Content-Type', /application\/json/)
-})
-
-    test('Post Sponsorship', async() => {
-        await api
-        .post('/sponsorships')
-        .send({    
-          "banner": "http://google.ukr",
-          "link": "http://aliqua.com/81e03759-bb85-409e-bdf9-1ed3f5f63b17",
-          "trip": ["621cd18c7984f97f14e9b101"]
-        })
-        .expect(201)
-        .expect('Content-Type', /application\/json/)
-    });
-
-    test('Put Sponsorship', async() => {
-        
-      const {response:primeraResponse} = await getSponsorships();
-      const {body:sponsorships} = primeraResponse;
-      const sponsorshipId = sponsorships[0]; 
-      
-      await api
-        .put(`/sponsorships/${sponsorshipId._id}`)
-        .send({    
-          "banner": "http://google.uk",
-          "link": "http://aliqua.com/81e03759-bb85-409e-bdf9-1ed3f5f63b17"
-      })
-        .expect(201)
-        .expect('Content-Type', /application\/json/)
-    });
-
-      test('Get Sponsorship by ID', async() => {
-      
-        const {response:primeraResponse} = await getSponsorships();
-        const {body:sponsorships} = primeraResponse;
-        const sponsorshipId = sponsorships[0]; 
-      
-        await api
-        .get(`/sponsorships/${sponsorshipId._id}`)
-        .expect(200)
-        .expect('Content-Type', /application\/json/)
-    });
-
-    test('Delete Sponsorship by ID', async() => {
-      
-      const {response: primeraResponse} = await getSponsorships();
-      const {body:sponsorships} = primeraResponse;
-      const sponsorshipToDelete = sponsorships[0];
-    
-      await api
-        .delete(`/sponsorships/${sponsorshipToDelete._id}`)
-        .expect(204)
-    });
-});
-
-
-describe('FINDER', ()=>{
-  test('Get Finder Criteria', async() => {
-      await api
-      .get('/finder')
-      .expect(200)
-      .expect('Content-Type', /application\/json/)
-})
-
-    test('Post Finder Criteria', async() => {
-        await api
-        .post('/finder')
-        .send({    
-          "explorer":"621cd18b7984f97f14e9b0dc",
-          "keyword":"acvbfsdfd",
-          "price_from": 10,
-          "price_to": 100,
-          "date_from":"2023-01-03T22:47:50.569Z",
-          "date_to": "2023-11-02T19:16:03.854Z",
-          "trips":["621cd18c7984f97f14e9b0f9"]
-        })
-        .expect(201)
-        .expect('Content-Type', /application\/json/)
-    });
-
-});
-
 
 
 afterAll(()=>{

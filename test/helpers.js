@@ -42,7 +42,7 @@ const actores_Iniciales = [
     {
         "password": "kdfnaosnffdsfdspa",
         "role": [
-            "EXPLORER"
+            "SPONSOR"
         ],
         "name": "ANthoniy",
         "surname": "Martial",
